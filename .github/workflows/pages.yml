@@ -31,7 +31,7 @@ jobs:
       - name: Install PDF inspection utility
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - name: Build site for GitHub Pages
-        run: python3 build.py "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/"
+        run: python3 build.py "https://lucifer-newstar.github.io/Portfolio/"
       - name: Test generated site
         run: node --test test/site.test.js
       - name: Upload Pages artifact
