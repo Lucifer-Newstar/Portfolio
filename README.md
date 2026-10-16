@@ -1,25 +1,28 @@
-# Navin Jairam M — portfolio site
+# Navin Jairam M — portfolio
 
-Static site: plain HTML, CSS and JavaScript. No framework, no backend, no build tools needed to host it.
+A lightweight, multi-page static portfolio built with HTML, CSS, and vanilla JavaScript. GitHub Actions builds, tests, and deploys the site to GitHub Pages.
 
-## Layout
-- `site/` — the deployable folder. Upload its contents as-is.
-- `build.py` + `pages.py` — regenerate the HTML pages: `python3 build.py https://your-domain/`
-  (the URL is used for the canonical and Open Graph tags; `styles.css`, `script.js`, `og.png` and `assets/` are edited directly in `site/`).
-- `test/site.test.js` — content and link checks: `node --test test/site.test.js`
+## GitHub Pages setup
 
-## Notes
-- Theme: `theme-init.js` sets light/dark before first paint (saved choice in localStorage, else the OS setting); the sun/moon button and the `theme light|dark` terminal command switch it.
-- Background: two fixed canvases in `script.js` (DevOps motifs), ~30 fps, paused when the tab is hidden, static under reduced motion.
-- Photo: `site/assets/img/navin.webp` + `navin.jpg` (600×600). Swap these two files to change it.
-- The downloadable resume (`site/assets/Navin_Jairam_M_Resume.pdf`) is the copy without a phone number.
+1. Push this repository to `Lucifer-Newstar/Portfolio` on the `main` branch.
+2. In **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source.
+3. The workflow in `.github/workflows/pages.yml` will build and publish the `site/` directory on each push to `main`. Pull requests run the build and checks without deploying.
+4. The expected project-site URL is `https://lucifer-newstar.github.io/Portfolio/`. The workflow generates canonical and social-preview URLs for the repository owner and repository name automatically.
 
-## Host it on AWS (S3 + CloudFront)
-1. Create an S3 bucket (keep Block Public Access on) and upload everything inside `site/`:
-   `aws s3 sync site/ s3://YOUR-BUCKET/ --delete`
-2. Create a CloudFront distribution with the bucket as origin, using Origin Access Control, default root object `index.html`,
-   and a custom error response that maps 404 to `/404.html`.
-3. Point your domain at the distribution (Route 53 alias record + an ACM certificate in us-east-1).
-4. Rebuild with your domain so the share-preview tags point at it: `python3 build.py https://your-domain/` and sync again.
+The generated `404.html` is included in the Pages artifact. Links use `.html` filenames, so the site works without server-side rewrite rules. For a custom domain, update the build URL in the workflow and configure the domain under Pages settings.
 
-Page links use `.html` file names, so they work on S3/CloudFront without any rewrite rules.
+## Local development
+
+```sh
+python3 build.py https://lucifer-newstar.github.io/Portfolio/
+node --test test/site.test.js
+```
+
+The build script generates the HTML pages into `site/`; edit `pages.py` for page content and the corresponding files in `site/` for shared CSS, JavaScript, fonts, images, and other static assets. The test suite checks page metadata, local links, accessibility landmarks, required portfolio content, and the downloadable resume. It requires Node.js, Python 3, and `pdftotext` (provided by `poppler-utils` on Ubuntu).
+
+## Repository layout
+
+- `.github/workflows/pages.yml` — validation and GitHub Pages deployment workflow
+- `build.py`, `pages.py` — static HTML generation
+- `site/` — deployable website, including `404.html`, assets, and resume
+- `test/site.test.js` — generated-site regression tests
