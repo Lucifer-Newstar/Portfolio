@@ -380,7 +380,7 @@
         'digicrave-os         1/1     <span class="ok">Running</span>' },
       { cmd: "deploy navin --env=prod", out:
         '<span class="o">» building image</span> <span class="vi">navin:2027</span><span class="o"> … done</span>\n' +
-        '<span class="o">» rolling out to</span> <span class="am">bangalore</span><span class="o"> … done</span>\n' +
+        '<span class="o">» rolling out to</span> <span class="am">production</span><span class="o"> … done</span>\n' +
         '<span class="ok">✓ deployed</span>\n\n' +
         '  <span class="big">Navin Jairam M</span>\n' +
         '  <span class="hi">DevOps &amp; Cloud Engineer</span>\n' +
@@ -563,7 +563,7 @@
           '<span class="hi">clear</span> · <span class="hi">exit</span>'
         ].join("\n"));
       },
-      whoami: function () { print('<span class="hi">Navin Jairam M</span> — DevOps &amp; Cloud Engineer\nFinal-year B.Tech IT (2023–2027), Chennai\n2 DevOps internships: Rapture Twelve, Adroit Technologies\nOpen to DevOps / SRE / Cloud roles in Bangalore'); },
+      whoami: function () { print('<span class="hi">Navin Jairam M</span> — DevOps &amp; Cloud Engineer\nFinal-year B.Tech IT (2023–2027), Chennai\n2 DevOps internships: Rapture Twelve, Adroit Technologies\nSeeking DevOps, SRE, and cloud roles starting in 2027'); },
       ls: function () { print("index.html  about.html  projects.html  skills.html  contact.html\nprojects/aegisdeploy.html  projects/portfolio-platform.html\nprojects/digicrave-os.html  projects/distributed-java-webapp.html"); },
       projects: function () { go(PAGES.projects, "projects"); },
       skills: function () { go(PAGES.skills, "skills"); },

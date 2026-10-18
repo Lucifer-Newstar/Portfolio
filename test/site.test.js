@@ -55,6 +55,14 @@ test("required links are present", () => {
   assert.match(joined, /href="(\.\.\/)?assets\/Navin_Jairam_M_Resume\.pdf" download/);
 });
 
+test("location references are removed from every page and the interactive terminal", () => {
+  const files = [...all, ["script.js", read("script.js")]];
+  for (const [p, h] of files) {
+    assert.ok(!/bang(?:al|l)ore|bengaluru/i.test(h), p + " still mentions a removed location");
+  }
+  assert.match(read("contact.html"), /graduating in 2027 and seeking DevOps, SRE, or cloud roles/);
+});
+
 test("no dead domain, phone number, placeholders, or inline scripts", () => {
   const files = [...all, ["script.js", read("script.js")], ["styles.css", read("styles.css")]];
   for (const [p, h] of files) {

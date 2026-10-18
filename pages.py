@@ -60,7 +60,7 @@ def next_nav(root, prev, nxt):
 
 def CTA(root):
     return f'''<section><div class="wrap"><div class="cta reveal">
-  <div><h2>Hiring for DevOps, SRE or Cloud?</h2><p>I'm graduating in 2027 and open to roles in Bangalore. Let's talk.</p></div>
+  <div><h2>Hiring for DevOps, SRE or Cloud?</h2><p>I'm graduating in 2027 and seeking DevOps, SRE, or cloud roles. Let's talk.</p></div>
   <div class="btns"><a class="btn primary" href="mailto:{EMAIL}">{ICON["mail"]} Email me</a><a class="btn" href="{root}assets/Navin_Jairam_M_Resume.pdf" download>{ICON["dl"]} Download resume</a></div>
 </div></div></section>'''
 
@@ -83,7 +83,7 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
       <a class="btn" href="assets/Navin_Jairam_M_Resume.pdf" download>{ICON["dl"]} Resume</a>
       <button class="btn" type="button" data-palette>{ICON["term"]} Terminal</button>
     </div>
-    <p class="hero-meta"><span>Chennai, India</span><span>B.Tech IT 2023–2027</span><span>Targeting Bangalore</span></p>
+    <p class="hero-meta"><span>Chennai, India</span><span>B.Tech IT 2023–2027</span><span>Seeking DevOps / SRE / Cloud roles</span></p>
   </div>
   <div class="term" role="img" aria-label="Animated terminal: whoami prints navin-jairam-m; kubectl get pods lists the projects AegisDeploy, Portfolio Platform and DigiCrave OS as running; deploy navin to prod prints Navin Jairam M, DevOps and Cloud Engineer.">
     <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>navin@prod: ~ — zsh</span></div>
@@ -151,14 +151,15 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
   <p class="crumb">~/about</p>
   <p class="eyebrow">about &amp; experience</p>
   <h1>I make software <span class="grad">ship reliably</span>.</h1>
-  <p class="lead">I'm a final-year B.Tech IT student at Meenakshi College of Engineering in Chennai. I've done two DevOps internships on live projects, and in my own time I build things like AegisDeploy, an SRE platform with a full observability stack. I'm looking for DevOps, SRE or Cloud roles in Bangalore from 2027.</p>
+  <p class="lead">I'm a final-year B.Tech IT student at Meenakshi College of Engineering in Chennai. I've completed two DevOps internships on live projects, and I build projects such as AegisDeploy, an SRE platform with a full observability stack. I'm seeking DevOps, SRE, or cloud engineering roles starting in 2027.</p>
   </div>
   <figure class="photo-frame">
     <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>kubectl describe pod navin</span></div>
     <div class="shot"><span class="scan" aria-hidden="true"></span>{photo("")}<span class="tag" aria-hidden="true"><i></i>Running · 1/1</span></div>
     <pre aria-hidden="true"><b>Name:</b>   <em>navin-jairam-m</em>
 <b>Role:</b>   <em>DevOps &amp; Cloud Engineer</em>
-<b>Node:</b>   <em>chennai</em> → bangalore</pre>
+<b>Node:</b>   <em>chennai</em>
+<b>Status:</b>  <em>seeking roles in 2027</em></pre>
     <figcaption class="sr-only">Navin Jairam M, framed as a running Kubernetes pod.</figcaption>
   </figure>
 </div></section>
@@ -170,7 +171,7 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
       <dt>based</dt><dd>Chennai, India</dd>
       <dt>studying</dt><dd>B.Tech Information Technology, Meenakshi College of Engineering (2023–2027), CGPA 7.61</dd>
       <dt>stack</dt><dd>AWS, Docker, Kubernetes, GitHub Actions, Ansible, Prometheus, Grafana</dd>
-      <dt>looking for</dt><dd>DevOps / SRE / Cloud roles in Bangalore</dd>
+      <dt>looking for</dt><dd>DevOps / SRE / Cloud roles starting in 2027</dd>
       <dt>languages</dt><dd>English (professional), Tamil (native)</dd>
     </dl>
   </div>
@@ -348,7 +349,7 @@ contact = f'''<section class="page-head"><div class="wrap">
   <p class="crumb">~/contact</p>
   <p class="eyebrow">ssh navin@inbox</p>
   <h1>Let's <span class="grad">talk</span>.</h1>
-  <p class="lead">I'm open to DevOps, SRE and Cloud roles in Bangalore, graduating in 2027. Email is the fastest way to reach me.</p>
+  <p class="lead">I'm graduating in 2027 and seeking DevOps, SRE, or cloud roles. Email is the fastest way to reach me.</p>
 </div></section>
 <section style="padding-top:6px"><div class="wrap">
   <div class="card email-box reveal">

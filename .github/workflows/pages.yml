@@ -3,9 +3,9 @@ name: Build and deploy portfolio
 on:
   push:
     branches: [main]
-  workflow_dispatch:
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -23,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.12'
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -34,6 +34,9 @@ jobs:
         run: python3 build.py "https://lucifer-newstar.github.io/Portfolio/"
       - name: Test generated site
         run: node --test test/site.test.js
+      - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
