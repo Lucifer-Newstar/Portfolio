@@ -29,12 +29,12 @@ The build script generates the HTML pages into `site/`; edit `pages.py` for page
 - `site/` — deployable website, including `404.html`, assets, and resume
 - `test/site.test.js` — generated-site regression tests
 
-## Demo 
+## Demo
 
-# Desktop View
+### Desktop View
 
-![](site/assets/desktop-view.mp4)
+![Desktop View](site/assets/desktop-view.gif)
 
-# Mobile View
+### Mobile View
 
-![](site/assets/mobile-view.mp4)
+![Mobile View](site/assets/mobile-view.gif)
