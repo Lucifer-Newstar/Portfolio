@@ -9,7 +9,9 @@ A lightweight, multi-page static portfolio built with HTML, CSS, and vanilla Jav
 3. The workflow in `.github/workflows/pages.yml` will build and publish the `site/` directory on each push to `main`. Pull requests run the build and checks without deploying.
 4. The expected project-site URL is `https://lucifer-newstar.github.io/Portfolio/`. The workflow generates canonical and social-preview URLs for the repository owner and repository name automatically.
 
-The generated `404.html` is included in the Pages artifact. Links use `.html` filenames, so the site works without server-side rewrite rules. For a custom domain, update the build URL in the workflow and configure the domain under Pages settings.
+The generated `404.html` is included in the Pages artifact; its links use the base path from the build URL (`/Portfolio/`), so it works at any depth. Links use `.html` filenames, so the site works without server-side rewrite rules. For a custom domain, update the build URL in the workflow and configure the domain under Pages settings.
+
+**Portfolio Platform source link:** set `PORTFOLIO_PLATFORM_REPO` near the top of `build.py` to the cleaned, renamed AWS repo's name; while it is `""` the site shows "Source: private, available on request".
 
 ## Local development
 

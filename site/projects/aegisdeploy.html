@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" class="no-js" data-root="../">
+<html lang="en" class="no-js" data-root="../" data-pp-repo="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AegisDeploy · Navin Jairam M</title>
-<meta name="description" content="AegisDeploy: AI-powered autonomous SRE platform with a 6-job CI pipeline, 7 Kubernetes services and a Prometheus/Grafana/Loki/Tempo/OpenTelemetry stack.">
+<meta name="description" content="AegisDeploy, an SRE platform with phase 2 built: a demo shop watched by a service registry, deployments API and live console, a 6-job CI pipeline, 7 Kubernetes services and Prometheus, Grafana, Loki, Tempo and OpenTelemetry.">
 <meta name="author" content="Navin Jairam M">
 <meta name="theme-color" content="#06080c">
 <meta name="color-scheme" content="dark light">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Navin Jairam M">
 <meta property="og:title" content="AegisDeploy · Navin Jairam M">
-<meta property="og:description" content="AegisDeploy: AI-powered autonomous SRE platform with a 6-job CI pipeline, 7 Kubernetes services and a Prometheus/Grafana/Loki/Tempo/OpenTelemetry stack.">
+<meta property="og:description" content="AegisDeploy, an SRE platform with phase 2 built: a demo shop watched by a service registry, deployments API and live console, a 6-job CI pipeline, 7 Kubernetes services and Prometheus, Grafana, Loki, Tempo and OpenTelemetry.">
 <meta property="og:url" content="https://lucifer-newstar.github.io/Portfolio/projects/aegisdeploy.html">
 <meta property="og:image" content="https://lucifer-newstar.github.io/Portfolio/og.png">
 <meta property="og:image:width" content="1200">
@@ -21,9 +21,10 @@
 <meta property="og:image:alt" content="Navin Jairam M — DevOps &amp; Cloud Engineer">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AegisDeploy · Navin Jairam M">
-<meta name="twitter:description" content="AegisDeploy: AI-powered autonomous SRE platform with a 6-job CI pipeline, 7 Kubernetes services and a Prometheus/Grafana/Loki/Tempo/OpenTelemetry stack.">
+<meta name="twitter:description" content="AegisDeploy, an SRE platform with phase 2 built: a demo shop watched by a service registry, deployments API and live console, a 6-job CI pipeline, 7 Kubernetes services and Prometheus, Grafana, Loki, Tempo and OpenTelemetry.">
 <meta name="twitter:image" content="https://lucifer-newstar.github.io/Portfolio/og.png">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../styles.css">
@@ -35,27 +36,36 @@
 <div class="grain" aria-hidden="true"></div>
 <header class="site-header">
   <nav class="wrap nav" aria-label="Main">
-    <a class="brand" href="../index.html" aria-label="Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
+    <a class="brand" href="../index.html" aria-label="navin@prod:~$, Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li><li><a href="../projects.html" aria-current="page">Projects</a></li><li><a href="../skills.html">Skills</a></li><li><a href="../contact.html">Contact</a></li></ul>
     <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
-    <button class="kbtn" data-palette type="button" aria-label="Open command palette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7 5 5-5 5M12 18h7"/></svg><span>Command</span><kbd>⌘K</kbd></button>
+    <button class="kbtn" data-palette type="button" aria-label="Command ⌘K, open command palette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7 5 5-5 5M12 18h7"/></svg><span>Command</span><kbd>⌘K</kbd></button>
   </nav>
 </header>
 <main id="main">
 <section class="page-head"><div class="wrap">
   <p class="crumb"><a href="../projects.html">~/projects</a> / aegisdeploy</p>
-  <p class="eyebrow">case study · SRE platform · MIT licensed</p>
+  <p class="eyebrow">case study · SRE platform · team lead · MIT licensed</p>
   <h1>AegisDeploy</h1>
-  <p class="lead">An AI-powered autonomous SRE platform for monitoring, incident detection, root-cause analysis and automated remediation. Kubernetes-ready, checked by CI on every push, and observable end to end.</p>
+  <p class="lead">An SRE platform, built as a 4-person final-year team project that I lead. Phase 2 is built: AegisShop, a 4-service demo shop, watched by a service registry, a deployments API and a live console, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry. Every push is checked by a 6-job CI pipeline. AI incident detection and auto-remediation are next on the roadmap.</p>
   <div style="margin:18px 0 24px"><ul class="tags"><li>Python</li><li>Docker</li><li>Kubernetes</li><li>Kustomize</li><li>GitHub Actions</li><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Tempo</li><li>OpenTelemetry</li></ul></div>
   <div class="btns"><a class="btn" href="https://github.com/Lucifer-Newstar/AegisDeploy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg> Source on GitHub</a></div>
 </div></section>
 <section style="padding-top:0"><div class="wrap"><div class="grid g3">
   <div class="card reveal"><div class="stat">6<small>CI jobs on GitHub Actions</small></div></div>
-  <div class="card reveal" data-delay="80"><div class="stat">6<small>Dockerfiles</small></div></div>
+  <div class="card reveal" data-delay="80"><div class="stat">7<small>Dockerfiles</small></div></div>
   <div class="card reveal" data-delay="160"><div class="stat">7<small>Kubernetes services, one Kustomize base</small></div></div>
 </div></div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow reveal">status</p>
+  <h2 class="reveal">What's built, and what's next</h2>
+  <div class="split" style="margin-top:20px">
+    <div class="card reveal"><h3>Built today (phase 2)</h3><ul class="list-check"><li>AegisShop demo: catalog, cart, order and payment services</li><li>Service registry, deployments API and a live console</li><li>7 Dockerfiles, a Docker Compose stack, and Kubernetes manifests for 7 services with Kustomize</li><li>A 6-job GitHub Actions CI pipeline</li><li>Prometheus, Grafana, Loki, Tempo and OpenTelemetry across the 6 Python services</li></ul></div>
+    <div class="card reveal" data-delay="80"><h3>On the roadmap</h3><ul class="list-check planned"><li>AI incident detection and root-cause analysis</li><li>Automated remediation, with a human approving risky actions</li><li>A chaos lab to test it</li><li>Terraform for the cloud infrastructure</li></ul><p class="muted" style="margin-top:14px">My part as team lead: the architecture, service contracts, shared libraries, Docker Compose, CI and the Kubernetes base (58 of the project's 66 commits).</p></div>
+  </div>
+</div></section>
 
 <section><div class="wrap">
   <p class="eyebrow reveal">.github/workflows/ci.yml</p>
@@ -81,8 +91,8 @@
 <section><div class="wrap">
   <p class="eyebrow reveal">observability</p>
   <h2 class="reveal">Metrics, logs and traces</h2>
-  <p class="muted reveal" style="max-width:66ch">OpenTelemetry instruments the services, Prometheus, Loki and Tempo each take one signal, and Grafana puts it all on one screen.</p>
-  <div style="margin-top:20px"><figure class="diagram reveal" aria-label="AegisDeploy observability flow"><p class="lane-label">metrics</p><div class="lane" role="group" aria-label="metrics"><button type="button" class="node" style="--c:var(--red)" aria-pressed="false" data-info="The services are instrumented with OpenTelemetry, so metrics, logs and traces come from the same code."><b>7 services</b><small>OpenTelemetry instrumented</small></button><span class="wire" aria-hidden="true" style="--c:var(--red)"></span><button type="button" class="node" style="--c:var(--red)" aria-pressed="false" data-info="Prometheus holds the services&#x27; metrics and evaluates alert rules, so problems raise an alert instead of hiding."><b>Prometheus</b><small>metrics + alert rules</small></button><span class="wire" aria-hidden="true" style="--c:var(--red)"></span><button type="button" class="node" style="--c:var(--red)" aria-pressed="false" data-info="Grafana dashboards bring metrics, logs and traces into one place."><b>Grafana</b><small>dashboards</small></button></div><p class="lane-label">logs</p><div class="lane" role="group" aria-label="logs"><button type="button" class="node" style="--c:var(--amber)" aria-pressed="false" data-info="The same services produce logs."><b>7 services</b><small>logs</small></button><span class="wire" aria-hidden="true" style="--c:var(--amber)"></span><button type="button" class="node" style="--c:var(--amber)" aria-pressed="false" data-info="Loki stores and indexes the logs so they can be searched from Grafana."><b>Loki</b><small>log aggregation</small></button><span class="wire" aria-hidden="true" style="--c:var(--amber)"></span><button type="button" class="node" style="--c:var(--amber)" aria-pressed="false" data-info="Logs show up beside the metrics in Grafana."><b>Grafana</b><small>explore logs</small></button></div><p class="lane-label">traces</p><div class="lane" role="group" aria-label="traces"><button type="button" class="node" style="--c:var(--violet)" aria-pressed="false" data-info="OpenTelemetry records a trace as a request moves between services."><b>7 services</b><small>OpenTelemetry spans</small></button><span class="wire" aria-hidden="true" style="--c:var(--violet)"></span><button type="button" class="node" style="--c:var(--violet)" aria-pressed="false" data-info="Tempo stores the traces so a slow request can be followed hop by hop."><b>Tempo</b><small>distributed tracing</small></button><span class="wire" aria-hidden="true" style="--c:var(--violet)"></span><button type="button" class="node" style="--c:var(--violet)" aria-pressed="false" data-info="Traces open in Grafana next to the logs and metrics for the same moment."><b>Grafana</b><small>trace view</small></button></div><figcaption class="info" aria-live="polite"><span class="hint">▸ Tap any box to see what it does.</span></figcaption></figure></div>
+  <p class="muted reveal" style="max-width:66ch">OpenTelemetry instruments the six Python services, Prometheus, Loki and Tempo each take one signal, and Grafana puts it all on one screen.</p>
+  <div style="margin-top:20px"><figure class="diagram reveal" aria-label="AegisDeploy observability flow"><p class="lane-label">metrics</p><div class="lane" role="group" aria-label="metrics"><button type="button" class="node" style="--c:var(--red)" aria-pressed="false" data-info="The six Python services (registry, deployments and the four AegisShop services) are instrumented with OpenTelemetry, so metrics, logs and traces come from the same code. The console isn&#x27;t instrumented."><b>6 services</b><small>OpenTelemetry instrumented</small></button><span class="wire" aria-hidden="true" style="--c:var(--red)"></span><button type="button" class="node" style="--c:var(--red)" aria-pressed="false" data-info="Prometheus holds the services&#x27; metrics and evaluates alert rules, so problems raise an alert instead of hiding."><b>Prometheus</b><small>metrics + alert rules</small></button><span class="wire" aria-hidden="true" style="--c:var(--red)"></span><button type="button" class="node" style="--c:var(--red)" aria-pressed="false" data-info="Grafana dashboards bring metrics, logs and traces into one place."><b>Grafana</b><small>dashboards</small></button></div><p class="lane-label">logs</p><div class="lane" role="group" aria-label="logs"><button type="button" class="node" style="--c:var(--amber)" aria-pressed="false" data-info="The same six services send their logs."><b>6 services</b><small>logs</small></button><span class="wire" aria-hidden="true" style="--c:var(--amber)"></span><button type="button" class="node" style="--c:var(--amber)" aria-pressed="false" data-info="Loki stores and indexes the logs so they can be searched from Grafana."><b>Loki</b><small>log aggregation</small></button><span class="wire" aria-hidden="true" style="--c:var(--amber)"></span><button type="button" class="node" style="--c:var(--amber)" aria-pressed="false" data-info="Logs show up beside the metrics in Grafana."><b>Grafana</b><small>explore logs</small></button></div><p class="lane-label">traces</p><div class="lane" role="group" aria-label="traces"><button type="button" class="node" style="--c:var(--violet)" aria-pressed="false" data-info="OpenTelemetry records spans for the requests each service handles."><b>6 services</b><small>OpenTelemetry spans</small></button><span class="wire" aria-hidden="true" style="--c:var(--violet)"></span><button type="button" class="node" style="--c:var(--violet)" aria-pressed="false" data-info="Tempo stores each service&#x27;s traces, so a slow request can be looked up and inspected."><b>Tempo</b><small>trace storage</small></button><span class="wire" aria-hidden="true" style="--c:var(--violet)"></span><button type="button" class="node" style="--c:var(--violet)" aria-pressed="false" data-info="Traces open in Grafana next to the logs and metrics for the same moment."><b>Grafana</b><small>trace view</small></button></div><figcaption class="info" aria-live="polite"><span class="hint">▸ Tap any box to see what it does.</span></figcaption></figure></div>
 </div></section>
 <section style="padding-top:20px"><div class="wrap next">
   <a class="btn" href="../projects/distributed-java-webapp.html">← Distributed Java Web App</a>

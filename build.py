@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 """Builds the static site into ./site from the page bodies below. Run: python3 build.py [BASE_URL]"""
 import sys, os, html
+from urllib.parse import urlsplit
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = os.path.join(HERE, "site")
-BASE = (sys.argv[1] if len(sys.argv) > 1 else "https://navin-jairam.sites.tab.bot/").rstrip("/") + "/"
+BASE = (sys.argv[1] if len(sys.argv) > 1 else "https://lucifer-newstar.github.io/Portfolio/").rstrip("/") + "/"
+BASE_PATH = urlsplit(BASE).path or "/"  # e.g. "/Portfolio/": absolute prefix for pages served at any depth (404.html)
+
+# Portfolio Platform (AWS) source repo. Leave "" while the repo is private or not cleaned up:
+# the site then shows "Source: private, available on request" instead of a link.
+# Once the cleaned repo is public, set its name here, e.g. PORTFOLIO_PLATFORM_REPO = "aws-portfolio-platform".
+PORTFOLIO_PLATFORM_REPO = ""
 TITLE = "Navin Jairam M — DevOps & Cloud Engineer"
 DESC = "Final-year B.Tech IT student in Chennai building on AWS, Kubernetes, Docker, GitHub Actions and Prometheus/Grafana. Projects, internships and resume."
 EMAIL = "navin.jairam@gmail.com"
@@ -23,20 +30,21 @@ ICON = {
 
 NAV = [("index.html","Home","home"),("about.html","About","about"),("projects.html","Projects","projects"),("skills.html","Skills","skills"),("contact.html","Contact","contact")]
 
-def page(fname, key, title, desc, body, root=""):
+def page(fname, key, title, desc, body, root="", noindex=False):
     canon = BASE + ("" if fname == "index.html" else fname)
     cur = ' aria-current="page"'
     links = "".join(f'<li><a href="{root}{h}"{cur if k==key else ""}>{t}</a></li>' for h,t,k in NAV)
     full_title = TITLE if key == "home" else f"{title} · Navin Jairam M"
+    robots = '<meta name="robots" content="noindex">\n' if noindex else ""
     return f"""<!doctype html>
-<html lang="en" class="no-js" data-root="{root}">
+<html lang="en" class="no-js" data-root="{root}" data-pp-repo="{html.escape(PORTFOLIO_PLATFORM_REPO)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{html.escape(full_title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <meta name="author" content="Navin Jairam M">
-<meta name="theme-color" content="#06080c">
+{robots}<meta name="theme-color" content="#06080c">
 <meta name="color-scheme" content="dark light">
 <script src="{root}theme-init.js"></script>
 <link rel="canonical" href="{canon}">
@@ -54,6 +62,7 @@ def page(fname, key, title, desc, body, root=""):
 <meta name="twitter:description" content="{html.escape(desc)}">
 <meta name="twitter:image" content="{BASE}og.png">
 <link rel="icon" href="{root}favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{root}apple-touch-icon.png">
 <link rel="preload" href="{root}assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{root}assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{root}styles.css">
@@ -65,11 +74,11 @@ def page(fname, key, title, desc, body, root=""):
 <div class="grain" aria-hidden="true"></div>
 <header class="site-header">
   <nav class="wrap nav" aria-label="Main">
-    <a class="brand" href="{root}index.html" aria-label="Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
+    <a class="brand" href="{root}index.html" aria-label="navin@prod:~$, Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="nav-links">{links}</ul>
     <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
-    <button class="kbtn" data-palette type="button" aria-label="Open command palette">{ICON['term']}<span>Command</span><kbd>⌘K</kbd></button>
+    <button class="kbtn" data-palette type="button" aria-label="Command ⌘K, open command palette">{ICON['term']}<span>Command</span><kbd>⌘K</kbd></button>
   </nav>
 </header>
 <main id="main">

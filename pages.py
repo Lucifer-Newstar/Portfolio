@@ -1,5 +1,6 @@
 # Page bodies. Executed by build.py (shares its namespace: page, write, tags, ICON, EMAIL, GH, LI, html).
 R = "https://github.com/Lucifer-Newstar/"
+PP_SRC = R + PORTFOLIO_PLATFORM_REPO if PORTFOLIO_PLATFORM_REPO else ""  # set the repo name in build.py
 DIGI_LIVE = "https://digi-crave-os.vercel.app"
 
 def node(name, sub, info, color=None, glow=False):
@@ -24,14 +25,14 @@ def lane(label, parts, color="cyan"):
 def diagram(title, lanes_html, hint="Tap any box to see what it does."):
     return f'<figure class="diagram reveal" aria-label="{html.escape(title)}">{lanes_html}<figcaption class="info" aria-live="polite"><span class="hint">▸ {html.escape(hint)}</span></figcaption></figure>'
 
-def pcard(href, title, kind, desc, tg, data_tags, external=False, feature=False, delay=0):
+def pcard(href, title, kind, desc, tg, data_tags, external=False, feature=False, delay=0, hl="h3"):
     tgt = ' target="_blank" rel="noopener"' if external else ""
     go = "View repo on GitHub" if external else "Open case study"
     f = " feature" if feature else ""
     corner = "github ↗" if external else "case study"
     return f'''<a class="card tilt pcard reveal{f}" href="{href}"{tgt} data-tags="{data_tags}" data-delay="{delay}">
   <div class="ptop"><span class="badge">{html.escape(kind)}</span><span>{corner}</span></div>
-  <h3>{html.escape(title)}</h3>
+  <{hl}>{html.escape(title)}</{hl}>
   <p>{html.escape(desc)}</p>
   {tags(tg)}
   <span class="go">{go} <span class="arr" aria-hidden="true">→</span></span>
@@ -51,6 +52,12 @@ def detail_head(root, kind, title, lead, tg, links):
 
 def gh_btn(repo):
     return f'<a class="btn" href="{R}{repo}" target="_blank" rel="noopener">{ICON["gh"]} Source on GitHub</a>'
+
+def src_btn(url):
+    """Source button for a full repo URL, or a non-clickable "private" state when url is empty."""
+    if url:
+        return f'<a class="btn" href="{url}" target="_blank" rel="noopener">{ICON["gh"]} Source on GitHub</a>'
+    return f'<span class="btn btn-off" data-source="private">{ICON["gh"]} Source: private, available on request</span>'
 
 def next_nav(root, prev, nxt):
     return f'''<section style="padding-top:20px"><div class="wrap next">
@@ -85,7 +92,7 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
     </div>
     <p class="hero-meta"><span>Chennai, India</span><span>B.Tech IT 2023–2027</span><span>Seeking DevOps / SRE / Cloud roles</span></p>
   </div>
-  <div class="term" role="img" aria-label="Animated terminal: whoami prints navin-jairam-m; kubectl get pods lists the projects AegisDeploy, Portfolio Platform and DigiCrave OS as running; deploy navin to prod prints Navin Jairam M, DevOps and Cloud Engineer.">
+  <div class="term" role="group" aria-label="Animated terminal: whoami prints navin-jairam-m; kubectl get pods lists the projects AegisDeploy, Portfolio Platform and DigiCrave OS as running; deploy navin to prod prints Navin Jairam M, DevOps and Cloud Engineer.">
     <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>navin@prod: ~ — zsh</span></div>
     <div class="term-body" id="hero-term" aria-hidden="true"></div>
     <div class="term-foot"><span aria-hidden="true"><span class="hint-desk">press ⌘K or / for the real shell</span><span class="hint-touch">tap &gt;_ for the real shell</span></span><button type="button" id="hero-skip">skip ⏭</button><button type="button" id="hero-replay" hidden>replay ↻</button></div>
@@ -116,7 +123,7 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
     <a class="btn reveal" href="projects.html">All projects →</a>
   </div>
   <div class="grid g3" style="margin-top:26px">
-    {pcard("projects/aegisdeploy.html","AegisDeploy","SRE platform","AI-powered autonomous SRE platform for monitoring, incident detection, root-cause analysis and automated remediation.",["Kubernetes","Kustomize","GitHub Actions","Prometheus","Grafana"],"k8s cicd obs")}
+    {pcard("projects/aegisdeploy.html","AegisDeploy","SRE platform","SRE platform, phase 2 built: a 4-service demo shop watched by a service registry, deployments API and live console, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.",["Kubernetes","Kustomize","GitHub Actions","Prometheus","Grafana"],"k8s cicd obs")}
     {pcard("projects/portfolio-platform.html","Portfolio Platform","Serverless AWS","S3 + CloudFront hosting, API Gateway + Lambda APIs, DynamoDB, Cognito auth and SES email, deployed by GitHub Actions.",["S3","CloudFront","Lambda","DynamoDB","Cognito"],"aws cicd",delay=80)}
     {pcard("projects/digicrave-os.html","DigiCrave OS","Live product","MERN-stack restaurant POS and operations system I helped build and deploy at Rapture Twelve. It's live.",["MongoDB","Express","React","Node.js"],"web",delay=160)}
   </div>
@@ -166,7 +173,7 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
 
 <section style="padding-top:10px"><div class="wrap about-grid">
   <div class="card reveal">
-    <h3>Quick facts</h3>
+    <h2 class="h3">Quick facts</h2>
     <dl class="kv">
       <dt>based</dt><dd>Chennai, India</dd>
       <dt>studying</dt><dd>B.Tech Information Technology, Meenakshi College of Engineering (2023–2027), CGPA 7.61</dd>
@@ -176,7 +183,7 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
     </dl>
   </div>
   <div class="card reveal" data-delay="100">
-    <h3>Earlier education</h3>
+    <h2 class="h3">Earlier education</h2>
     <dl class="kv"><dt>higher sec.</dt><dd>68%</dd><dt>secondary</dt><dd>81%</dd></dl>
     <div class="btns" style="margin-top:20px"><a class="btn primary" href="assets/Navin_Jairam_M_Resume.pdf" download>{ICON["dl"]} Download resume</a></div>
   </div>
@@ -196,10 +203,10 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
       <ul>
         <li>Set up AWS IAM roles and policies to control access for live project environments.</li>
         <li>Designed cloud architectures and deployment strategies for live projects on AWS, built for scalability.</li>
-        <li>Automated build and release with CI/CD pipelines and containerized applications for repeatable deployments.</li>
+        <li>Automated build and release with CI/CD pipelines and containerised applications for repeatable deployments.</li>
         <li>Contributed to building and deploying <a href="projects/digicrave-os.html">DigiCrave OS</a>, a MERN-stack restaurant POS &amp; operations system, now live.</li>
       </ul>
-      <div class="award">{ICON["award"]}<div><b>Certificate of Exceptional Contribution · Sep 2026</b><span>For work across cloud infrastructure, AWS IAM, scalability, containerization and CI/CD automation. <a href="https://lnkd.in/p/gHc3NYDa" target="_blank" rel="noopener">See the post</a></span></div></div>
+      <div class="award">{ICON["award"]}<div><b>Certificate of Exceptional Contribution · Sep 2026</b><span>For work across cloud infrastructure, AWS IAM, scalability, containerisation and CI/CD automation. <a href="https://lnkd.in/p/gHc3NYDa" target="_blank" rel="noopener">See the post</a></span></div></div>
     </li>
     <li class="tl-item">
       <span class="tl-node" aria-hidden="true"></span>
@@ -253,11 +260,11 @@ projects = f'''<section class="page-head"><div class="wrap">
   </div>
   <p id="filter-status" class="sr-only" aria-live="polite"></p>
   <div class="grid g3">
-    {pcard("projects/aegisdeploy.html","AegisDeploy","SRE platform · MIT","AI-powered autonomous SRE platform for monitoring, incident detection, root-cause analysis and automated remediation. 6-job CI pipeline, 6 Dockerfiles, Kubernetes manifests for 7 services, and a full observability stack.",["Python","Docker","Kubernetes","Kustomize","GitHub Actions","Prometheus","Grafana","Loki","Tempo","OpenTelemetry"],"k8s cicd obs",feature=True)}
-    {pcard("projects/portfolio-platform.html","Portfolio Platform","Serverless AWS","Serverless portfolio on AWS: S3 + CloudFront hosting, API Gateway + Lambda APIs, DynamoDB, Cognito auth and SES email, deployed by a GitHub Actions workflow.",["S3","CloudFront","API Gateway","Lambda","DynamoDB","Cognito","SES"],"aws cicd",delay=80)}
-    {pcard("projects/digicrave-os.html","DigiCrave OS","Live · Rapture Twelve","Restaurant POS & operations system. I helped build and deploy it during my internship at Rapture Twelve.",["MongoDB","Express","React","Node.js"],"web")}
-    {pcard("projects/distributed-java-webapp.html","Distributed Java Web App","Multi-VM infra","A multi-VM Java app environment provisioned with Vagrant: Tomcat, MySQL, Memcached, RabbitMQ and an Nginx load balancer.",["Vagrant","Tomcat","MySQL","Memcached","RabbitMQ","Nginx"],"infra",delay=80)}
-    {pcard(R+"Productivity-App","Kaizen – Productivity OS","CI/CD · MLOps","A productivity OS with automated CI/CD releases and basic MLOps workflows.",["CI/CD","MLOps"],"cicd",external=True,delay=160)}
+    {pcard("projects/aegisdeploy.html","AegisDeploy","SRE platform · MIT","SRE platform, phase 2 built: a 4-service demo shop watched by a service registry, deployments API and live console. 6-job CI pipeline, 7 Dockerfiles, Kubernetes manifests for 7 services, and Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.",["Python","Docker","Kubernetes","Kustomize","GitHub Actions","Prometheus","Grafana","Loki","Tempo","OpenTelemetry"],"k8s cicd obs",feature=True,hl="h2")}
+    {pcard("projects/portfolio-platform.html","Portfolio Platform","Serverless AWS","Serverless portfolio on AWS: S3 + CloudFront hosting, API Gateway + Lambda APIs, DynamoDB, Cognito auth and SES email, deployed by a GitHub Actions workflow.",["S3","CloudFront","API Gateway","Lambda","DynamoDB","Cognito","SES"],"aws cicd",delay=80,hl="h2")}
+    {pcard("projects/digicrave-os.html","DigiCrave OS","Live · Rapture Twelve","Restaurant POS & operations system. I helped build and deploy it during my internship at Rapture Twelve.",["MongoDB","Express","React","Node.js"],"web",hl="h2")}
+    {pcard("projects/distributed-java-webapp.html","Distributed Java Web App","Multi-VM infra","A multi-VM Java app environment provisioned with Vagrant: Tomcat, MySQL, Memcached, RabbitMQ and an Nginx load balancer.",["Vagrant","Tomcat","MySQL","Memcached","RabbitMQ","Nginx"],"infra",delay=80,hl="h2")}
+    {pcard(R+"Productivity-App","Kaizen – Productivity OS","CI/CD · MLOps","A productivity OS with automated CI/CD releases and basic MLOps workflows.",["CI/CD","MLOps"],"cicd",external=True,delay=160,hl="h2")}
   </div>
 </div></section>
 {CTA("")}
@@ -280,7 +287,7 @@ POOLS = [
    ("oci","Oracle Cloud (OCI)",["cert|OCI 2025 Foundations Associate","cert|Oracle Database@AWS Certified Architect Professional"]),
  ]),
  ("containers","Containers & Orchestration","cyan",[
-   ("docker","Docker",["aegis|AegisDeploy: 6 Dockerfiles","rapture|Rapture Twelve: containerized applications"]),
+   ("docker","Docker",["aegis|AegisDeploy: 7 Dockerfiles","rapture|Rapture Twelve: containerised applications"]),
    ("kubernetes","Kubernetes",["aegis|AegisDeploy: manifests for 7 services"]),
    ("kustomize","Kustomize",["aegis|AegisDeploy: one Kustomize base for all 7 services"]),
  ]),
@@ -322,7 +329,7 @@ for pid, pname, color, skl in POOLS:
         keys = " ".join(sorted(set(u.split("|")[0] for u in used)))
         texts = "|".join(u.split("|", 1)[1] for u in used)
         pods += f'<button type="button" class="pod" aria-pressed="false" data-id="{sid}" data-name="{html.escape(sname)}" data-keys="{keys}" data-used="{html.escape(texts)}">{html.escape(sname)}</button>'
-    pool_html += f'<section class="pool" style="--c:var(--{color})" data-pool="{pid}" aria-label="{html.escape(pname)} node pool"><header><h3>{html.escape(pname)}</h3><span>{len(skl)} pods</span></header><div class="pods">{pods}</div></section>'
+    pool_html += f'<section class="pool" style="--c:var(--{color})" data-pool="{pid}" aria-label="{html.escape(pname)} node pool"><header><h2>{html.escape(pname)}</h2><span>{len(skl)} pods</span></header><div class="pods">{pods}</div></section>'
 usage_btns = '<button type="button" data-key="all" aria-pressed="true">everything</button>' + "".join(f'<button type="button" data-key="{k}" aria-pressed="false">{html.escape(v)}</button>' for k, v in [("aegis","AegisDeploy"),("portfolio","Portfolio Platform"),("java","Java Web App"),("digicrave","DigiCrave OS"),("rapture","Rapture Twelve"),("cert","Certifications")])
 skills = f'''<section class="page-head"><div class="wrap">
   <p class="crumb">~/skills</p>
@@ -377,18 +384,27 @@ for name, sub, d in STAGES:
 SVCS = [("registry-service","platform"),("deployments-service","platform"),("console","platform · frontend"),("catalog-service","aegisshop demo"),("cart-service","aegisshop demo"),("order-service","aegisshop demo"),("payment-service","aegisshop demo")]
 svc_html = "".join(f'<div class="svc{" demo" if "demo" in g else ""}">{n}<small>{g}</small></div>' for n, g in SVCS)
 obs = diagram("AegisDeploy observability flow",
-  lane("metrics", [("7 services","OpenTelemetry instrumented","The services are instrumented with OpenTelemetry, so metrics, logs and traces come from the same code."),("Prometheus","metrics + alert rules","Prometheus holds the services' metrics and evaluates alert rules, so problems raise an alert instead of hiding."),("Grafana","dashboards","Grafana dashboards bring metrics, logs and traces into one place.")], "red") +
-  lane("logs", [("7 services","logs","The same services produce logs."),("Loki","log aggregation","Loki stores and indexes the logs so they can be searched from Grafana."),("Grafana","explore logs","Logs show up beside the metrics in Grafana.")], "amber") +
-  lane("traces", [("7 services","OpenTelemetry spans","OpenTelemetry records a trace as a request moves between services."),("Tempo","distributed tracing","Tempo stores the traces so a slow request can be followed hop by hop."),("Grafana","trace view","Traces open in Grafana next to the logs and metrics for the same moment.")], "violet"))
-aegis_body = detail_head("../","case study · SRE platform · MIT licensed","AegisDeploy",
-  "An AI-powered autonomous SRE platform for monitoring, incident detection, root-cause analysis and automated remediation. Kubernetes-ready, checked by CI on every push, and observable end to end.",
+  lane("metrics", [("6 services","OpenTelemetry instrumented","The six Python services (registry, deployments and the four AegisShop services) are instrumented with OpenTelemetry, so metrics, logs and traces come from the same code. The console isn't instrumented."),("Prometheus","metrics + alert rules","Prometheus holds the services' metrics and evaluates alert rules, so problems raise an alert instead of hiding."),("Grafana","dashboards","Grafana dashboards bring metrics, logs and traces into one place.")], "red") +
+  lane("logs", [("6 services","logs","The same six services send their logs."),("Loki","log aggregation","Loki stores and indexes the logs so they can be searched from Grafana."),("Grafana","explore logs","Logs show up beside the metrics in Grafana.")], "amber") +
+  lane("traces", [("6 services","OpenTelemetry spans","OpenTelemetry records spans for the requests each service handles."),("Tempo","trace storage","Tempo stores each service's traces, so a slow request can be looked up and inspected."),("Grafana","trace view","Traces open in Grafana next to the logs and metrics for the same moment.")], "violet"))
+aegis_body = detail_head("../","case study · SRE platform · team lead · MIT licensed","AegisDeploy",
+  "An SRE platform, built as a 4-person final-year team project that I lead. Phase 2 is built: AegisShop, a 4-service demo shop, watched by a service registry, a deployments API and a live console, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry. Every push is checked by a 6-job CI pipeline. AI incident detection and auto-remediation are next on the roadmap.",
   ["Python","Docker","Kubernetes","Kustomize","GitHub Actions","Prometheus","Grafana","Loki","Tempo","OpenTelemetry"],
   [gh_btn("AegisDeploy")]) + f'''
 <section style="padding-top:0"><div class="wrap"><div class="grid g3">
   <div class="card reveal"><div class="stat">6<small>CI jobs on GitHub Actions</small></div></div>
-  <div class="card reveal" data-delay="80"><div class="stat">6<small>Dockerfiles</small></div></div>
+  <div class="card reveal" data-delay="80"><div class="stat">7<small>Dockerfiles</small></div></div>
   <div class="card reveal" data-delay="160"><div class="stat">7<small>Kubernetes services, one Kustomize base</small></div></div>
 </div></div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow reveal">status</p>
+  <h2 class="reveal">What's built, and what's next</h2>
+  <div class="split" style="margin-top:20px">
+    <div class="card reveal"><h3>Built today (phase 2)</h3><ul class="list-check"><li>AegisShop demo: catalog, cart, order and payment services</li><li>Service registry, deployments API and a live console</li><li>7 Dockerfiles, a Docker Compose stack, and Kubernetes manifests for 7 services with Kustomize</li><li>A 6-job GitHub Actions CI pipeline</li><li>Prometheus, Grafana, Loki, Tempo and OpenTelemetry across the 6 Python services</li></ul></div>
+    <div class="card reveal" data-delay="80"><h3>On the roadmap</h3><ul class="list-check planned"><li>AI incident detection and root-cause analysis</li><li>Automated remediation, with a human approving risky actions</li><li>A chaos lab to test it</li><li>Terraform for the cloud infrastructure</li></ul><p class="muted" style="margin-top:14px">My part as team lead: the architecture, service contracts, shared libraries, Docker Compose, CI and the Kubernetes base (58 of the project's 66 commits).</p></div>
+  </div>
+</div></section>
 
 <section><div class="wrap">
   <p class="eyebrow reveal">.github/workflows/ci.yml</p>
@@ -414,11 +430,11 @@ aegis_body = detail_head("../","case study · SRE platform · MIT licensed","Aeg
 <section><div class="wrap">
   <p class="eyebrow reveal">observability</p>
   <h2 class="reveal">Metrics, logs and traces</h2>
-  <p class="muted reveal" style="max-width:66ch">OpenTelemetry instruments the services, Prometheus, Loki and Tempo each take one signal, and Grafana puts it all on one screen.</p>
+  <p class="muted reveal" style="max-width:66ch">OpenTelemetry instruments the six Python services, Prometheus, Loki and Tempo each take one signal, and Grafana puts it all on one screen.</p>
   <div style="margin-top:20px">{obs}</div>
 </div></section>
 ''' + next_nav("../",("projects/distributed-java-webapp.html","Distributed Java Web App"),("projects/portfolio-platform.html","Portfolio Platform")) + CTA("../")
-write("projects/aegisdeploy.html", page("projects/aegisdeploy.html","projects","AegisDeploy","AegisDeploy: AI-powered autonomous SRE platform with a 6-job CI pipeline, 7 Kubernetes services and a Prometheus/Grafana/Loki/Tempo/OpenTelemetry stack.",aegis_body,root="../"))
+write("projects/aegisdeploy.html", page("projects/aegisdeploy.html","projects","AegisDeploy","AegisDeploy, an SRE platform with phase 2 built: a demo shop watched by a service registry, deployments API and live console, a 6-job CI pipeline, 7 Kubernetes services and Prometheus, Grafana, Loki, Tempo and OpenTelemetry.",aegis_body,root="../"))
 
 # ---------------- PORTFOLIO PLATFORM ----------------
 pp = diagram("Portfolio Platform architecture",
@@ -428,7 +444,7 @@ pp = diagram("Portfolio Platform architecture",
   lane("delivery", [("git push","main","A push to the repo starts a deploy."),("GitHub Actions","deploy workflow","A GitHub Actions workflow automates the deployment to AWS."),("AWS","new version live","The new version goes out.")], "amber"))
 pp_body = detail_head("../","case study · serverless AWS","Portfolio Platform",
   "A serverless portfolio platform on AWS: S3 + CloudFront hosting, API Gateway + Lambda APIs, DynamoDB, Cognito auth and SES email, with deployment automated by GitHub Actions.",
-  ["S3","CloudFront","API Gateway","Lambda","DynamoDB","Cognito","SES","GitHub Actions"],[gh_btn("portfolio")]) + f'''
+  ["S3","CloudFront","API Gateway","Lambda","DynamoDB","Cognito","SES","GitHub Actions"],[src_btn(PP_SRC)]) + f'''
 <section style="padding-top:0"><div class="wrap">
   <p class="eyebrow reveal">architecture</p>
   <h2 class="reveal">How it fits together</h2>
@@ -475,10 +491,11 @@ jv_body = detail_head("../","case study · multi-VM infrastructure","Distributed
 write("projects/distributed-java-webapp.html", page("projects/distributed-java-webapp.html","projects","Distributed Java Web App","A multi-VM Java app environment provisioned with Vagrant: Nginx, Tomcat, MySQL, Memcached and RabbitMQ.",jv_body,root="../"))
 
 # ---------------- 404 ----------------
-nf = '''<section class="page-head"><div class="wrap">
+nf_root = BASE_PATH  # absolute, e.g. /Portfolio/: GitHub Pages serves 404.html at any depth
+nf = f'''<section class="page-head"><div class="wrap">
   <p class="eyebrow">exit code 404</p>
   <h1>Pod not found.</h1>
   <p class="lead">That page doesn't exist. Head home, or open the terminal and type <b>help</b>.</p>
-  <div class="btns"><a class="btn primary" href="/index.html">Back home</a><button class="btn" type="button" data-palette>Open terminal</button></div>
+  <div class="btns"><a class="btn primary" href="{nf_root}index.html">Back home</a><button class="btn" type="button" data-palette>Open terminal</button></div>
 </div></section>'''
-write("404.html", page("404.html","none","Not found","Page not found.",nf,root="/"))
+write("404.html", page("404.html","none","Not found","Page not found.",nf,root=nf_root,noindex=True))

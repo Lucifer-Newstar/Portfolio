@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js" data-root="">
+<html lang="en" class="no-js" data-root="" data-pp-repo="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -24,6 +24,7 @@
 <meta name="twitter:description" content="AegisDeploy, a serverless AWS portfolio platform, DigiCrave OS, a distributed Java web app on Vagrant, and Kaizen.">
 <meta name="twitter:image" content="https://lucifer-newstar.github.io/Portfolio/og.png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
@@ -35,11 +36,11 @@
 <div class="grain" aria-hidden="true"></div>
 <header class="site-header">
   <nav class="wrap nav" aria-label="Main">
-    <a class="brand" href="index.html" aria-label="Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
+    <a class="brand" href="index.html" aria-label="navin@prod:~$, Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html" aria-current="page">Projects</a></li><li><a href="skills.html">Skills</a></li><li><a href="contact.html">Contact</a></li></ul>
     <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
-    <button class="kbtn" data-palette type="button" aria-label="Open command palette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7 5 5-5 5M12 18h7"/></svg><span>Command</span><kbd>⌘K</kbd></button>
+    <button class="kbtn" data-palette type="button" aria-label="Command ⌘K, open command palette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7 5 5-5 5M12 18h7"/></svg><span>Command</span><kbd>⌘K</kbd></button>
   </nav>
 </header>
 <main id="main">
@@ -63,35 +64,35 @@
   <div class="grid g3">
     <a class="card tilt pcard reveal feature" href="projects/aegisdeploy.html" data-tags="k8s cicd obs" data-delay="0">
   <div class="ptop"><span class="badge">SRE platform · MIT</span><span>case study</span></div>
-  <h3>AegisDeploy</h3>
-  <p>AI-powered autonomous SRE platform for monitoring, incident detection, root-cause analysis and automated remediation. 6-job CI pipeline, 6 Dockerfiles, Kubernetes manifests for 7 services, and a full observability stack.</p>
+  <h2>AegisDeploy</h2>
+  <p>SRE platform, phase 2 built: a 4-service demo shop watched by a service registry, deployments API and live console. 6-job CI pipeline, 7 Dockerfiles, Kubernetes manifests for 7 services, and Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.</p>
   <ul class="tags"><li>Python</li><li>Docker</li><li>Kubernetes</li><li>Kustomize</li><li>GitHub Actions</li><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Tempo</li><li>OpenTelemetry</li></ul>
   <span class="go">Open case study <span class="arr" aria-hidden="true">→</span></span>
 </a>
     <a class="card tilt pcard reveal" href="projects/portfolio-platform.html" data-tags="aws cicd" data-delay="80">
   <div class="ptop"><span class="badge">Serverless AWS</span><span>case study</span></div>
-  <h3>Portfolio Platform</h3>
+  <h2>Portfolio Platform</h2>
   <p>Serverless portfolio on AWS: S3 + CloudFront hosting, API Gateway + Lambda APIs, DynamoDB, Cognito auth and SES email, deployed by a GitHub Actions workflow.</p>
   <ul class="tags"><li>S3</li><li>CloudFront</li><li>API Gateway</li><li>Lambda</li><li>DynamoDB</li><li>Cognito</li><li>SES</li></ul>
   <span class="go">Open case study <span class="arr" aria-hidden="true">→</span></span>
 </a>
     <a class="card tilt pcard reveal" href="projects/digicrave-os.html" data-tags="web" data-delay="0">
   <div class="ptop"><span class="badge">Live · Rapture Twelve</span><span>case study</span></div>
-  <h3>DigiCrave OS</h3>
+  <h2>DigiCrave OS</h2>
   <p>Restaurant POS &amp; operations system. I helped build and deploy it during my internship at Rapture Twelve.</p>
   <ul class="tags"><li>MongoDB</li><li>Express</li><li>React</li><li>Node.js</li></ul>
   <span class="go">Open case study <span class="arr" aria-hidden="true">→</span></span>
 </a>
     <a class="card tilt pcard reveal" href="projects/distributed-java-webapp.html" data-tags="infra" data-delay="80">
   <div class="ptop"><span class="badge">Multi-VM infra</span><span>case study</span></div>
-  <h3>Distributed Java Web App</h3>
+  <h2>Distributed Java Web App</h2>
   <p>A multi-VM Java app environment provisioned with Vagrant: Tomcat, MySQL, Memcached, RabbitMQ and an Nginx load balancer.</p>
   <ul class="tags"><li>Vagrant</li><li>Tomcat</li><li>MySQL</li><li>Memcached</li><li>RabbitMQ</li><li>Nginx</li></ul>
   <span class="go">Open case study <span class="arr" aria-hidden="true">→</span></span>
 </a>
     <a class="card tilt pcard reveal" href="https://github.com/Lucifer-Newstar/Productivity-App" target="_blank" rel="noopener" data-tags="cicd" data-delay="160">
   <div class="ptop"><span class="badge">CI/CD · MLOps</span><span>github ↗</span></div>
-  <h3>Kaizen – Productivity OS</h3>
+  <h2>Kaizen – Productivity OS</h2>
   <p>A productivity OS with automated CI/CD releases and basic MLOps workflows.</p>
   <ul class="tags"><li>CI/CD</li><li>MLOps</li></ul>
   <span class="go">View repo on GitHub <span class="arr" aria-hidden="true">→</span></span>

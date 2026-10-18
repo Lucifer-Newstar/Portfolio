@@ -12,9 +12,11 @@
     linkedin: "https://www.linkedin.com/in/navin-jairam",
     resume: ROOT + "assets/Navin_Jairam_M_Resume.pdf"
   };
+  /* Portfolio Platform repo: set PORTFOLIO_PLATFORM_REPO in build.py (empty = private, no link). */
+  var PP_REPO = doc.getAttribute("data-pp-repo") ? LINKS.github + "/" + doc.getAttribute("data-pp-repo") : null;
   var PROJECTS = [
-    { id: "aegisdeploy", name: "AegisDeploy", page: "projects/aegisdeploy.html", repo: "https://github.com/Lucifer-Newstar/AegisDeploy", blurb: "AI-powered autonomous SRE platform: K8s, 6-job CI, full observability" },
-    { id: "portfolio", name: "Portfolio Platform", page: "projects/portfolio-platform.html", repo: "https://github.com/Lucifer-Newstar/portfolio", blurb: "Serverless AWS: S3, CloudFront, API Gateway, Lambda, DynamoDB, Cognito, SES" },
+    { id: "aegisdeploy", name: "AegisDeploy", page: "projects/aegisdeploy.html", repo: "https://github.com/Lucifer-Newstar/AegisDeploy", blurb: "SRE platform, phase 2: demo shop + registry, deployments API, console; K8s, 6-job CI, observability" },
+    { id: "portfolio", name: "Portfolio Platform", page: "projects/portfolio-platform.html", repo: PP_REPO, blurb: "Serverless AWS: S3, CloudFront, API Gateway, Lambda, DynamoDB, Cognito, SES" },
     { id: "digicrave", name: "DigiCrave OS", page: "projects/digicrave-os.html", repo: "https://github.com/Lucifer-Newstar/DigiCraveOS", live: "https://digi-crave-os.vercel.app", blurb: "MERN restaurant POS & operations system, live" },
     { id: "java", name: "Distributed Java Web App", page: "projects/distributed-java-webapp.html", repo: "https://github.com/Lucifer-Newstar/distributed-java-webapp", blurb: "Multi-VM Vagrant stack: Nginx, Tomcat, MySQL, Memcached, RabbitMQ" },
     { id: "kaizen", name: "Kaizen – Productivity OS", page: null, repo: "https://github.com/Lucifer-Newstar/Productivity-App", blurb: "Productivity OS with CI/CD releases and basic MLOps" }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js" data-root="../">
+<html lang="en" class="no-js" data-root="../" data-pp-repo="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -24,6 +24,7 @@
 <meta name="twitter:description" content="A serverless AWS platform: S3, CloudFront, API Gateway, Lambda, DynamoDB, Cognito and SES, deployed with GitHub Actions.">
 <meta name="twitter:image" content="https://lucifer-newstar.github.io/Portfolio/og.png">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../styles.css">
@@ -35,11 +36,11 @@
 <div class="grain" aria-hidden="true"></div>
 <header class="site-header">
   <nav class="wrap nav" aria-label="Main">
-    <a class="brand" href="../index.html" aria-label="Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
+    <a class="brand" href="../index.html" aria-label="navin@prod:~$, Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li><li><a href="../projects.html" aria-current="page">Projects</a></li><li><a href="../skills.html">Skills</a></li><li><a href="../contact.html">Contact</a></li></ul>
     <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
-    <button class="kbtn" data-palette type="button" aria-label="Open command palette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7 5 5-5 5M12 18h7"/></svg><span>Command</span><kbd>⌘K</kbd></button>
+    <button class="kbtn" data-palette type="button" aria-label="Command ⌘K, open command palette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7 5 5-5 5M12 18h7"/></svg><span>Command</span><kbd>⌘K</kbd></button>
   </nav>
 </header>
 <main id="main">
@@ -49,7 +50,7 @@
   <h1>Portfolio Platform</h1>
   <p class="lead">A serverless portfolio platform on AWS: S3 + CloudFront hosting, API Gateway + Lambda APIs, DynamoDB, Cognito auth and SES email, with deployment automated by GitHub Actions.</p>
   <div style="margin:18px 0 24px"><ul class="tags"><li>S3</li><li>CloudFront</li><li>API Gateway</li><li>Lambda</li><li>DynamoDB</li><li>Cognito</li><li>SES</li><li>GitHub Actions</li></ul></div>
-  <div class="btns"><a class="btn" href="https://github.com/Lucifer-Newstar/portfolio" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg> Source on GitHub</a></div>
+  <div class="btns"><span class="btn btn-off" data-source="private"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg> Source: private, available on request</span></div>
 </div></section>
 <section style="padding-top:0"><div class="wrap">
   <p class="eyebrow reveal">architecture</p>
