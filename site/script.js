@@ -469,6 +469,37 @@
     });
   }
 
+  /* ---------- architecture lightbox ---------- */
+  (function archModal() {
+    var modal = document.querySelector(".arch-modal"); if (!modal) return;
+    var closeBtn = modal.querySelector(".arch-close");
+    var titleEl = modal.querySelector(".arch-title");
+    var panels = modal.querySelectorAll("[data-arch-panel]");
+    var last = null;
+    function open(id, btn) {
+      last = btn;
+      panels.forEach(function (p) {
+        var on = p.getAttribute("data-arch-panel") === id;
+        p.hidden = !on;
+        if (on) titleEl.textContent = p.getAttribute("data-title") || "Architecture";
+      });
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    }
+    function close() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+      if (last) { last.focus(); last = null; }
+    }
+    document.querySelectorAll("[data-arch-open]").forEach(function (b) {
+      b.addEventListener("click", function () { open(b.getAttribute("data-arch-open"), b); });
+    });
+    closeBtn.addEventListener("click", close);
+    modal.addEventListener("click", function (e) { if (e.target === modal) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
+  })();
+
   /* ---------- hero terminal ---------- */
   (function hero() {
     var body = document.getElementById("hero-term"); if (!body) return;

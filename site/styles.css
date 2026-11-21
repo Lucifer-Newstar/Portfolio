@@ -493,3 +493,33 @@ dialog.palette::backdrop{background:rgba(2,4,7,.66);backdrop-filter:blur(4px)}
 .post ul{color:var(--muted);line-height:1.7;margin:0 0 16px;padding-left:22px}
 .post li{margin-bottom:6px}
 .post strong{color:var(--strong)}
+
+/* architecture lightbox */
+.pcard-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:6px}
+.pcard-foot .go{margin-top:0;padding-top:0}
+a.go{text-decoration:none;color:var(--cyan)}
+.pcard-title{color:inherit;text-decoration:none}
+.pcard-title:hover{color:var(--cyan)}
+.arch-btn{font:500 12.5px var(--font-mono);color:var(--cyan);background:var(--surface2);border:1px solid var(--line2);border-radius:9px;padding:7px 11px;cursor:pointer;white-space:nowrap;transition:border-color .2s,color .2s,background .2s}
+.arch-btn:hover{border-color:rgba(var(--c-rgb),.55)}
+.arch-modal{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(3,6,10,.66);backdrop-filter:blur(6px)}
+.arch-modal[hidden]{display:none}
+.arch-dialog{width:min(780px,100%);max-height:88vh;overflow:auto;background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:0 30px 80px -30px var(--shadow)}
+.arch-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px}
+.arch-title{margin:0;font-size:1.15rem}
+.arch-close{background:var(--surface2);border:1px solid var(--line2);color:var(--text);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;transition:border-color .2s}
+.arch-close:hover{border-color:rgba(var(--c-rgb),.55)}
+.arch-sub{font:12.5px var(--font-mono);color:var(--dim);margin:2px 0 14px}
+.arch-more{margin:14px 0 0}
+.arch-more a{font:500 13.5px var(--font-mono);color:var(--cyan);text-decoration:none}
+.arch-svg{width:100%;height:auto;display:block}
+.arch-svg .box{fill:var(--surface2);stroke:var(--line2);stroke-width:1.2}
+.arch-svg .t{fill:var(--text);font:600 13.5px var(--font-body)}
+.arch-svg .s{fill:var(--dim);font:11px var(--font-mono)}
+.arch-svg .lbl{fill:var(--dim);font:500 11px var(--font-mono);letter-spacing:.08em}
+.arch-svg .ln{stroke:var(--cyan);stroke-width:2;stroke-dasharray:6 6;fill:none;opacity:.85;animation:dashflow 1.2s linear infinite}
+.arch-svg .ln.g{stroke:var(--green)}
+.arch-svg .ah{fill:var(--cyan)}
+.arch-svg .ah.g{fill:var(--green)}
+@keyframes dashflow{to{stroke-dashoffset:-12}}
+@media (max-width:560px){.arch-btn{padding:6px 9px;font-size:11.5px}}

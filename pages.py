@@ -24,11 +24,22 @@ def lane(label, parts, color="cyan"):
 def diagram(title, lanes_html, hint="Tap any box to see what it does."):
     return f'<figure class="diagram reveal" aria-label="{html.escape(title)}">{lanes_html}<figcaption class="info" aria-live="polite"><span class="hint">▸ {html.escape(hint)}</span></figcaption></figure>'
 
-def pcard(href, title, kind, desc, tg, data_tags, external=False, feature=False, delay=0, hl="h3"):
+def pcard(href, title, kind, desc, tg, data_tags, external=False, feature=False, delay=0, hl="h3", arch=None):
     tgt = ' target="_blank" rel="noopener"' if external else ""
     go = "View repo on GitHub" if external else "Open case study"
     f = " feature" if feature else ""
     corner = "github ↗" if external else "case study"
+    if arch:
+        return f'''<div class="card tilt pcard reveal{f}" data-tags="{data_tags}" data-delay="{delay}">
+  <div class="ptop"><span class="badge">{html.escape(kind)}</span><span>{corner}</span></div>
+  <{hl}><a class="pcard-title" href="{href}">{html.escape(title)}</a></{hl}>
+  <p>{html.escape(desc)}</p>
+  {tags(tg)}
+  <div class="pcard-foot">
+    <a class="go" href="{href}">{go} <span class="arr" aria-hidden="true">→</span></a>
+    <button type="button" class="arch-btn" data-arch-open="{arch}">View architecture</button>
+  </div>
+</div>'''
     return f'''<a class="card tilt pcard reveal{f}" href="{href}"{tgt} data-tags="{data_tags}" data-delay="{delay}">
   <div class="ptop"><span class="badge">{html.escape(kind)}</span><span>{corner}</span></div>
   <{hl}>{html.escape(title)}</{hl}>
@@ -286,6 +297,100 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
 write("about.html", page("about.html","about","About & Experience","Navin Jairam M's internships at Rapture Twelve and Adroit Technologies, education and certifications.",about))
 
 # ---------------- PROJECTS ----------------
+ARCH_SVG_AEGIS = '''<svg class="arch-svg" viewBox="0 0 700 300" role="img" aria-label="AegisSRE architecture: four shop services register with a service registry, a deployments API drives deploys to a Next.js console, and Prometheus with Grafana, Loki and Tempo watch the services.">
+<defs><marker id="am-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker><marker id="am-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah g"/></marker></defs>
+<text class="lbl" x="20" y="26">REQUEST FLOW</text>
+<rect class="box" x="20" y="42" width="150" height="64" rx="10"/>
+<text class="t" x="95" y="68" text-anchor="middle">AegisShop</text>
+<text class="s" x="95" y="88" text-anchor="middle">4 services</text>
+<line class="ln" x1="172" y1="74" x2="202" y2="74" marker-end="url(#am-c)"/>
+<rect class="box" x="205" y="42" width="150" height="64" rx="10"/>
+<text class="t" x="280" y="68" text-anchor="middle">Service Registry</text>
+<text class="s" x="280" y="88" text-anchor="middle">discovery</text>
+<line class="ln" x1="357" y1="74" x2="387" y2="74" marker-end="url(#am-c)"/>
+<rect class="box" x="390" y="42" width="150" height="64" rx="10"/>
+<text class="t" x="465" y="68" text-anchor="middle">Deployments API</text>
+<text class="s" x="465" y="88" text-anchor="middle">FastAPI</text>
+<line class="ln" x1="542" y1="74" x2="572" y2="74" marker-end="url(#am-c)"/>
+<rect class="box" x="575" y="42" width="105" height="64" rx="10"/>
+<text class="t" x="627" y="68" text-anchor="middle">Console</text>
+<text class="s" x="627" y="88" text-anchor="middle">Next.js</text>
+<text class="lbl" x="20" y="156">OBSERVABILITY</text>
+<rect class="box" x="20" y="172" width="150" height="64" rx="10"/>
+<text class="t" x="95" y="198" text-anchor="middle">Prometheus</text>
+<text class="s" x="95" y="218" text-anchor="middle">metrics + alerts</text>
+<line class="ln g" x1="172" y1="204" x2="202" y2="204" marker-end="url(#am-g)"/>
+<rect class="box" x="205" y="172" width="230" height="64" rx="10"/>
+<text class="t" x="320" y="198" text-anchor="middle">Grafana · Loki · Tempo</text>
+<text class="s" x="320" y="218" text-anchor="middle">dashboards · logs · traces</text>
+<line class="ln g" x1="150" y1="108" x2="150" y2="168" marker-end="url(#am-g)"/>
+</svg>'''
+
+ARCH_SVG_COLDBOX = '''<svg class="arch-svg" viewBox="0 0 700 180" role="img" aria-label="ColdBox pentest flow: the CFML app in vulnerable and hardened builds, scanned by ZAP, Semgrep, Gitleaks and Trivy, nine findings fixed and re-scanned, proven by TestBox suites and a differential matrix.">
+<defs><marker id="cm-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<text class="lbl" x="15" y="26">ENGAGEMENT FLOW</text>
+<rect class="box" x="15" y="52" width="150" height="64" rx="10"/>
+<text class="t" x="90" y="78" text-anchor="middle">ColdBox app</text>
+<text class="s" x="90" y="98" text-anchor="middle">vuln + hardened builds</text>
+<line class="ln" x1="167" y1="84" x2="195" y2="84" marker-end="url(#cm-c)"/>
+<rect class="box" x="198" y="52" width="160" height="64" rx="10"/>
+<text class="t" x="278" y="78" text-anchor="middle">Scanners</text>
+<text class="s" x="278" y="98" text-anchor="middle">ZAP · Semgrep · Trivy</text>
+<line class="ln" x1="360" y1="84" x2="388" y2="84" marker-end="url(#cm-c)"/>
+<rect class="box" x="391" y="52" width="150" height="64" rx="10"/>
+<text class="t" x="466" y="78" text-anchor="middle">9 findings</text>
+<text class="s" x="466" y="98" text-anchor="middle">fixed + re-scanned</text>
+<line class="ln" x1="543" y1="84" x2="571" y2="84" marker-end="url(#cm-c)"/>
+<rect class="box" x="574" y="52" width="111" height="64" rx="10"/>
+<text class="t" x="629" y="78" text-anchor="middle">Proof</text>
+<text class="s" x="629" y="98" text-anchor="middle">44/44 · 18/18</text>
+</svg>'''
+
+ARCH_SVG_CODOMAX = '''<svg class="arch-svg" viewBox="0 0 700 180" role="img" aria-label="Codomax deploy pipeline: a push to main runs GitHub Actions with OIDC auth, deploys to EC2 over SSM with Docker Compose, verifies the running commit, then tears everything down for about three cents.">
+<defs><marker id="xm-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<text class="lbl" x="15" y="26">DEPLOY PIPELINE</text>
+<rect class="box" x="15" y="52" width="120" height="64" rx="10"/>
+<text class="t" x="75" y="78" text-anchor="middle">git push</text>
+<text class="s" x="75" y="98" text-anchor="middle">to main</text>
+<line class="ln" x1="137" y1="84" x2="148" y2="84" marker-end="url(#xm-c)"/>
+<rect class="box" x="151" y="52" width="120" height="64" rx="10"/>
+<text class="t" x="211" y="78" text-anchor="middle">Actions</text>
+<text class="s" x="211" y="98" text-anchor="middle">OIDC auth</text>
+<line class="ln" x1="273" y1="84" x2="284" y2="84" marker-end="url(#xm-c)"/>
+<rect class="box" x="287" y="52" width="120" height="64" rx="10"/>
+<text class="t" x="347" y="78" text-anchor="middle">EC2 + SSM</text>
+<text class="s" x="347" y="98" text-anchor="middle">compose up</text>
+<line class="ln" x1="409" y1="84" x2="420" y2="84" marker-end="url(#xm-c)"/>
+<rect class="box" x="423" y="52" width="120" height="64" rx="10"/>
+<text class="t" x="483" y="78" text-anchor="middle">verify</text>
+<text class="s" x="483" y="98" text-anchor="middle">git_sha match</text>
+<line class="ln" x1="545" y1="84" x2="556" y2="84" marker-end="url(#xm-c)"/>
+<rect class="box" x="559" y="52" width="120" height="64" rx="10"/>
+<text class="t" x="619" y="78" text-anchor="middle">teardown</text>
+<text class="s" x="619" y="98" text-anchor="middle">≈ $0.03</text>
+</svg>'''
+
+ARCH_MODAL = '''<div class="arch-modal" hidden role="dialog" aria-modal="true" aria-labelledby="arch-title">
+  <div class="arch-dialog">
+    <div class="arch-head"><h2 id="arch-title" class="arch-title">Architecture</h2><button type="button" class="arch-close" aria-label="Close architecture view">✕</button></div>
+    <div data-arch-panel="aegissre" data-title="AegisSRE · architecture" hidden>
+      <p class="arch-sub">request flow + observability, simplified · the case study has the full interactive diagram</p>
+      ''' + ARCH_SVG_AEGIS + '''
+      <p class="arch-more"><a href="projects/aegissre.html">Open the full case study →</a></p>
+    </div>
+    <div data-arch-panel="coldbox" data-title="ColdBox Pentest · architecture" hidden>
+      <p class="arch-sub">assess → harden → prove, simplified · the case study has the full interactive diagram</p>
+      ''' + ARCH_SVG_COLDBOX + '''
+      <p class="arch-more"><a href="projects/coldbox-pentesting.html">Open the full case study →</a></p>
+    </div>
+    <div data-arch-panel="codomax" data-title="Codomax DevOps · architecture" hidden>
+      <p class="arch-sub">the deploy pipeline, simplified · the case study has the full interactive diagram</p>
+      ''' + ARCH_SVG_CODOMAX + '''
+      <p class="arch-more"><a href="projects/codomax-internship.html">Open the full case study →</a></p>
+    </div>
+  </div>
+</div>'''
+
 projects = f'''<section class="page-head"><div class="wrap">
   <p class="crumb">~/projects</p>
   <p class="eyebrow">ls -la ~/projects</p>
@@ -305,9 +410,9 @@ projects = f'''<section class="page-head"><div class="wrap">
   </div>
   <p id="filter-status" class="sr-only" aria-live="polite"></p>
   <div class="grid g3">
-    {pcard("projects/aegissre.html","AegisSRE","SRE platform · personal flagship · MIT","SRE platform, phase 2 built and tested: a 4-service demo shop watched by a service registry, deployments API and a Next.js console. 6-job CI pipeline, 7 Dockerfiles, Kubernetes manifests for 7 services, terraform, and Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.",["Python","FastAPI","Docker","Kubernetes","Kustomize","Terraform","GitHub Actions","Prometheus","Grafana","Loki","Tempo","OpenTelemetry"],"k8s cicd obs",feature=True,hl="h2")}
-    {pcard("projects/coldbox-pentesting.html","ColdBox Pentest","DevSecOps","A full penetration-test engagement on a CFML banking app: 9 findings documented and fixed, proven with executed ZAP, Semgrep, Gitleaks, Trivy and cfscan runs, TestBox suites and 7 quality gates.",["OWASP ZAP","Semgrep","Gitleaks","Trivy","TestBox","CFML"],"security cicd",delay=80,hl="h2")}
-    {pcard("projects/codomax-internship.html","Codomax DevOps Internship","AWS · CI/CD","7 modules capped by a real AWS deploy: GitHub Actions with OIDC auth deployed to EC2 over SSM, verified the running code matched the commit, then tore everything down for about $0.03.",["AWS EC2","OIDC","SSM","GitHub Actions","Docker","CloudWatch"],"aws cicd",hl="h2")}
+    {pcard("projects/aegissre.html","AegisSRE","SRE platform · personal flagship · MIT","SRE platform, phase 2 built and tested: a 4-service demo shop watched by a service registry, deployments API and a Next.js console. 6-job CI pipeline, 7 Dockerfiles, Kubernetes manifests for 7 services, terraform, and Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.",["Python","FastAPI","Docker","Kubernetes","Kustomize","Terraform","GitHub Actions","Prometheus","Grafana","Loki","Tempo","OpenTelemetry"],"k8s cicd obs",feature=True,hl="h2",arch="aegissre")}
+    {pcard("projects/coldbox-pentesting.html","ColdBox Pentest","DevSecOps","A full penetration-test engagement on a CFML banking app: 9 findings documented and fixed, proven with executed ZAP, Semgrep, Gitleaks, Trivy and cfscan runs, TestBox suites and 7 quality gates.",["OWASP ZAP","Semgrep","Gitleaks","Trivy","TestBox","CFML"],"security cicd",delay=80,hl="h2",arch="coldbox")}
+    {pcard("projects/codomax-internship.html","Codomax DevOps Internship","AWS · CI/CD","7 modules capped by a real AWS deploy: GitHub Actions with OIDC auth deployed to EC2 over SSM, verified the running code matched the commit, then tore everything down for about $0.03.",["AWS EC2","OIDC","SSM","GitHub Actions","Docker","CloudWatch"],"aws cicd",hl="h2",arch="codomax")}
     {pcard("projects/dinesmart.html","DineSmart","Full-stack SaaS","Restaurant-operations platform with incident intelligence (product name: Andhrimnir). Next.js 16 + Express 5 + MongoDB; 524/524 backend and 137/137 frontend tests passing, CI green.",["Next.js","React","Express","TypeScript","MongoDB","Playwright"],"web cicd",delay=80,hl="h2")}
     {pcard("projects/ascend.html","Ascend","Desktop app · team lead","Offline Windows fitness RPG: Electron + React with a local FastAPI sidecar and deterministic training and diet engines. 612 + 1,228 tests passing locally.",["Electron","React","FastAPI","Python","SQLite","DVC"],"web",hl="h2")}
     {pcard("projects/portfolio-platform.html","Portfolio Platform","Serverless AWS · previously live","Serverless portfolio on AWS: S3 + CloudFront hosting, API Gateway + Lambda APIs, DynamoDB, Cognito auth and SES email, deployed by a GitHub Actions workflow. A previous version was live; it is not currently live.",["S3","CloudFront","API Gateway","Lambda","DynamoDB","Cognito","SES"],"aws cicd",delay=80,hl="h2")}
@@ -317,6 +422,7 @@ projects = f'''<section class="page-head"><div class="wrap">
   </div>
 </div></section>
 {CTA("")}
+{ARCH_MODAL}
 '''
 write("projects.html", page("projects.html","projects","Projects","AegisSRE, a ColdBox penetration test, a proven AWS deploy pipeline, DineSmart, Ascend, a serverless AWS portfolio platform, DigiCrave OS, a distributed Java web app on Vagrant, and Kaizen.",projects))
 
