@@ -142,11 +142,13 @@ test("photo: optimised WebP + JPEG, square, used on home and about with alt text
   }
 });
 
-test("downloadable resume is the current copy", () => {
+test("downloadable resume is the copy without the phone number", () => {
   const { execFileSync } = require("node:child_process");
   const txt = execFileSync("pdftotext", [path.join(SITE, "assets/Navin_Jairam_M_Resume.pdf"), "-"]).toString();
   assert.ok(txt.includes("Navin") || txt.includes("NAVIN"));
+  assert.ok(!/\b[6-9]\d{9}\b|\+91/.test(txt), "phone in served resume");
   assert.ok(txt.includes("YAML/compose validation") && txt.includes("docs link check"), "corrected CI line in served resume");
+  assert.ok(!fs.readFileSync(path.join(SITE, "assets/Navin_Jairam_M_Resume.pdf")).includes("tel:"), "tel link in PDF");
 });
 
 test("404 page works under the base path and is not indexed", () => {
