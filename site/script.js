@@ -798,3 +798,6 @@
   /* footer year */
   var y = document.getElementById("year"); if (y) y.textContent = String(new Date().getFullYear());
 })();
+
+/* Start a small screen at the most recent weeks; the whole year remains scrollable. */
+document.querySelectorAll('.gh-scroll').forEach(function(el){if(window.innerWidth<=640)el.scrollLeft=el.scrollWidth;});

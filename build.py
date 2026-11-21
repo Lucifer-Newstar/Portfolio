@@ -125,6 +125,8 @@ def write(path, s):
     p = os.path.join(SITE, path); os.makedirs(os.path.dirname(p), exist_ok=True)
     open(p, "w", encoding="utf-8").write(s)
 
+from github_activity import render_activity
+GITHUB_ACTIVITY = render_activity()
 exec(open(os.path.join(HERE, "pages.py"), encoding="utf-8").read())
 with open(os.path.join(SITE, "robots.txt"), "w", encoding="utf-8") as f:
     f.write("User-agent: *\nAllow: /\n# hello, fellow robot. this site is hand-written HTML/CSS/JS - no framework, no build magic.\n# recruiters: navin.jairam@gmail.com\n")

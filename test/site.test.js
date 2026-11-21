@@ -222,3 +222,14 @@ test("CV and resume stay separate; public CV has no phone or personal identifier
   const about=read("about.html");
   assert.ok(about.includes('href="assets/Navin_Jairam_M_CV.pdf" download') && about.includes('href="assets/Navin_Jairam_M_Resume.pdf" download'),"separate downloads");
 });
+
+test("GitHub activity is local, dated, full-year and below Projects", () => {
+  const h=read('index.html');
+  assert.ok(h.indexOf('id="github-activity"')>h.indexOf('id="projects"'));
+  assert.ok(h.indexOf('id="github-activity"')<h.indexOf('id="writing"'));
+  assert.equal([...h.matchAll(/class="gh-day gh-l[0-4]"/g)].length,365);
+  assert.ok(h.includes('Snapshot ·') && h.includes('View profile') && h.includes('anonymized private contributions'));
+  assert.ok(!/ghchart|github-contributions-api|streak-stats/.test(h));
+  const d=JSON.parse(fs.readFileSync(path.join(SITE,'..','data','github-activity.json'),'utf8'));
+  assert.ok(d.fetched_at && d.days.length>=365);
+});

@@ -163,6 +163,8 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
   </div>
 </div></section>
 
+{GITHUB_ACTIVITY}
+
 <section id="writing"><div class="wrap">
   <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap">
     <div><p class="eyebrow reveal">writing</p><h2 class="reveal" style="margin:0">Build write-ups</h2></div>
