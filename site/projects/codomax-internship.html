@@ -8,7 +8,7 @@
 <meta name="author" content="Navin Jairam M">
 <meta name="theme-color" content="#06080c">
 <meta name="color-scheme" content="dark light">
-<script src="../theme-init.js"></script>
+<script src="../theme-init.js?v=08f8caff"></script>
 <link rel="canonical" href="https://lucifer-newstar.github.io/Portfolio/projects/codomax-internship.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Navin Jairam M">
@@ -27,8 +27,8 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../styles.css">
-<script src="../script.js" defer></script>
+<link rel="stylesheet" href="../styles.css?v=49532c1d">
+<script src="../script.js?v=ef488760" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -61,6 +61,13 @@
   <p class="eyebrow reveal">capstone</p>
   <h2 class="reveal">A pipeline that deploys for real</h2>
   <p class="muted reveal" style="max-width:66ch">Earlier pipeline runs silently skipped the deploy step. The final pipeline doesn't: it deploys to EC2 and proves the running code matches the commit. That's the difference between CI that exists and CI that works.</p>
+  <div class="diff reveal" data-delay="80" role="img" aria-label="Before: earlier runs silently skipped the deploy step and nothing proved the running code matched the commit. After: OIDC-authenticated deploys over SSM with a verified git SHA match, torn down to about three cents.">
+    <p class="d-h">git diff capstone</p>
+    <p class="d-l del"><span class="d-s" aria-hidden="true">-</span><span>deploy step silently skipped on earlier runs</span></p>
+    <p class="d-l del"><span class="d-s" aria-hidden="true">-</span><span>no proof the running code matched the commit</span></p>
+    <p class="d-l add"><span class="d-s" aria-hidden="true">+</span><span>OIDC auth, zero stored keys, real deploy over SSM</span></p>
+    <p class="d-l add"><span class="d-s" aria-hidden="true">+</span><span>git_sha match verified, then full teardown ≈ $0.03</span></p>
+  </div>
   <div style="margin-top:20px"><figure class="diagram reveal" aria-label="codomax capstone deploy pipeline"><p class="lane-label">pipeline</p><div class="lane" role="group" aria-label="pipeline"><button type="button" class="node" style="--c:var(--cyan)" aria-pressed="false" data-info="A push to main starts the deploy workflow."><b>git push</b><small>main</small></button><span class="wire" aria-hidden="true" style="--c:var(--cyan)"></span><button type="button" class="node" style="--c:var(--cyan)" aria-pressed="false" data-info="The workflow authenticates to AWS with OIDC federation: no long-lived AWS keys stored anywhere."><b>GitHub Actions</b><small>OIDC auth</small></button><span class="wire" aria-hidden="true" style="--c:var(--cyan)"></span><button type="button" class="node" style="--c:var(--cyan)" aria-pressed="false" data-info="Deploy commands reach a real EC2 instance over AWS Systems Manager and bring the stack up with Docker Compose."><b>EC2 + SSM</b><small>real deploy</small></button></div><p class="lane-label">proof</p><div class="lane" role="group" aria-label="proof"><button type="button" class="node" style="--c:var(--green)" aria-pressed="false" data-info="A verification step checks the running containers match the pushed commit, so a green run means the deploy really happened."><b>verify step</b><small>git_sha match</small></button><span class="wire" aria-hidden="true" style="--c:var(--green)"></span><button type="button" class="node" style="--c:var(--green)" aria-pressed="false" data-info="Container logs and a healthcheck-driven availability metric land in CloudWatch."><b>CloudWatch</b><small>logs + metrics</small></button><span class="wire" aria-hidden="true" style="--c:var(--green)"></span><button type="button" class="node" style="--c:var(--green)" aria-pressed="false" data-info="After the proof, the whole stack was torn down: stack deleted, IAM key removed, nothing left running."><b>teardown</b><small>about $0.03 total</small></button></div><figcaption class="info" aria-live="polite"><span class="hint">▸ Tap any box to see what it does.</span></figcaption></figure></div>
 </div></section>
 <section><div class="wrap split">

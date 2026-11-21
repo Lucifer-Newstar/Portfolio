@@ -30,6 +30,12 @@ ICON = {
 
 NAV = [("index.html","Home","home"),("about.html","About","about"),("projects.html","Projects","projects"),("writing.html","Writing","writing"),("skills.html","Skills","skills"),("contact.html","Contact","contact")]
 
+import hashlib
+def _av(p):
+    with open(os.path.join(SITE, p), "rb") as f:
+        return hashlib.md5(f.read()).hexdigest()[:8]
+V_CSS, V_JS, V_THEME = _av("styles.css"), _av("script.js"), _av("theme-init.js")
+
 def page(fname, key, title, desc, body, root="", noindex=False):
     canon = BASE + ("" if fname == "index.html" else fname)
     cur = ' aria-current="page"'
@@ -46,7 +52,7 @@ def page(fname, key, title, desc, body, root="", noindex=False):
 <meta name="author" content="Navin Jairam M">
 {robots}<meta name="theme-color" content="#06080c">
 <meta name="color-scheme" content="dark light">
-<script src="{root}theme-init.js"></script>
+<script src="{root}theme-init.js?v={V_THEME}"></script>
 <link rel="canonical" href="{canon}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Navin Jairam M">
@@ -65,8 +71,8 @@ def page(fname, key, title, desc, body, root="", noindex=False):
 <link rel="apple-touch-icon" href="{root}apple-touch-icon.png">
 <link rel="preload" href="{root}assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{root}assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{root}styles.css">
-<script src="{root}script.js" defer></script>
+<link rel="stylesheet" href="{root}styles.css?v={V_CSS}">
+<script src="{root}script.js?v={V_JS}" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

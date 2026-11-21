@@ -116,8 +116,8 @@ test("core content: pipeline stages, services, observability, timeline, skill po
 test("theme: toggle on every page, no-flash init script in head before CSS, light theme defined, palette command", () => {
   for (const [p, h] of all) {
     const head = h.split("</head>")[0];
-    assert.ok(head.indexOf('theme-init.js"></script>') > -1 && head.indexOf('theme-init.js') < head.indexOf('styles.css'), p + " theme-init before CSS");
-    assert.ok(!/theme-init\.js"[^>]*\b(defer|async)\b/.test(head), p + " theme-init must be blocking");
+    assert.ok(head.indexOf('theme-init.js?v=') > -1 && head.indexOf('theme-init.js') < head.indexOf('styles.css'), p + " theme-init before CSS");
+    assert.ok(!/theme-init\.js[^"]*"[^>]*\b(defer|async)\b/.test(head), p + " theme-init must be blocking");
     assert.ok(h.includes("data-theme-toggle"), p + " toggle");
   }
   const init = read("theme-init.js");
@@ -154,7 +154,7 @@ test("downloadable resume is the copy without the phone number", () => {
 
 test("404 page works under the base path and is not indexed", () => {
   const h = read("404.html");
-  assert.ok(h.includes(`href="${BASE_PATH}styles.css"`) && h.includes(`src="${BASE_PATH}script.js"`), "404 assets use " + BASE_PATH);
+  assert.ok(h.includes(`href="${BASE_PATH}styles.css?v=`) && h.includes(`src="${BASE_PATH}script.js?v=`), "404 assets use " + BASE_PATH);
   assert.ok(h.includes(`data-root="${BASE_PATH}"`), "404 data-root");
   assert.ok(h.includes(`href="${BASE_PATH}index.html">Back home`), "404 back-home link");
   assert.match(h, /<meta name="robots" content="noindex">/);

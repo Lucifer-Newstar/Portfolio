@@ -418,7 +418,7 @@
         (function tick() {
           if (i <= txt.length) {
             span.textContent = txt.slice(0, i); i++;
-            setTimeout(tick, 22 + Math.random() * 26);
+            setTimeout(tick, 48 + Math.random() * 44);
           } else {
             setTimeout(function () { caret.remove(); }, 2100); // two blinks, then gone
           }
@@ -452,13 +452,13 @@
         cx += (tx - cx) * 0.14; cy += (ty - cy) * 0.14; cl += (lift - cl) * 0.14;
         if (Math.abs(cx - tx) < 0.005 && Math.abs(cy - ty) < 0.005 && Math.abs(cl - lift) < 0.05) {
           cx = tx; cy = ty; cl = lift;
-          if (tx === 0 && ty === 0 && lift === 0) { el.style.transform = ""; raf = null; return; }
+          if (tx === 0 && ty === 0 && lift === 0) { el.style.transform = ""; el.style.transitionProperty = ""; raf = null; return; }
         }
         el.style.transform = "perspective(900px) rotateX(" + cy.toFixed(2) + "deg) rotateY(" + cx.toFixed(2) + "deg) translateY(" + cl.toFixed(1) + "px)";
         raf = requestAnimationFrame(loop);
       };
       var kick = function () { if (!raf) raf = requestAnimationFrame(loop); };
-      el.addEventListener("pointerenter", function () { lift = -3; kick(); });
+      el.addEventListener("pointerenter", function () { el.style.transitionProperty = "border-color, box-shadow"; lift = -3; kick(); });
       el.addEventListener("pointermove", function (e) {
         var r = el.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
         tx = (px - 0.5) * 9; ty = (0.5 - py) * 7; lift = -3;
@@ -467,6 +467,17 @@
       });
       el.addEventListener("pointerleave", function () { tx = 0; ty = 0; lift = 0; kick(); });
     });
+  }
+
+  /* ---------- card border spotlight ---------- */
+  if (finePointer && !reduce) {
+    document.addEventListener("pointermove", function (e) {
+      var c = e.target.closest ? e.target.closest(".card") : null;
+      if (!c) return;
+      var r = c.getBoundingClientRect();
+      c.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      c.style.setProperty("--my", (e.clientY - r.top) + "px");
+    }, { passive: true });
   }
 
   /* ---------- architecture lightbox ---------- */

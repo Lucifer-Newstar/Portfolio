@@ -175,23 +175,35 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
   </div>
 </div></section>
 
-<section><div class="wrap split">
-  <div class="reveal">
-    <p class="eyebrow">experience</p>
-    <h2>Two internships, both on live projects</h2>
-    <p class="muted">At Rapture Twelve I set up AWS IAM, designed cloud architecture and automated CI/CD, and received a Certificate of Exceptional Contribution. At Adroit Technologies I helped optimise how a payroll system was deployed.</p>
-    <a class="btn" href="about.html#experience">See the timeline →</a>
+<section id="experience"><div class="wrap">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap">
+    <div><p class="eyebrow reveal">experience</p><h2 class="reveal" style="margin:0">Two internships, both on live projects</h2></div>
+    <a class="btn reveal" href="about.html#experience">Full timeline →</a>
   </div>
-  <div class="term reveal" data-delay="100">
-    <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>git log --oneline career</span></div>
-    <div class="term-body" style="min-height:0"><span class="am">a7f3e21</span> <span class="o">(HEAD → main)</span> Rapture Twelve · DevOps Intern
-        <span class="o">May 2026 – Oct 2026</span>
-<span class="am">c41d0b9</span> 🏅 Certificate of Exceptional Contribution
-        <span class="o">Sep 2026</span>
-<span class="am">9be2a54</span> Adroit Technologies · Software Deployment Intern
-        <span class="o">Dec 2025 – Feb 2026</span>
-<span class="am">3d1f7c0</span> init: B.Tech IT, Meenakshi College of Engineering
-        <span class="o">2023</span></div>
+  <div class="wf reveal" data-delay="80" role="img" aria-label="Career timeline styled like a distributed-trace waterfall: B.Tech IT from 2023 to 2027, Adroit Technologies from December 2025 to February 2026, Rapture Twelve from May to October 2026, and three certifications in October 2025.">
+    <div class="wf-axis"><span></span><div class="wf-ticks"><span style="left:0%">2023</span><span style="left:20%">2024</span><span style="left:40%">2025</span><span style="left:60%">2026</span><span style="left:80%">2027</span></div></div>
+    <div class="wf-rows">
+      <div class="wf-row">
+        <p class="wf-name">B.Tech IT<small>Meenakshi College of Engineering</small></p>
+        <div class="wf-track"><button type="button" class="wf-span c-cyan" style="left:13.3%;width:75%" aria-label="B.Tech IT, 2023 to 2027. Final year now; the base everything else builds on."></button></div>
+        <div class="wf-detail"><p>2023 – 2027 · final year now — the base everything else builds on.</p></div>
+      </div>
+      <div class="wf-row">
+        <p class="wf-name">Adroit Technologies<small>Software Deployment Intern</small></p>
+        <div class="wf-track"><button type="button" class="wf-span c-amber" style="left:58.3%;width:5%" aria-label="Adroit Technologies, December 2025 to February 2026. Helped optimise payroll-system deployment."></button></div>
+        <div class="wf-detail"><p>Dec 2025 – Feb 2026 · helped optimise payroll-system deployment.</p></div>
+      </div>
+      <div class="wf-row">
+        <p class="wf-name">Rapture Twelve<small>DevOps Intern</small></p>
+        <div class="wf-track"><button type="button" class="wf-span" style="left:66.7%;width:8.3%" aria-label="Rapture Twelve, May to October 2026. AWS IAM, CI/CD automation and DigiCraveOS; Certificate of Exceptional Contribution."></button></div>
+        <div class="wf-detail"><p>May – Oct 2026 · AWS IAM, CI/CD and DigiCraveOS — Certificate of Exceptional Contribution.</p></div>
+      </div>
+      <div class="wf-row">
+        <p class="wf-name">Certifications<small>Oracle ×2 · Forage</small></p>
+        <div class="wf-track"><button type="button" class="wf-cert" style="left:55%" aria-label="Certifications, October 2025: OCI Foundations Associate, Oracle Database at AWS Architect Professional, and the AWS Solutions Architecture job simulation."></button></div>
+        <div class="wf-detail"><p>Oct 2025 · OCI Foundations, Oracle Database@AWS Architect Pro, AWS job sim (Forage).</p></div>
+      </div>
+    </div>
   </div>
 </div></section>
 <section><div class="wrap">
@@ -649,6 +661,13 @@ cx_body = detail_head("../","case study · DevOps internship · AWS","Codomax De
   <p class="eyebrow reveal">capstone</p>
   <h2 class="reveal">A pipeline that deploys for real</h2>
   <p class="muted reveal" style="max-width:66ch">Earlier pipeline runs silently skipped the deploy step. The final pipeline doesn't: it deploys to EC2 and proves the running code matches the commit. That's the difference between CI that exists and CI that works.</p>
+  <div class="diff reveal" data-delay="80" role="img" aria-label="Before: earlier runs silently skipped the deploy step and nothing proved the running code matched the commit. After: OIDC-authenticated deploys over SSM with a verified git SHA match, torn down to about three cents.">
+    <p class="d-h">git diff capstone</p>
+    <p class="d-l del"><span class="d-s" aria-hidden="true">-</span><span>deploy step silently skipped on earlier runs</span></p>
+    <p class="d-l del"><span class="d-s" aria-hidden="true">-</span><span>no proof the running code matched the commit</span></p>
+    <p class="d-l add"><span class="d-s" aria-hidden="true">+</span><span>OIDC auth, zero stored keys, real deploy over SSM</span></p>
+    <p class="d-l add"><span class="d-s" aria-hidden="true">+</span><span>git_sha match verified, then full teardown ≈ $0.03</span></p>
+  </div>
   <div style="margin-top:20px">{cx}</div>
 </div></section>
 <section><div class="wrap split">
