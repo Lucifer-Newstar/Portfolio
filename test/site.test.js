@@ -57,9 +57,17 @@ test("required links are present", () => {
     "https://github.com/Lucifer-Newstar/AegisSRE", "https://github.com/Lucifer-Newstar/ColdBox-Pentesting",
     "https://github.com/Lucifer-Newstar/codomax-internship", "https://github.com/Lucifer-Newstar/DineSmart", "https://github.com/Lucifer-Newstar/Ascend",
     "https://github.com/Lucifer-Newstar/DigiCraveOS",
-    "https://github.com/Lucifer-Newstar/distributed-java-webapp", "https://github.com/Lucifer-Newstar/Productivity-App", "https://digi-crave-os.vercel.app"])
+    "https://github.com/Lucifer-Newstar/distributed-java-webapp", "https://github.com/Lucifer-Newstar/Productivity-App"])
     assert.ok(joined.includes(u), "missing " + u);
   assert.match(joined, /href="(\.\.\/)?assets\/Navin_Jairam_M_Resume\.pdf" download/);
+});
+
+test("DigiCrave OS is not presented as live", () => {
+  const files = [...all, ["script.js", read("script.js")]];
+  for (const [p, h] of files) {
+    assert.ok(!/digi-crave-os\.vercel\.app/.test(h), p + " still links the DigiCrave live demo");
+  }
+  assert.ok(!/now live|it's live|live demo|live product/i.test(read("projects/digicrave-os.html")), "digicrave page still claims it is live");
 });
 
 test("location references are removed from every page and the interactive terminal", () => {
