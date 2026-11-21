@@ -653,12 +653,14 @@ def post_head(slug, tag, title, standfirst, repo_btn):
   <div class="btns">{repo_btn}</div>
 </div></section>'''
 
-def wcard(href, title, meta, desc, delay=0):
-    return f'''<a class="card tilt pcard reveal" href="{href}" data-delay="{delay}">
-  <div class="ptop"><span class="badge">write-up</span><span>{html.escape(meta)}</span></div>
+def wcard(href, title, meta, desc, delay=0, badge="write-up", cta="Read", external=False):
+    tgt = ' target="_blank" rel="noopener"' if external else ''
+    arrow = '↗' if external else '→'
+    return f'''<a class="card tilt pcard reveal" href="{href}"{tgt} data-delay="{delay}">
+  <div class="ptop"><span class="badge">{badge}</span><span>{html.escape(meta)}</span></div>
   <h3>{html.escape(title)}</h3>
   <p>{html.escape(desc)}</p>
-  <span class="go">Read <span class="arr" aria-hidden="true">→</span></span>
+  <span class="go">{cta} <span class="arr" aria-hidden="true">{arrow}</span></span>
 </a>'''
 
 writing = f'''<section class="page-head"><div class="wrap">
@@ -672,6 +674,15 @@ writing = f'''<section class="page-head"><div class="wrap">
     {wcard("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM, and proving it worked","AWS · CI/CD","The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.")}
     {wcard("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app, and how I fixed them","security","A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.",delay=80)}
     {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes","AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.",delay=160)}
+  </div>
+</div></section>
+<section style="padding-top:0"><div class="wrap">
+  <p class="eyebrow reveal">elsewhere · LinkedIn</p>
+  <h2 class="reveal">Build posts on LinkedIn</h2>
+  <div class="grid g3" style="margin-top:22px">
+    {wcard("https://www.linkedin.com/feed/update/urn:li:activity:7529778282771443713/","From finding vulnerabilities to fixing them","LinkedIn · Nov 2026 · security","The post behind the ColdBox write-up: what the pentest covered, the validation numbers, and what a first SecOps project actually taught me.",badge="linkedin",cta="Read on LinkedIn",external=True)}
+    {wcard("https://www.linkedin.com/feed/update/urn:li:activity/7529779038500872192/","Six modules, one real deploy: Codomax","LinkedIn · Nov 2026 · AWS · CI/CD","The internship completion post: Linux and networking to servers, AWS, Docker, and a capstone pipeline that deploys for real.",delay=80,badge="linkedin",cta="Read on LinkedIn",external=True)}
+    {wcard("https://www.linkedin.com/feed/update/urn:li:activity:7522983178719125504/","Six months of DevOps at Rapture Twelve","LinkedIn · Nov 2026 · internship","The wrap-up post: AWS IAM and least-privilege, cloud architecture exposure, containerised deployments, and building DigiCraveOS.",delay=160,badge="linkedin",cta="Read on LinkedIn",external=True)}
   </div>
 </div></section>
 ''' + CTA("")
