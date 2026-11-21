@@ -98,7 +98,7 @@ def page(fname, key, title, desc, body, root="", noindex=False):
   <div class="wrap">
     <span>© <span id="year">2026</span> Navin Jairam M · built as static HTML, CSS &amp; JS</span>
     <span class="fstatus">● static site · last deploy {DEPLOY}</span>
-    <nav aria-label="Footer"><a href="{root}now.html">Now</a><a href="mailto:{EMAIL}">Email</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn</a><a href="{GH}" target="_blank" rel="noopener">GitHub</a><a href="{root}assets/Navin_Jairam_M_Resume.pdf" download>Resume</a></nav>
+    <nav aria-label="Footer"><a href="{root}now.html">Now</a><a href="mailto:{EMAIL}">Email</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn</a><a href="{GH}" target="_blank" rel="noopener">GitHub</a><a href="{root}assets/Navin_Jairam_M_Resume.pdf" download>Resume (1 page)</a><a href="{root}assets/Navin_Jairam_M_CV.pdf" download>CV (2 pages)</a></nav>
   </div>
 </footer>
 <button class="fab" type="button" data-palette aria-label="Open command terminal">{ICON['term']}</button>

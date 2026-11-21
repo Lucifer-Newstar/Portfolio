@@ -210,3 +210,15 @@ test("current content: Gradtwin, official cert names, honest resume download", (
 test("links: no malformed LinkedIn activity paths", () => {
   for (const [p,h] of all) assert.ok(!h.includes("/urn:li:activity/"),p+" malformed activity URL");
 });
+
+test("CV and resume stay separate; public CV has no phone or personal identifiers", () => {
+  const { execFileSync } = require("node:child_process");
+  const cv = path.join(SITE,"assets/Navin_Jairam_M_CV.pdf");
+  const txt = execFileSync("pdftotext",[cv,"-"]).toString();
+  assert.ok(!/\b[6-9]\d{9}\b|\+91|date of birth|21 March 2006|March 21, 2006/i.test(txt),"private identifiers in public CV");
+  assert.ok(!fs.readFileSync(cv).includes("tel:"),"phone URI in public CV");
+  assert.ok(txt.replace(/\s/g, "").includes("CURRICULUMVITAE") && txt.includes("Gradtwin") && txt.includes("COMMUNITY"),"fuller CV contents");
+  assert.match(execFileSync("pdfinfo",[cv]).toString(),/Pages:\s+2\b/);
+  const about=read("about.html");
+  assert.ok(about.includes('href="assets/Navin_Jairam_M_CV.pdf" download') && about.includes('href="assets/Navin_Jairam_M_Resume.pdf" download'),"separate downloads");
+});

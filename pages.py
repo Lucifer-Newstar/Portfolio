@@ -258,7 +258,7 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
   <div class="card reveal" data-delay="100">
     <h2 class="h3">Earlier education</h2>
     <dl class="kv"><dt>higher sec.</dt><dd>68%</dd><dt>secondary</dt><dd>81%</dd></dl>
-    <div class="btns" style="margin-top:20px"><a class="btn primary" href="assets/Navin_Jairam_M_Resume.pdf" download>{ICON["dl"]} Download resume</a><a class="btn resume-command" href="assets/Navin_Jairam_M_Resume.pdf" download aria-label="Download resume PDF"><code>$ download resume.pdf</code></a></div>
+    <div class="btns" style="margin-top:20px"><a class="btn primary" href="assets/Navin_Jairam_M_Resume.pdf" download>{ICON["dl"]} Resume (1 page)</a><a class="btn" href="assets/Navin_Jairam_M_CV.pdf" download>{ICON["dl"]} CV (2 pages)</a><a class="btn resume-command" href="assets/Navin_Jairam_M_Resume.pdf" download aria-label="Download resume PDF"><code>$ download resume.pdf</code></a></div>
   </div>
 </div></section>
 
