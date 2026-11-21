@@ -191,6 +191,9 @@
           r: kind === "helm" ? rnd(22, 40) * z : kind === "hex" ? rnd(14, 26) * z : kind === "box" ? rnd(14, 22) * z : 0,
           snip: kind === "text" ? pick(SNIPS) : null, ph: rnd(0, 6.28), hue: Math.random() < 0.5 ? "c" : (kind === "hex" ? "v" : "g") });
       }
+      // one docker whale, containers and a k8s pod on its back, drifting across the screen
+      items.push({ kind: "whale", x: rnd(0, W), y: rnd(H * 0.2, H * 0.8), z: 1, vx: (Math.random() < 0.5 ? -1 : 1) * rnd(0.12, 0.2), vy: 0, rot: 0, vr: 0,
+        r: mobile ? rnd(32, 38) : rnd(46, 58), snip: null, ph: rnd(0, 6.28), hue: "c" });
       drawStatic();
     }
 
@@ -240,6 +243,34 @@
       c.beginPath(); for (var i = 0; i < 6; i++) { var a = i / 6 * 6.283 - Math.PI / 2; c[i ? "lineTo" : "moveTo"](Math.cos(a) * r, Math.sin(a) * r); } c.closePath(); c.stroke();
       c.setLineDash([2, 4]); c.beginPath(); for (var j = 0; j < 6; j++) { var b = j / 6 * 6.283 - Math.PI / 2; c[j ? "lineTo" : "moveTo"](Math.cos(b) * r * 0.62, Math.sin(b) * r * 0.62); } c.closePath(); c.stroke(); c.setLineDash([]);
     }
+    function whale(c, s) { // docker whale: containers (and one k8s pod) riding on its back
+      var cw = s * 0.24, ch = s * 0.17, by = -s * 0.5;
+      for (var i = 0; i < 3; i++) {
+        var bx = -s * 0.46 + i * (cw + s * 0.07);
+        if (i === 1) { c.save(); c.translate(bx + cw / 2, by - ch / 2); hex(c, cw * 0.62); c.restore(); } // the pod
+        else {
+          c.strokeRect(bx, by - ch, cw, ch);
+          c.beginPath();
+          for (var j = 1; j < 3; j++) { c.moveTo(bx + cw * j / 3, by - ch); c.lineTo(bx + cw * j / 3, by); }
+          c.stroke();
+        }
+      }
+      c.beginPath();
+      c.moveTo(-s * 0.55, -s * 0.05);
+      c.quadraticCurveTo(-s * 0.3, -s * 0.5, s * 0.15, -s * 0.52);   // back
+      c.quadraticCurveTo(s * 0.75, -s * 0.5, s * 0.95, -s * 0.05);   // head
+      c.quadraticCurveTo(s * 0.85, s * 0.35, s * 0.35, s * 0.36);    // jaw
+      c.quadraticCurveTo(-s * 0.15, s * 0.36, -s * 0.55, -s * 0.05); // belly
+      c.moveTo(-s * 0.55, -s * 0.05);                                 // flukes
+      c.quadraticCurveTo(-s * 0.8, -s * 0.2, -s * 1.02, -s * 0.38);
+      c.quadraticCurveTo(-s * 0.85, -s * 0.05, -s * 1.04, s * 0.18);
+      c.quadraticCurveTo(-s * 0.8, s * 0.08, -s * 0.55, -s * 0.05);
+      c.stroke();
+      c.beginPath(); c.arc(s * 0.6, -s * 0.12, s * 0.04, 0, 6.283); c.stroke(); // eye
+      c.beginPath(); c.moveTo(s * 0.62, s * 0.08); c.quadraticCurveTo(s * 0.78, s * 0.14, s * 0.88, s * 0.04); c.stroke(); // smile
+      c.beginPath(); c.moveTo(-s * 0.08, -s * 0.66); c.quadraticCurveTo(-s * 0.12, -s * 0.86, -s * 0.2, -s * 0.9); // spout
+      c.moveTo(s * 0.0, -s * 0.67); c.quadraticCurveTo(s * 0.04, -s * 0.88, s * 0.14, -s * 0.92); c.stroke();
+    }
     function box(c, s) { // isometric container with ribs
       var h = s * 0.58;
       c.beginPath(); c.moveTo(0, -s); c.lineTo(s, -s + h); c.lineTo(0, -s + 2 * h); c.lineTo(-s, -s + h); c.closePath(); c.stroke();
@@ -269,11 +300,12 @@
         var it = items[i];
         if (!reduce) {
           it.x += it.vx * dt; it.y += it.vy * dt; it.rot += it.vr * dt;
-          var m = 90;
+          var m = it.kind === "whale" ? 170 : 90;
           if (it.x < -m) it.x = W + m; else if (it.x > W + m) it.x = -m;
           if (it.y < -m) it.y = H + m; else if (it.y > H + m) it.y = -m;
         }
         var px = it.x - mouse.cx * 0.02 * it.z, py = it.y - mouse.cy * 0.02 * it.z;
+        if (it.kind === "whale") py += Math.sin(tm / 45 + it.ph) * 5; // gentle bob
         // fade toward the centre column, where the content and its text sit
         var cxf = Math.min(1, Math.abs(px + (it.kind === "text" ? 110 : 0) - W / 2) / (W * 0.42));
         var fade = it.kind === "text" ? 0.12 + 0.88 * cxf * cxf : 0.45 + 0.55 * cxf;
@@ -289,7 +321,9 @@
         } else {
           dx.rotate(it.rot);
           dx.strokeStyle = rgba(rgb, A * (0.6 + it.z * 0.5) * fade);
-          if (it.kind === "helm") helm(dx, it.r); else if (it.kind === "hex") hex(dx, it.r); else box(dx, it.r);
+          if (it.kind === "helm") helm(dx, it.r); else if (it.kind === "hex") hex(dx, it.r);
+          else if (it.kind === "whale") { dx.scale(it.vx < 0 ? -1.35 : 1.35, 0.9); whale(dx, it.r); }
+          else box(dx, it.r);
           if (it.kind === "hex") { // pod status light
             var pulse = reduce ? 0.6 : 0.5 + 0.5 * Math.sin(tm / 20 + it.ph);
             dx.fillStyle = rgba(col.g, (0.25 + pulse * 0.35) * it.z * fade); dx.beginPath(); dx.arc(0, 0, 2.6, 0, 6.283); dx.fill();
@@ -330,7 +364,7 @@
       if (!running) { cancelAnimationFrame(raf); raf = 0; } else kick();
     });
     if (reduce) frame(0); else kick();
-    window.__bg = { running: function () { return running && !!raf; }, items: function () { return items.length; } };
+    window.__bg = { running: function () { return running && !!raf; }, items: function () { return items.length; }, find: function (k) { return items.filter(function (i) { return i.kind === k; })[0]; } };
   })();
 
   /* ---------- scroll reveal ---------- */
@@ -346,6 +380,41 @@
     };
     window.addEventListener("scroll", revealRest, { passive: true }); window.addEventListener("resize", revealRest);
   } else { revealEls.forEach(function (el) { el.classList.add("in"); }); }
+
+  /* ---------- eyebrow typewriter ----------
+     Section labels type themselves out once when scrolled into view, caret blinks twice and leaves. */
+  (function eyebrows() {
+    if (reduce || !("IntersectionObserver" in window)) return;
+    var els = document.querySelectorAll(".eyebrow");
+    if (!els.length) return;
+    els.forEach(function (el) {
+      var txt = el.textContent;
+      el.setAttribute("aria-label", txt);
+      el.textContent = "";
+      var span = document.createElement("span");
+      span.setAttribute("aria-hidden", "true");
+      el.appendChild(span);
+      el._full = txt;
+    });
+    var eio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        eio.unobserve(en.target);
+        var el = en.target, span = el.querySelector("span"), txt = el._full, i = 0;
+        var caret = document.createElement("span"); caret.className = "caret"; caret.setAttribute("aria-hidden", "true");
+        el.appendChild(caret);
+        (function tick() {
+          if (i <= txt.length) {
+            span.textContent = txt.slice(0, i); i++;
+            setTimeout(tick, 22 + Math.random() * 26);
+          } else {
+            setTimeout(function () { caret.remove(); }, 2100); // two blinks, then gone
+          }
+        })();
+      });
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0 });
+    els.forEach(function (el) { eio.observe(el); });
+  })();
 
   /* ---------- timeline progress ---------- */
   var tl = document.querySelector(".timeline");
