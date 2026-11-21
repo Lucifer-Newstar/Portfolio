@@ -822,6 +822,16 @@ writing = f'''<section class="page-head"><div class="wrap">
     {wcard("https://www.linkedin.com/feed/update/urn:li:activity:7522983178719125504/","Six months of DevOps at Rapture Twelve","LinkedIn · Nov 2026 · internship","The wrap-up post: AWS IAM and least-privilege, cloud architecture exposure, containerised deployments, and building DigiCraveOS.",delay=160,badge="linkedin",cta="Read on LinkedIn",external=True)}
   </div>
 </div></section>
+<section style="padding-top:0"><div class="wrap">
+  <p class="eyebrow reveal">elsewhere · community</p>
+  <h2 class="reveal">Community and events</h2>
+  <div class="grid g3" style="margin-top:22px">
+    {wcard("https://lnkd.in/p/g4375A3M","Why do we scroll when the deadline is tomorrow?","LinkedIn · Nov 2026 · hosted session","I hosted a Tea Kadai Talks at Teedians Community on the psychology of procrastination: emotional regulation over time management, micro-actions that close the loop, and reframing yourself as an action-taker.",badge="linkedin",cta="Read on LinkedIn",external=True)}
+    {wcard("https://lnkd.in/p/gBWcxvFh","Quantum entanglement, Tony Stark's Jarvis, and my first EPV","LinkedIn · Nov 2026 · community","My first EPV session with Teedians turned into a 57-minute deep dive with fellow student builders: AI ecosystems, hardware-meets-software collabs, and small habits that compound.",delay=80,badge="linkedin",cta="Read on LinkedIn",external=True)}
+    {wcard("https://lnkd.in/p/gWWHAjGg","Lakehouse, Lagers & Legends: Databricks, Lakebase and PostgreSQL","LinkedIn · Nov 2026 · data · MLOps","Takeaways from the v4c.ai Chennai meetup: the operational side of Databricks Lakebase, its PostgreSQL integration, and how data infrastructure connects to modern AI applications.",delay=160,badge="linkedin",cta="Read on LinkedIn",external=True)}
+    {wcard("https://lnkd.in/p/gcTQd4qn","Talk to Build: FloodVoice at my first hackathon","LinkedIn · Oct 2026 · hackathon","A voice-only AI buildathon: FloodVoice lets people report waterlogging by voice or text on a live map, falls back to SMS, ranks reports by urgency, and sketches an offline Bluetooth mesh relay.",badge="linkedin",cta="Read on LinkedIn",external=True)}
+  </div>
+</div></section>
 ''' + CTA("")
 write("writing.html", page("writing.html","writing","Writing","Build write-ups by Navin Jairam M: deploying to EC2 with OIDC and SSM, nine ColdBox pentest findings, and building the AegisSRE platform.",writing))
 

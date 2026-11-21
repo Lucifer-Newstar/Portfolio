@@ -702,6 +702,7 @@
           '<span class="hi">experience</span>    internships timeline',
           '<span class="hi">resume</span>        download my resume (PDF)',
           '<span class="hi">contact</span>       contact page  ·  <span class="hi">email</span> copy my email',
+          '<span class="hi">hire navin</span>    the best command on this site',
           '<span class="hi">github</span> · <span class="hi">linkedin</span>  open profiles',
           '<span class="hi">theme light|dark</span>  switch the colour theme',
           '<span class="hi">clear</span> · <span class="hi">exit</span>'
@@ -749,6 +750,7 @@
       if (/^(cd|goto|go) /.test(low)) { var t = low.split(" ")[1].replace(/\.html$/, "").replace(/^\/|\/$/g, ""); if (t === "~" || t === "") t = "home"; if (PAGES[t]) return go(PAGES[t], t); }
       if (/^(open|cat) /.test(low)) { var k = low.split(" ")[1]; if (k in OPEN) { var p = PROJECTS[OPEN[k]]; return p.page ? go(p.page, p.name) : ext(p.repo, p.name + " repo"); } print('<span class="er">no such project: ' + esc(k) + '</span> · try <span class="hi">kubectl get pods</span>'); return; }
       if (/^deploy navin/.test(low)) { print('<span class="ok">✓ already deployed to prod.</span> Next step: <span class="hi">contact</span>'); return; }
+      if (/^hire\b/.test(low)) { print('<span class="ok">✓ excellent taste.</span> Navin is available for DevOps, SRE and cloud roles from 2027.\nType <span class="hi">contact</span> to open the contact page, or <span class="hi">sudo hire navin</span> to fast-track an email.'); return; }
       var tm = low.match(/^theme\s+(light|dark|toggle|auto)$/);
       if (tm) {
         if (tm[1] === "auto") { try { localStorage.removeItem(THEME_KEY); } catch (e) {} applyTheme(osTheme(), false); print('<span class="ok">✓ theme follows your system</span> (' + currentTheme() + ")"); return; }
