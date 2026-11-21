@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" class="no-js" data-root="" data-pp-repo="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Writing · Navin Jairam M</title>
+<meta name="description" content="Build write-ups by Navin Jairam M: deploying to EC2 with OIDC and SSM, nine ColdBox pentest findings, and building the AegisSRE platform.">
+<meta name="author" content="Navin Jairam M">
+<meta name="theme-color" content="#06080c">
+<meta name="color-scheme" content="dark light">
+<script src="theme-init.js"></script>
+<link rel="canonical" href="https://lucifer-newstar.github.io/Portfolio/writing.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Navin Jairam M">
+<meta property="og:title" content="Writing · Navin Jairam M">
+<meta property="og:description" content="Build write-ups by Navin Jairam M: deploying to EC2 with OIDC and SSM, nine ColdBox pentest findings, and building the AegisSRE platform.">
+<meta property="og:url" content="https://lucifer-newstar.github.io/Portfolio/writing.html">
+<meta property="og:image" content="https://lucifer-newstar.github.io/Portfolio/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Navin Jairam M — DevOps &amp; Cloud Engineer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Writing · Navin Jairam M">
+<meta name="twitter:description" content="Build write-ups by Navin Jairam M: deploying to EC2 with OIDC and SSM, nine ColdBox pentest findings, and building the AegisSRE platform.">
+<meta name="twitter:image" content="https://lucifer-newstar.github.io/Portfolio/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="navin@prod:~$, Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="writing.html" aria-current="page">Writing</a></li><li><a href="skills.html">Skills</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
+    <button class="kbtn" data-palette type="button" aria-label="Command ⌘K, open command palette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7 5 5-5 5M12 18h7"/></svg><span>Command</span><kbd>⌘K</kbd></button>
+  </nav>
+</header>
+<main id="main">
+<section class="page-head"><div class="wrap">
+  <p class="crumb">~/writing</p>
+  <p class="eyebrow">ls -la ~/writing</p>
+  <h1>Build write-ups</h1>
+  <p class="lead">Short posts on how the projects actually work: the pipeline that really deploys, the pentest that proves its fixes, and the SRE platform I build in the open. Everything here matches what is in the repos.</p>
+</div></section>
+<section style="padding-top:0"><div class="wrap">
+  <div class="grid g3">
+    <a class="card tilt pcard reveal" href="writing/deploying-to-ec2-with-oidc-and-ssm.html" data-delay="0">
+  <div class="ptop"><span class="badge">write-up</span><span>AWS · CI/CD</span></div>
+  <h3>Deploying to EC2 with OIDC and SSM, and proving it worked</h3>
+  <p>The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.</p>
+  <span class="go">Read <span class="arr" aria-hidden="true">→</span></span>
+</a>
+    <a class="card tilt pcard reveal" href="writing/coldbox-nine-findings.html" data-delay="80">
+  <div class="ptop"><span class="badge">write-up</span><span>security</span></div>
+  <h3>Nine findings in a ColdBox banking app, and how I fixed them</h3>
+  <p>A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.</p>
+  <span class="go">Read <span class="arr" aria-hidden="true">→</span></span>
+</a>
+    <a class="card tilt pcard reveal" href="writing/building-an-sre-platform.html" data-delay="160">
+  <div class="ptop"><span class="badge">write-up</span><span>SRE · Kubernetes</span></div>
+  <h3>Building an SRE platform: what is real today, what is next</h3>
+  <p>AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.</p>
+  <span class="go">Read <span class="arr" aria-hidden="true">→</span></span>
+</a>
+  </div>
+</div></section>
+<section><div class="wrap"><div class="cta reveal">
+  <div><h2>Hiring for DevOps, SRE or Cloud?</h2><p>I'm graduating in 2027 and seeking DevOps, SRE, or cloud roles. Let's talk.</p></div>
+  <div class="btns"><a class="btn primary" href="mailto:navin.jairam@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> Email me</a><a class="btn" href="assets/Navin_Jairam_M_Resume.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg> Download resume</a></div>
+</div></div></section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Navin Jairam M · built as static HTML, CSS &amp; JS</span>
+    <nav aria-label="Footer"><a href="mailto:navin.jairam@gmail.com">Email</a><a href="https://www.linkedin.com/in/navin-jairam" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Lucifer-Newstar" target="_blank" rel="noopener">GitHub</a><a href="assets/Navin_Jairam_M_Resume.pdf" download>Resume</a></nav>
+  </div>
+</footer>
+<button class="fab" type="button" data-palette aria-label="Open command terminal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7 5 5-5 5M12 18h7"/></svg></button>
+<dialog class="palette" id="palette" aria-label="Command terminal">
+  <div class="pal-head"><span>navin-sh — try <b>help</b></span><button type="button" data-close>esc</button></div>
+  <div class="pal-out" aria-live="polite"></div>
+  <div class="pal-chips" aria-label="Suggested commands">
+    <button type="button" data-cmd="help">help</button><button type="button" data-cmd="whoami">whoami</button><button type="button" data-cmd="kubectl get pods">kubectl get pods</button><button type="button" data-cmd="projects">projects</button><button type="button" data-cmd="skills">skills</button><button type="button" data-cmd="experience">experience</button><button type="button" data-cmd="resume">resume</button><button type="button" data-cmd="email">email</button><button type="button" data-cmd="contact">contact</button><button type="button" data-cmd="theme toggle">theme toggle</button><button type="button" data-cmd="sudo hire navin">sudo hire navin</button>
+  </div>
+  <div class="pal-in"><label for="pal-input">visitor@navin:~$</label><input id="pal-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" placeholder="type a command…"></div>
+</dialog>
+</body>
+</html>

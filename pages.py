@@ -121,8 +121,22 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
     <div><p class="eyebrow reveal">featured work</p><h2 class="reveal" style="margin:0">Projects</h2></div>
     <a class="btn reveal" href="projects.html">All projects →</a>
   </div>
-  <div class="grid g3" style="margin-top:26px">
-    {pcard("projects/aegissre.html","AegisSRE","SRE platform · personal flagship","SRE platform, phase 2 built and tested: a 4-service demo shop watched by a service registry, deployments API and a Next.js console, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.",["Kubernetes","FastAPI","GitHub Actions","Prometheus","Grafana"],"k8s cicd obs")}
+  <a class="card tilt pcard reveal feature-flag" href="projects/aegissre.html" style="margin-top:26px">
+    <div class="ptop"><span class="badge">SRE platform · personal flagship</span><span>case study</span></div>
+    <div class="ff-grid">
+      <div>
+        <h3>AegisSRE</h3>
+        <p>SRE platform, phase 2 built and tested: a 4-service demo shop watched by a service registry, deployments API and a Next.js console, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.</p>
+        {tags(["Kubernetes","FastAPI","GitHub Actions","Prometheus","Grafana"])}
+        <span class="go">Open case study <span class="arr" aria-hidden="true">→</span></span>
+      </div>
+      <div class="mini-pipe-wrap">
+        <span class="mp-label">6-job CI · guards every push</span>
+        <div class="mini-pipe"><span>config</span><i>→</i><span>k8s manifests</span><i>→</i><span>docs links</span><i>→</i><span>backend</span><i>→</i><span>docker build</span><i>→</i><span>frontend build</span></div>
+      </div>
+    </div>
+  </a>
+  <div class="grid g2" style="margin-top:18px">
     {pcard("projects/coldbox-pentesting.html","ColdBox Pentest","DevSecOps","A full penetration-test engagement on a CFML banking app: 9 findings documented and fixed, proven with executed ZAP, Semgrep, Gitleaks, Trivy and TestBox runs.",["OWASP ZAP","Semgrep","Gitleaks","Trivy","TestBox"],"security cicd",delay=80)}
     {pcard("projects/codomax-internship.html","Codomax DevOps","AWS · CI/CD","A GitHub Actions pipeline with OIDC auth really deployed to EC2 over SSM, verified the running code matched the commit, then tore everything down for about $0.03.",["AWS EC2","OIDC","SSM","GitHub Actions","Docker"],"aws cicd",delay=160)}
   </div>
@@ -145,6 +159,15 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
         <span class="o">Dec 2025 – Feb 2026</span>
 <span class="am">3d1f7c0</span> init: B.Tech IT, Meenakshi College of Engineering
         <span class="o">2023</span></div>
+  </div>
+</div></section>
+<section><div class="wrap">
+  <p class="eyebrow reveal">certifications</p>
+  <h2 class="reveal">Certified, and counting</h2>
+  <div class="grid g3" style="margin-top:22px">
+    <a class="card cert reveal" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=3E5A5A8C90DB6F61272E7662EF777663C3316544D516C47E054F2357741AC09A" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">OCI</span><span><b>OCI 2025 Foundations Associate</b><span>Oracle · view badge ↗</span></span></a>
+    <a class="card cert reveal" data-delay="80" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=CA28460C14F975E596709C7D3B622CE567A942B04EF082EF61C6C213894FA234" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">DB</span><span><b>Oracle Database@AWS Certified Architect Professional</b><span>Oracle · view badge ↗</span></span></a>
+    <a class="card cert reveal" data-delay="160" href="https://www.linkedin.com/posts/navin-jairam_forage-certificate-activity-7383053776896770048-CnHV" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">AWS</span><span><b>AWS Solutions Architecture Job Simulation</b><span>Forage · view post ↗</span></span></a>
   </div>
 </div></section>
 {CTA("")}
@@ -619,3 +642,79 @@ nf = f'''<section class="page-head"><div class="wrap">
   <div class="btns"><a class="btn primary" href="{nf_root}index.html">Back home</a><button class="btn" type="button" data-palette>Open terminal</button></div>
 </div></section>'''
 write("404.html", page("404.html","none","Not found","Page not found.",nf,root=nf_root,noindex=True))
+
+# ---------------- WRITING ----------------
+def post_head(slug, tag, title, standfirst, repo_btn):
+    return f'''<section class="page-head"><div class="wrap">
+  <p class="crumb"><a href="../writing.html">~/writing</a> / {html.escape(slug)}</p>
+  <p class="eyebrow">write-up · {html.escape(tag)}</p>
+  <h1>{html.escape(title)}</h1>
+  <p class="lead">{standfirst}</p>
+  <div class="btns">{repo_btn}</div>
+</div></section>'''
+
+def wcard(href, title, meta, desc, delay=0):
+    return f'''<a class="card tilt pcard reveal" href="{href}" data-delay="{delay}">
+  <div class="ptop"><span class="badge">write-up</span><span>{html.escape(meta)}</span></div>
+  <h3>{html.escape(title)}</h3>
+  <p>{html.escape(desc)}</p>
+  <span class="go">Read <span class="arr" aria-hidden="true">→</span></span>
+</a>'''
+
+writing = f'''<section class="page-head"><div class="wrap">
+  <p class="crumb">~/writing</p>
+  <p class="eyebrow">ls -la ~/writing</p>
+  <h1>Build write-ups</h1>
+  <p class="lead">Short posts on how the projects actually work: the pipeline that really deploys, the pentest that proves its fixes, and the SRE platform I build in the open. Everything here matches what is in the repos.</p>
+</div></section>
+<section style="padding-top:0"><div class="wrap">
+  <div class="grid g3">
+    {wcard("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM, and proving it worked","AWS · CI/CD","The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.")}
+    {wcard("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app, and how I fixed them","security","A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.",delay=80)}
+    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes","AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.",delay=160)}
+  </div>
+</div></section>
+''' + CTA("")
+write("writing.html", page("writing.html","writing","Writing","Build write-ups by Navin Jairam M: deploying to EC2 with OIDC and SSM, nine ColdBox pentest findings, and building the AegisSRE platform.",writing))
+
+p1_body = post_head("deploying-to-ec2-with-oidc-and-ssm","AWS · CI/CD",
+  "Deploying to EC2 with OIDC and SSM, and proving it worked",
+  "The capstone of my Codomax internship: a GitHub Actions pipeline that authenticates to AWS without stored keys, deploys to EC2 over SSM, verifies the running code matches the commit, and rolls back if it does not.",
+  gh_btn("codomax-internship")) + '''
+<section style="padding-top:0"><div class="wrap"><div class="post">
+  <p>Most student pipelines are CI only: lint, test, build, green tick, done. For the capstone of my Codomax Linux, Cloud and DevOps internship I wanted the second half too. Seven modules build up to it, starting with Linux CLI, networking and server deployment, then AWS, Docker and CI/CD, all around one application (CloudOps, a small notes platform with a UI, a REST API and PostgreSQL) instead of throwaway exercises. The capstone deploys that application to a real EC2 host.</p>
+  <p>The part I am most glad I did properly is authentication. The pipeline never touches a stored AWS key. GitHub Actions mints a short-lived OIDC token, and an IAM role trusts it for exactly this repository and branch. The trust policy and permission policy live in the repo under module 6. This bit me early on: the trust policy was referenced in my docs but never actually committed, and then GitHub's new token format broke the old claim I had copied. Keyless auth only works if the federation setup itself is treated as code.</p>
+  <p>The deploy path on a push to main is: build the image, push it to GHCR, then reach the EC2 host over AWS Systems Manager. SSM Run Command is the control channel, so there are no SSH keys to manage and no inbound port to justify in the security group. The host pulls the new image and restarts the Compose stack.</p>
+  <p>Shipping is the easy half; proving it worked is the point. The application reports the commit it was built from, and the pipeline's verify step compares that git_sha with the commit that triggered the run, plus health checks. Earlier versions of this pipeline quietly skipped the deploy step and still went green. Running it for real surfaced bugs CI alone would never catch: a healthcheck that failed under cron because PATH was different, probes pointed at the wrong routes, and every container's logs landing in one literal log stream. Each one was diagnosed from CloudTrail and logs, then fixed.</p>
+  <p>The evidence is committed: 43 screenshots in the capstone's screenshots folder. The platform was deployed live on AWS and verified on 21 November 2026, then torn down on purpose, because a student budget is a real constraint. Total AWS cost for the whole exercise was about $0.03. Everything is in the repo: the workflows, the OIDC policies, the deploy scripts and the runbook.</p>
+</div></div></section>
+''' + next_nav("../",("writing/building-an-sre-platform.html","Building an SRE platform"),("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app")) + CTA("../")
+write("writing/deploying-to-ec2-with-oidc-and-ssm.html", page("writing/deploying-to-ec2-with-oidc-and-ssm.html","writing","Deploying to EC2 with OIDC and SSM","How the Codomax capstone pipeline deploys to EC2: OIDC keyless auth, SSM Run Command, git_sha verification and rollback, with 43 evidence screenshots.",p1_body,root="../"))
+
+p2_body = post_head("coldbox-nine-findings","security",
+  "Nine findings in a ColdBox banking app, and how I fixed them",
+  "A full penetration-test engagement against my own application: SecureBank, a small ColdBox banking app built twice, once vulnerable and once hardened, with every fix proven by executed tooling.",
+  gh_btn("ColdBox-Pentesting")) + '''
+<section style="padding-top:0"><div class="wrap"><div class="post">
+  <p>SecureBank is a deliberately small simulated banking application on the ColdBox/CFML stack (ColdBox 8.3, Lucee 6.2, MariaDB 11.8), implemented twice: a vulnerable build and a hardened build with the same features. Everything runs on loopback only, all accounts and balances are synthetic fixtures, and the test harness refuses non-loopback targets. The point was never the app. The point was running the complete application-security lifecycle on it: develop, test, scan, identify, remediate, verify, automate.</p>
+  <p>The findings cover four classes. SQL injection in the login and search flows, where the queries were concatenated strings, fixed with cfqueryparam and proper validation. Reflected and stored cross-site scripting from raw output, fixed with context-aware encoding and a Content Security Policy. Session fixation, where the session identifier never rotated at login, fixed by rotating it and invalidating the old token. And a transfer endpoint that did not verify account ownership, fixed so both accounts must belong to the caller, with the transfer bounded and atomic.</p>
+  <p>A fix you cannot demonstrate is just a claim, so the repo is built around proof. A differential harness sends the same 18 requests to both builds: 18 out of 18, the vulnerable build fails and the secured build holds. The TestBox suites pass 31/31 on one side and 44/44 on the other, and seven environment gates (G1 to G7: boot, database, BCrypt, sessions, TestBox, datasource) run before any of the security tooling starts.</p>
+  <p>The scanner story is honest about its limits. OWASP ZAP runs baseline and active scans, Gitleaks hunts secrets, Trivy covers dependencies and containers. Semgrep has no CFML parser, so instead of pretending it scanned anything, I wrote cfscan, a small in-repository CFML scanner, with its heuristic rules labelled as heuristics. A severity-based quality gate reads the reports, and the one accepted exception lives in a written ledger as EX-001 rather than being quietly ignored.</p>
+  <p>What I took from the engagement is that security work is evidence work. The findings index has a chapter per finding, including what the evidence does not prove, and the limitations doc lists the gaps, like untested concurrency. Reports distinguish executed checks from checks with no results. Fourteen screenshots capture the running applications. It is all in the repo, MIT licensed, for local and isolated educational use.</p>
+</div></div></section>
+''' + next_nav("../",("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM"),("writing/building-an-sre-platform.html","Building an SRE platform")) + CTA("../")
+write("writing/coldbox-nine-findings.html", page("writing/coldbox-nine-findings.html","writing","Nine findings in a ColdBox banking app","A penetration-test engagement on a ColdBox CFML banking app: 9 findings documented and fixed, proven with ZAP, Semgrep, Gitleaks, Trivy, cfscan and TestBox runs.",p2_body,root="../"))
+
+p3_body = post_head("building-an-sre-platform","SRE · Kubernetes",
+  "Building an SRE platform: what is real today, what is next",
+  "AegisSRE is my personal flagship: an SRE platform that watches a deployed application, collects its telemetry and keeps a human in control. Here is what phase 2 actually built and tested, and what is still design.",
+  gh_btn("AegisSRE")) + '''
+<section style="padding-top:0"><div class="wrap"><div class="post">
+  <p>One name note first: the platform's codename is AegisDeploy, and the repository is AegisSRE. Same project. I started it because every project I had built stopped at deployment, and I wanted to work on the part that comes after: watching a running system, noticing when it misbehaves, and understanding why.</p>
+  <p>What exists today, built and tested, is phase 2. AegisShop is a four-service demo shop (catalog, cart, order and payment) that exists to be watched. Around it sit a service registry, a deployments API and a live Next.js console. Observability is not an afterthought: Prometheus for metrics with alert rules, Grafana dashboards, Loki for logs, Tempo for traces, and OpenTelemetry instrumentation across the six Python services.</p>
+  <p>The engineering discipline around it matters as much as the features. Every push runs a six-job CI pipeline, and all six must pass before a merge: YAML and Compose validation, Kubernetes manifests checked with kubeconform and kustomize, a link check across every doc, the backend (ruff, mypy, pytest), Docker image builds and the frontend build. All 54 backend tests pass. The platform ships with 7 Dockerfiles, a 15-container Compose stack, manifests for 7 Kubernetes services managed with Kustomize, and Terraform for the cloud infrastructure. It is MIT licensed.</p>
+  <p>What is next is designed, documented, and not built yet, and I try to keep that line bright. The roadmap covers anomaly detection with Isolation Forest models and statistical baselines, an AI reasoning layer that combines logs, metrics, traces, deployments and runbooks into evidence-backed root-cause explanations, and remediation where low-risk reversible actions can execute automatically while anything risky waits for a human to approve. A deployment-intelligence tier (risk scoring, bad-rollout detection, change-incident correlation, DI-1 through DI-7) is specced in the architecture docs.</p>
+  <p>The biggest lesson so far: instrument one demo application end to end before reaching for any intelligence. A platform that cannot show you a clean trace of a boring request has no business detecting anomalies. The repo has the docs, the roadmap and the working phase 2 code, and the CI pipeline keeps both honest.</p>
+</div></div></section>
+''' + next_nav("../",("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app"),("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM")) + CTA("../")
+write("writing/building-an-sre-platform.html", page("writing/building-an-sre-platform.html","writing","Building an SRE platform","AegisSRE, a personal flagship SRE platform: what phase 2 built and tested (registry, deployments API, console, 6-job CI, observability) and what is still on the roadmap.",p3_body,root="../"))

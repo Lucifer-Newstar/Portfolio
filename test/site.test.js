@@ -6,7 +6,8 @@ const path = require("node:path");
 const SITE = path.join(__dirname, "..", "site");
 const PAGES = ["index.html", "about.html", "projects.html", "skills.html", "contact.html",
   "projects/aegissre.html", "projects/coldbox-pentesting.html", "projects/codomax-internship.html", "projects/dinesmart.html", "projects/ascend.html",
-  "projects/portfolio-platform.html", "projects/digicrave-os.html", "projects/distributed-java-webapp.html", "404.html"];
+  "projects/portfolio-platform.html", "projects/digicrave-os.html", "projects/distributed-java-webapp.html",
+  "writing.html", "writing/deploying-to-ec2-with-oidc-and-ssm.html", "writing/coldbox-nine-findings.html", "writing/building-an-sre-platform.html", "404.html"];
 const read = (p) => fs.readFileSync(path.join(SITE, p), "utf8");
 const all = PAGES.map((p) => [p, read(p)]);
 // The site's base path (e.g. "/Portfolio/"), read from the canonical URL build.py wrote.

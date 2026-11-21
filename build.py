@@ -28,7 +28,7 @@ ICON = {
  "award": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14.2-1.5 7.8 5-3 5 3-1.5-7.8"/></svg>',
 }
 
-NAV = [("index.html","Home","home"),("about.html","About","about"),("projects.html","Projects","projects"),("skills.html","Skills","skills"),("contact.html","Contact","contact")]
+NAV = [("index.html","Home","home"),("about.html","About","about"),("projects.html","Projects","projects"),("writing.html","Writing","writing"),("skills.html","Skills","skills"),("contact.html","Contact","contact")]
 
 def page(fname, key, title, desc, body, root="", noindex=False):
     canon = BASE + ("" if fname == "index.html" else fname)

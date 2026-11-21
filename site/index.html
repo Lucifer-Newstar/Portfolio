@@ -38,7 +38,7 @@
   <nav class="wrap nav" aria-label="Main">
     <a class="brand" href="index.html" aria-label="navin@prod:~$, Navin Jairam M, home"><span class="dot" aria-hidden="true"></span><span><b>navin</b>@prod:<span class="path">~</span>$</span></a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
-    <ul class="nav-links" id="nav-links"><li><a href="index.html" aria-current="page">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="skills.html">Skills</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <ul class="nav-links" id="nav-links"><li><a href="index.html" aria-current="page">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="writing.html">Writing</a></li><li><a href="skills.html">Skills</a></li><li><a href="contact.html">Contact</a></li></ul>
     <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
     <button class="kbtn" data-palette type="button" aria-label="Command ⌘K, open command palette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7 5 5-5 5M12 18h7"/></svg><span>Command</span><kbd>⌘K</kbd></button>
   </nav>
@@ -94,14 +94,22 @@
     <div><p class="eyebrow reveal">featured work</p><h2 class="reveal" style="margin:0">Projects</h2></div>
     <a class="btn reveal" href="projects.html">All projects →</a>
   </div>
-  <div class="grid g3" style="margin-top:26px">
-    <a class="card tilt pcard reveal" href="projects/aegissre.html" data-tags="k8s cicd obs" data-delay="0">
-  <div class="ptop"><span class="badge">SRE platform · personal flagship</span><span>case study</span></div>
-  <h3>AegisSRE</h3>
-  <p>SRE platform, phase 2 built and tested: a 4-service demo shop watched by a service registry, deployments API and a Next.js console, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.</p>
-  <ul class="tags"><li>Kubernetes</li><li>FastAPI</li><li>GitHub Actions</li><li>Prometheus</li><li>Grafana</li></ul>
-  <span class="go">Open case study <span class="arr" aria-hidden="true">→</span></span>
-</a>
+  <a class="card tilt pcard reveal feature-flag" href="projects/aegissre.html" style="margin-top:26px">
+    <div class="ptop"><span class="badge">SRE platform · personal flagship</span><span>case study</span></div>
+    <div class="ff-grid">
+      <div>
+        <h3>AegisSRE</h3>
+        <p>SRE platform, phase 2 built and tested: a 4-service demo shop watched by a service registry, deployments API and a Next.js console, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.</p>
+        <ul class="tags"><li>Kubernetes</li><li>FastAPI</li><li>GitHub Actions</li><li>Prometheus</li><li>Grafana</li></ul>
+        <span class="go">Open case study <span class="arr" aria-hidden="true">→</span></span>
+      </div>
+      <div class="mini-pipe-wrap">
+        <span class="mp-label">6-job CI · guards every push</span>
+        <div class="mini-pipe"><span>config</span><i>→</i><span>k8s manifests</span><i>→</i><span>docs links</span><i>→</i><span>backend</span><i>→</i><span>docker build</span><i>→</i><span>frontend build</span></div>
+      </div>
+    </div>
+  </a>
+  <div class="grid g2" style="margin-top:18px">
     <a class="card tilt pcard reveal" href="projects/coldbox-pentesting.html" data-tags="security cicd" data-delay="80">
   <div class="ptop"><span class="badge">DevSecOps</span><span>case study</span></div>
   <h3>ColdBox Pentest</h3>
@@ -136,6 +144,15 @@
         <span class="o">Dec 2025 – Feb 2026</span>
 <span class="am">3d1f7c0</span> init: B.Tech IT, Meenakshi College of Engineering
         <span class="o">2023</span></div>
+  </div>
+</div></section>
+<section><div class="wrap">
+  <p class="eyebrow reveal">certifications</p>
+  <h2 class="reveal">Certified, and counting</h2>
+  <div class="grid g3" style="margin-top:22px">
+    <a class="card cert reveal" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=3E5A5A8C90DB6F61272E7662EF777663C3316544D516C47E054F2357741AC09A" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">OCI</span><span><b>OCI 2025 Foundations Associate</b><span>Oracle · view badge ↗</span></span></a>
+    <a class="card cert reveal" data-delay="80" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=CA28460C14F975E596709C7D3B622CE567A942B04EF082EF61C6C213894FA234" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">DB</span><span><b>Oracle Database@AWS Certified Architect Professional</b><span>Oracle · view badge ↗</span></span></a>
+    <a class="card cert reveal" data-delay="160" href="https://www.linkedin.com/posts/navin-jairam_forage-certificate-activity-7383053776896770048-CnHV" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">AWS</span><span><b>AWS Solutions Architecture Job Simulation</b><span>Forage · view post ↗</span></span></a>
   </div>
 </div></section>
 <section><div class="wrap"><div class="cta reveal">
