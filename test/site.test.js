@@ -233,3 +233,10 @@ test("GitHub activity is local, dated, full-year and below Projects", () => {
   const d=JSON.parse(fs.readFileSync(path.join(SITE,'..','data','github-activity.json'),'utf8'));
   assert.ok(d.fetched_at && d.days.length>=365);
 });
+
+test("final QA fixes: dialog traps Tab; terminal includes writing and now", () => {
+  const js=read('script.js');
+  assert.ok(js.includes('modal.contains(document.activeElement)') && js.includes('e.shiftKey'), 'architecture focus trap');
+  assert.ok(js.includes('writing: "writing.html"') && js.includes('now: "now.html"'), 'terminal page routes');
+  assert.ok(js.includes('cluster.querySelectorAll(".pool").length'), 'skill pool count not hardcoded');
+});

@@ -25,7 +25,7 @@
     { id: "java", name: "Distributed Java Web App", page: "projects/distributed-java-webapp.html", repo: "https://github.com/Lucifer-Newstar/distributed-java-webapp", blurb: "Multi-VM Vagrant stack: Nginx, Tomcat, MySQL, Memcached, RabbitMQ" },
     { id: "kaizen", name: "Kaizen – Productivity OS", page: null, repo: "https://github.com/Lucifer-Newstar/Productivity-App", blurb: "Productivity OS with CI/CD releases and basic MLOps" }
   ];
-  var PAGES = { home: "index.html", about: "about.html", experience: "about.html#experience", projects: "projects.html", skills: "skills.html", contact: "contact.html" };
+  var PAGES = { home: "index.html", about: "about.html", experience: "about.html#experience", projects: "projects.html", skills: "skills.html", contact: "contact.html", writing: "writing.html", now: "now.html" };
 
   /* ---------- toast + clipboard ---------- */
   var toastEl;
@@ -508,7 +508,16 @@
     });
     closeBtn.addEventListener("click", close);
     modal.addEventListener("click", function (e) { if (e.target === modal) close(); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (modal.hidden) return;
+      if (e.key === "Escape") { e.preventDefault(); close(); return; }
+      if (e.key !== "Tab") return;
+      var focusable = Array.prototype.filter.call(modal.querySelectorAll('a[href],button:not([disabled]),[tabindex="0"]'), function (el) { return el.getClientRects().length > 0; });
+      if (!focusable.length) return;
+      var first = focusable[0], lastEl = focusable[focusable.length - 1];
+      if (e.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) { e.preventDefault(); lastEl.focus(); }
+      else if (!e.shiftKey && (document.activeElement === lastEl || !modal.contains(document.activeElement))) { e.preventDefault(); first.focus(); }
+    });
   })();
 
   /* ---------- hero terminal ---------- */
@@ -682,7 +691,7 @@
     var dlg = document.getElementById("palette"); if (!dlg || typeof dlg.showModal !== "function") return;
     var out = dlg.querySelector(".pal-out"), input = dlg.querySelector("input"), chips = dlg.querySelector(".pal-chips");
     var hist = [], hi = -1, greeted = false;
-    var CMDS = ["help", "whoami", "projects", "skills", "experience", "about", "contact", "resume", "email", "github", "linkedin", "ls", "kubectl get pods", "open aegissre", "open coldbox", "open codomax", "open dinesmart", "open ascend", "open portfolio", "open digicrave", "open java", "sudo hire navin", "theme light", "theme dark", "home", "clear", "exit"];
+    var CMDS = ["help", "whoami", "projects", "skills", "experience", "about", "contact", "writing", "now", "resume", "email", "github", "linkedin", "ls", "kubectl get pods", "open aegissre", "open coldbox", "open codomax", "open dinesmart", "open ascend", "open portfolio", "open digicrave", "open java", "hire navin", "sudo hire navin", "theme light", "theme dark", "home", "clear", "exit"];
     function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
     function print(h) { out.insertAdjacentHTML("beforeend", h + "\n"); out.scrollTop = out.scrollHeight; }
     function go(path, label) { print('<span class="ok">→ opening ' + esc(label) + "…</span>"); setTimeout(function () { window.location.href = ROOT + path; }, reduce ? 0 : 380); }
@@ -700,6 +709,7 @@
           '<span class="hi">open &lt;name&gt;</span>   aegissre · coldbox · codomax · dinesmart · ascend',
           '<span class="hi">skills</span>        the node-pool view of my stack',
           '<span class="hi">experience</span>    internships timeline',
+          '<span class="hi">writing</span> · <span class="hi">now</span>  posts and current work',
           '<span class="hi">resume</span>        download my resume (PDF)',
           '<span class="hi">contact</span>       contact page  ·  <span class="hi">email</span> copy my email',
           '<span class="hi">hire navin</span>    the best command on this site',
@@ -716,6 +726,8 @@
       about: function () { go(PAGES.about, "about"); },
       contact: function () { go(PAGES.contact, "contact"); },
       home: function () { go(PAGES.home, "home"); },
+      writing: function () { go(PAGES.writing, "writing"); },
+      now: function () { go(PAGES.now, "now"); },
       resume: function () {
         print('<span class="ok">→ downloading resume</span> <a href="' + LINKS.resume + '" download>Navin_Jairam_M_Resume.pdf</a>');
         var a = document.createElement("a"); a.href = LINKS.resume; a.download = "Navin_Jairam_M_Resume.pdf"; document.body.appendChild(a); a.click(); a.remove();
