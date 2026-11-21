@@ -671,7 +671,7 @@
         var b = e.target.closest("button"); if (!b) return;
         var key = b.getAttribute("data-key"), on = b.getAttribute("aria-pressed") !== "true";
         usage.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
-        if (!on || key === "all") { cluster.classList.remove("filtering"); pods.forEach(function (p) { p.classList.remove("dim", "lit"); }); if (key === "all") b.setAttribute("aria-pressed", "true"); out.innerHTML = '<span class="ps">$</span> kubectl get pods --all-namespaces\n<span class="o">' + pods.length + " pods across 6 node pools. Tap a pod to describe it.</span>"; return; }
+        if (!on || key === "all") { cluster.classList.remove("filtering"); pods.forEach(function (p) { p.classList.remove("dim", "lit"); }); if (key === "all") b.setAttribute("aria-pressed", "true"); out.innerHTML = '<span class="ps">$</span> kubectl get pods --all-namespaces\n<span class="o">' + pods.length + " pods across " + cluster.querySelectorAll(".pool").length + " node pools. Tap a pod to describe it.</span>"; return; }
         b.setAttribute("aria-pressed", "true"); cluster.classList.add("filtering"); var n = 0;
         pods.forEach(function (p) { var hit = (" " + (p.getAttribute("data-keys") || "") + " ").indexOf(" " + key + " ") > -1; p.classList.toggle("lit", hit); p.classList.toggle("dim", !hit); if (hit) n++; });
         out.innerHTML = '<span class="ps">$</span> kubectl get pods -l used-in=<span class="hi">' + esc(key) + '</span>\n<span class="o">' + n + " pods matched: " + esc(b.textContent) + "</span>";
