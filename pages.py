@@ -1,7 +1,6 @@
 # Page bodies. Executed by build.py (shares its namespace: page, write, tags, ICON, EMAIL, GH, LI, html).
 R = "https://github.com/Lucifer-Newstar/"
 PP_SRC = R + PORTFOLIO_PLATFORM_REPO if PORTFOLIO_PLATFORM_REPO else ""  # set the repo name in build.py
-DIGI_LIVE = "https://digi-crave-os.vercel.app"
 
 def node(name, sub, info, color=None, glow=False):
     c = f' style="--c:var(--{color})"' if color else ""
@@ -204,7 +203,7 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
         <li>Set up AWS IAM roles and policies to control access for live project environments.</li>
         <li>Designed cloud architectures and deployment strategies for live projects on AWS, built for scalability.</li>
         <li>Automated build and release with CI/CD pipelines and containerised applications for repeatable deployments.</li>
-        <li>Contributed to building and deploying <a href="projects/digicrave-os.html">DigiCrave OS</a>, a MERN-stack restaurant POS &amp; operations system, now live.</li>
+        <li>Contributed to building and deploying <a href="projects/digicrave-os.html">DigiCrave OS</a>, a MERN-stack restaurant POS &amp; operations system.</li>
       </ul>
       <div class="award">{ICON["award"]}<div><b>Certificate of Exceptional Contribution · Sep 2026</b><span>For work across cloud infrastructure, AWS IAM, scalability, containerisation and CI/CD automation. <a href="https://lnkd.in/p/gHc3NYDa" target="_blank" rel="noopener">See the post</a></span></div></div>
     </li>
@@ -246,7 +245,7 @@ projects = f'''<section class="page-head"><div class="wrap">
   <p class="crumb">~/projects</p>
   <p class="eyebrow">ls -la ~/projects</p>
   <h1>Things I've built and shipped</h1>
-  <p class="lead">From an SRE platform and a full penetration-test engagement to a proven AWS deploy pipeline and a live restaurant POS. Each case study has an interactive architecture diagram.</p>
+  <p class="lead">From an SRE platform and a full penetration-test engagement to a proven AWS deploy pipeline and a restaurant POS. Each case study has an interactive architecture diagram.</p>
 </div></section>
 <section style="padding-top:6px"><div class="wrap">
   <div class="filters" role="group" aria-label="Filter projects">
@@ -267,7 +266,7 @@ projects = f'''<section class="page-head"><div class="wrap">
     {pcard("projects/dinesmart.html","DineSmart","Full-stack SaaS","Restaurant-operations platform with incident intelligence (product name: Andhrimnir). Next.js 16 + Express 5 + MongoDB; 524/524 backend and 137/137 frontend tests passing, CI green.",["Next.js","React","Express","TypeScript","MongoDB","Playwright"],"web cicd",delay=80,hl="h2")}
     {pcard("projects/ascend.html","Ascend","Desktop app · team lead","Offline Windows fitness RPG: Electron + React with a local FastAPI sidecar and deterministic training and diet engines. 612 + 1,228 tests passing locally.",["Electron","React","FastAPI","Python","SQLite","DVC"],"web",hl="h2")}
     {pcard("projects/portfolio-platform.html","Portfolio Platform","Serverless AWS","Serverless portfolio on AWS: S3 + CloudFront hosting, API Gateway + Lambda APIs, DynamoDB, Cognito auth and SES email, deployed by a GitHub Actions workflow.",["S3","CloudFront","API Gateway","Lambda","DynamoDB","Cognito","SES"],"aws cicd",delay=80,hl="h2")}
-    {pcard("projects/digicrave-os.html","DigiCrave OS","Live · Rapture Twelve","Restaurant POS & operations system. I helped build and deploy it during my internship at Rapture Twelve.",["MongoDB","Express","React","Node.js"],"web",hl="h2")}
+    {pcard("projects/digicrave-os.html","DigiCrave OS","MERN stack · Rapture Twelve","Restaurant POS & operations system. I helped build and deploy it during my internship at Rapture Twelve.",["MongoDB","Express","React","Node.js"],"web",hl="h2")}
     {pcard("projects/distributed-java-webapp.html","Distributed Java Web App","Multi-VM infra","A multi-VM Java app environment provisioned with Vagrant: Tomcat, MySQL, Memcached, RabbitMQ and an Nginx load balancer.",["Vagrant","Tomcat","MySQL","Memcached","RabbitMQ","Nginx"],"infra",delay=80,hl="h2")}
     {pcard(R+"Productivity-App","Kaizen – Productivity OS","CI/CD · MLOps","A productivity OS with automated CI/CD releases and basic MLOps workflows.",["CI/CD","MLOps"],"cicd",external=True,delay=160,hl="h2")}
   </div>
@@ -581,11 +580,11 @@ write("projects/portfolio-platform.html", page("projects/portfolio-platform.html
 
 # ---------------- DIGICRAVE ----------------
 dc = diagram("DigiCrave OS architecture",
-  lane("request path", [("Restaurant staff","browser","Staff use DigiCrave OS in the browser for point of sale and day-to-day restaurant operations."),("React","frontend · live on Vercel","The React frontend is what's live at digi-crave-os.vercel.app."),("Express + Node.js","API","The Express API on Node.js handles the POS and operations logic."),("MongoDB","database","MongoDB stores the restaurant's data.")], "green"))
-dc_body = detail_head("../","case study · live product · Rapture Twelve","DigiCrave OS",
-  "A MERN-stack restaurant POS and operations system. I contributed to building and deploying it during my DevOps internship at Rapture Twelve, and it's live now.",
+  lane("request path", [("Restaurant staff","browser","Staff use DigiCrave OS in the browser for point of sale and day-to-day restaurant operations."),("React","frontend","The React frontend of the POS."),("Express + Node.js","API","The Express API on Node.js handles the POS and operations logic."),("MongoDB","database","MongoDB stores the restaurant's data.")], "green"))
+dc_body = detail_head("../","case study · MERN stack · Rapture Twelve","DigiCrave OS",
+  "A MERN-stack restaurant POS and operations system. I contributed to building and deploying it during my DevOps internship at Rapture Twelve.",
   ["MongoDB","Express","React","Node.js"],
-  [f'<a class="btn primary" href="{DIGI_LIVE}" target="_blank" rel="noopener">{ICON["ext"]} Open live demo</a>', gh_btn("DigiCraveOS")]) + f'''
+  [gh_btn("DigiCraveOS")]) + f'''
 <section style="padding-top:0"><div class="wrap">
   <p class="eyebrow reveal">architecture</p>
   <h2 class="reveal">The MERN stack, end to end</h2>
@@ -593,10 +592,9 @@ dc_body = detail_head("../","case study · live product · Rapture Twelve","Digi
 </div></section>
 <section><div class="wrap split">
   <div class="card reveal"><h3>My part</h3><p class="muted">I contributed to building and deploying it at Rapture Twelve, as part of the work that earned my Certificate of Exceptional Contribution (Sep 2026).</p></div>
-  <div class="card reveal" data-delay="80"><h3>Try it</h3><p class="muted">The live demo is at <a href="{DIGI_LIVE}" target="_blank" rel="noopener">digi-crave-os.vercel.app</a>.</p></div>
 </div></section>
 ''' + next_nav("../",("projects/portfolio-platform.html","Portfolio Platform"),("projects/distributed-java-webapp.html","Distributed Java Web App")) + CTA("../")
-write("projects/digicrave-os.html", page("projects/digicrave-os.html","projects","DigiCrave OS","DigiCrave OS: a live MERN-stack restaurant POS and operations system Navin helped build and deploy at Rapture Twelve.",dc_body,root="../"))
+write("projects/digicrave-os.html", page("projects/digicrave-os.html","projects","DigiCrave OS","DigiCrave OS: a MERN-stack restaurant POS and operations system Navin helped build and deploy at Rapture Twelve.",dc_body,root="../"))
 
 # ---------------- JAVA ----------------
 jv = diagram("Distributed Java web app architecture",

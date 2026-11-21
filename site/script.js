@@ -21,7 +21,7 @@
     { id: "dinesmart", name: "DineSmart", page: "projects/dinesmart.html", repo: "https://github.com/Lucifer-Newstar/DineSmart", blurb: "Restaurant-ops SaaS with incident intelligence: Next.js 16, Express 5, MongoDB; 524/524 + 137/137 tests, CI green" },
     { id: "ascend", name: "Ascend", page: "projects/ascend.html", repo: "https://github.com/Lucifer-Newstar/Ascend", blurb: "Offline Windows fitness RPG: Electron + FastAPI sidecar, deterministic engines; 612 + 1,228 tests locally" },
     { id: "portfolio", name: "Portfolio Platform", page: "projects/portfolio-platform.html", repo: PP_REPO, blurb: "Serverless AWS: S3, CloudFront, API Gateway, Lambda, DynamoDB, Cognito, SES" },
-    { id: "digicrave", name: "DigiCrave OS", page: "projects/digicrave-os.html", repo: "https://github.com/Lucifer-Newstar/DigiCraveOS", live: "https://digi-crave-os.vercel.app", blurb: "MERN restaurant POS & operations system, live" },
+    { id: "digicrave", name: "DigiCrave OS", page: "projects/digicrave-os.html", repo: "https://github.com/Lucifer-Newstar/DigiCraveOS", blurb: "MERN restaurant POS & operations system" },
     { id: "java", name: "Distributed Java Web App", page: "projects/distributed-java-webapp.html", repo: "https://github.com/Lucifer-Newstar/distributed-java-webapp", blurb: "Multi-VM Vagrant stack: Nginx, Tomcat, MySQL, Memcached, RabbitMQ" },
     { id: "kaizen", name: "Kaizen – Productivity OS", page: null, repo: "https://github.com/Lucifer-Newstar/Productivity-App", blurb: "Productivity OS with CI/CD releases and basic MLOps" }
   ];
