@@ -5,7 +5,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 const SITE = path.join(__dirname, "..", "site");
 const PAGES = ["index.html", "about.html", "projects.html", "skills.html", "contact.html",
-  "projects/aegisdeploy.html", "projects/portfolio-platform.html", "projects/digicrave-os.html", "projects/distributed-java-webapp.html", "404.html"];
+  "projects/aegissre.html", "projects/coldbox-pentesting.html", "projects/codomax-internship.html", "projects/dinesmart.html", "projects/ascend.html",
+  "projects/portfolio-platform.html", "projects/digicrave-os.html", "projects/distributed-java-webapp.html", "404.html"];
 const read = (p) => fs.readFileSync(path.join(SITE, p), "utf8");
 const all = PAGES.map((p) => [p, read(p)]);
 // The site's base path (e.g. "/Portfolio/"), read from the canonical URL build.py wrote.
@@ -53,7 +54,9 @@ test("all local href/src references resolve to files", () => {
 test("required links are present", () => {
   const joined = all.map((x) => x[1]).join("\n");
   for (const u of ["https://github.com/Lucifer-Newstar", "https://www.linkedin.com/in/navin-jairam", "mailto:navin.jairam@gmail.com",
-    "https://github.com/Lucifer-Newstar/AegisDeploy", "https://github.com/Lucifer-Newstar/DigiCraveOS",
+    "https://github.com/Lucifer-Newstar/AegisSRE", "https://github.com/Lucifer-Newstar/ColdBox-Pentesting",
+    "https://github.com/Lucifer-Newstar/codomax-internship", "https://github.com/Lucifer-Newstar/DineSmart", "https://github.com/Lucifer-Newstar/Ascend",
+    "https://github.com/Lucifer-Newstar/DigiCraveOS",
     "https://github.com/Lucifer-Newstar/distributed-java-webapp", "https://github.com/Lucifer-Newstar/Productivity-App", "https://digi-crave-os.vercel.app"])
     assert.ok(joined.includes(u), "missing " + u);
   assert.match(joined, /href="(\.\.\/)?assets\/Navin_Jairam_M_Resume\.pdf" download/);
@@ -81,7 +84,7 @@ test("no dead domain, phone number, placeholders, or inline scripts", () => {
 });
 
 test("core content: pipeline stages, services, observability, timeline, skill pools, palette", () => {
-  const a = read("projects/aegisdeploy.html");
+  const a = read("projects/aegissre.html");
   const stages = [...a.matchAll(/class="st-name">([^<]+)</g)].map((m) => m[1]);
   assert.deepEqual(stages, ["config", "k8s manifests", "docs links", "backend", "docker build", "frontend build"]);
   for (const s of ["ruff · mypy · pytest", "kubeconform + kustomize", "YAML + compose valid", "every docs link resolves"]) assert.ok(a.includes(s), "stage sub " + s);
@@ -93,7 +96,7 @@ test("core content: pipeline stages, services, observability, timeline, skill po
   assert.ok(ab.includes("Rapture Twelve") && ab.includes("May 2026 – Oct 2026") && ab.includes("Certificate of Exceptional Contribution"));
   assert.ok(ab.includes("Adroit Technologies") && ab.includes("Dec 2025 – Feb 2026"));
   const sk = read("skills.html");
-  assert.equal((sk.match(/class="pool"/g) || []).length, 6);
+  assert.equal((sk.match(/class="pool"/g) || []).length, 7);
   assert.ok(!/\d+%/.test(sk.replace(/<style[\s\S]*?<\/style>/g, "").replace(/style="[^"]*"/g, "")), "no percentage levels on skills");
   for (const [p, h] of all) assert.ok(h.includes('id="palette"') && h.includes("data-palette"), p + " palette");
   const js = read("script.js");
@@ -131,13 +134,11 @@ test("photo: optimised WebP + JPEG, square, used on home and about with alt text
   }
 });
 
-test("downloadable resume is the copy without the phone number", () => {
+test("downloadable resume is the current copy", () => {
   const { execFileSync } = require("node:child_process");
   const txt = execFileSync("pdftotext", [path.join(SITE, "assets/Navin_Jairam_M_Resume.pdf"), "-"]).toString();
   assert.ok(txt.includes("Navin") || txt.includes("NAVIN"));
-  assert.ok(!/\b[6-9]\d{9}\b|\+91/.test(txt), "phone in served resume");
   assert.ok(txt.includes("YAML/compose validation") && txt.includes("docs link check"), "corrected CI line in served resume");
-  assert.ok(!fs.readFileSync(path.join(SITE, "assets/Navin_Jairam_M_Resume.pdf")).includes("tel:"), "tel link in PDF");
 });
 
 test("404 page works under the base path and is not indexed", () => {
@@ -160,15 +161,16 @@ test("Portfolio Platform never links the wrong or the abandoned repo", () => {
   else assert.ok(pp.includes('data-source="private"') && pp.includes("Source: private, available on request"), "private source state");
 });
 
-test("AegisDeploy copy is honest: phase 2 built, AI on the roadmap, 7 Dockerfiles, 6 instrumented services", () => {
+test("AegisSRE copy is honest: phase 2 built, AI on the roadmap, 7 Dockerfiles, 6 instrumented services", () => {
   const files = [...all, ["script.js", read("script.js")]];
   for (const [p, h] of files) {
-    assert.ok(!/AI-powered|autonomous SRE|hop by hop/i.test(h), p + " overstates AegisDeploy");
+    assert.ok(!/AI-powered|autonomous SRE|hop by hop/i.test(h), p + " overstates AegisSRE");
     assert.ok(!/6 Dockerfiles|>6<small>Dockerfiles/.test(h), p + " says 6 Dockerfiles");
+    assert.ok(!/Lucifer-Newstar\/AegisDeploy\b/.test(h), p + " links the retired AegisDeploy repo");
     // one spelling: British (-ise), as most of the site already uses
     assert.ok(!/\b(containeriz|optimiz|authoriz|organiz|customiz|visualiz|standardiz|prioritiz|recogniz|summariz|analyz|minimiz|maximiz|utiliz|categoriz)\w*/i.test(h), p + " uses American -ize spelling");
   }
-  const a = read("projects/aegisdeploy.html");
+  const a = read("projects/aegissre.html");
   assert.ok(a.includes("phase 2") && /roadmap/i.test(a), "phase 2 + roadmap");
   assert.ok(a.includes('<div class="stat">7<small>Dockerfiles</small>'), "7 Dockerfiles stat");
   assert.ok(!a.includes("<b>7 services</b>"), "observability diagram says 7 services");

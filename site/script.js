@@ -15,7 +15,11 @@
   /* Portfolio Platform repo: set PORTFOLIO_PLATFORM_REPO in build.py (empty = private, no link). */
   var PP_REPO = doc.getAttribute("data-pp-repo") ? LINKS.github + "/" + doc.getAttribute("data-pp-repo") : null;
   var PROJECTS = [
-    { id: "aegisdeploy", name: "AegisDeploy", page: "projects/aegisdeploy.html", repo: "https://github.com/Lucifer-Newstar/AegisDeploy", blurb: "SRE platform, phase 2: demo shop + registry, deployments API, console; K8s, 6-job CI, observability" },
+    { id: "aegissre", name: "AegisSRE", page: "projects/aegissre.html", repo: "https://github.com/Lucifer-Newstar/AegisSRE", blurb: "SRE platform, phase 2 built and tested: demo shop + registry, deployments API, console; K8s, terraform, 6-job CI, observability" },
+    { id: "coldbox", name: "ColdBox Pentest", page: "projects/coldbox-pentesting.html", repo: "https://github.com/Lucifer-Newstar/ColdBox-Pentesting", blurb: "DevSecOps pentest of a CFML banking app: 9 findings fixed, ZAP/Semgrep/Gitleaks/Trivy executed, gates G1-G7 PASS" },
+    { id: "codomax", name: "Codomax DevOps Internship", page: "projects/codomax-internship.html", repo: "https://github.com/Lucifer-Newstar/codomax-internship", blurb: "7 modules; real AWS capstone: OIDC + SSM deploy to EC2, verified, torn down (~$0.03)" },
+    { id: "dinesmart", name: "DineSmart", page: "projects/dinesmart.html", repo: "https://github.com/Lucifer-Newstar/DineSmart", blurb: "Restaurant-ops SaaS with incident intelligence: Next.js 16, Express 5, MongoDB; 524/524 + 137/137 tests, CI green" },
+    { id: "ascend", name: "Ascend", page: "projects/ascend.html", repo: "https://github.com/Lucifer-Newstar/Ascend", blurb: "Offline Windows fitness RPG: Electron + FastAPI sidecar, deterministic engines; 612 + 1,228 tests locally" },
     { id: "portfolio", name: "Portfolio Platform", page: "projects/portfolio-platform.html", repo: PP_REPO, blurb: "Serverless AWS: S3, CloudFront, API Gateway, Lambda, DynamoDB, Cognito, SES" },
     { id: "digicrave", name: "DigiCrave OS", page: "projects/digicrave-os.html", repo: "https://github.com/Lucifer-Newstar/DigiCraveOS", live: "https://digi-crave-os.vercel.app", blurb: "MERN restaurant POS & operations system, live" },
     { id: "java", name: "Distributed Java Web App", page: "projects/distributed-java-webapp.html", repo: "https://github.com/Lucifer-Newstar/distributed-java-webapp", blurb: "Multi-VM Vagrant stack: Nginx, Tomcat, MySQL, Memcached, RabbitMQ" },
@@ -377,9 +381,9 @@
       { cmd: "whoami", out: '<span class="hi">navin-jairam-m</span>  <span class="o"># B.Tech IT · Chennai</span>' },
       { cmd: "kubectl get pods -n portfolio", out:
         '<span class="o">NAME                 READY   STATUS</span>\n' +
-        'aegisdeploy          1/1     <span class="ok">Running</span>\n' +
-        'portfolio-platform   1/1     <span class="ok">Running</span>\n' +
-        'digicrave-os         1/1     <span class="ok">Running</span>' },
+        'aegissre             1/1     <span class="ok">Running</span>\n' +
+        'coldbox-pentest      1/1     <span class="ok">Running</span>\n' +
+        'dinesmart            1/1     <span class="ok">Running</span>' },
       { cmd: "deploy navin --env=prod", out:
         '<span class="o">» building image</span> <span class="vi">navin:2027</span><span class="o"> … done</span>\n' +
         '<span class="o">» rolling out to</span> <span class="am">production</span><span class="o"> … done</span>\n' +
@@ -540,7 +544,7 @@
     var dlg = document.getElementById("palette"); if (!dlg || typeof dlg.showModal !== "function") return;
     var out = dlg.querySelector(".pal-out"), input = dlg.querySelector("input"), chips = dlg.querySelector(".pal-chips");
     var hist = [], hi = -1, greeted = false;
-    var CMDS = ["help", "whoami", "projects", "skills", "experience", "about", "contact", "resume", "email", "github", "linkedin", "ls", "kubectl get pods", "open aegisdeploy", "open portfolio", "open digicrave", "open java", "sudo hire navin", "theme light", "theme dark", "home", "clear", "exit"];
+    var CMDS = ["help", "whoami", "projects", "skills", "experience", "about", "contact", "resume", "email", "github", "linkedin", "ls", "kubectl get pods", "open aegissre", "open coldbox", "open codomax", "open dinesmart", "open ascend", "open portfolio", "open digicrave", "open java", "sudo hire navin", "theme light", "theme dark", "home", "clear", "exit"];
     function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
     function print(h) { out.insertAdjacentHTML("beforeend", h + "\n"); out.scrollTop = out.scrollHeight; }
     function go(path, label) { print('<span class="ok">→ opening ' + esc(label) + "…</span>"); setTimeout(function () { window.location.href = ROOT + path; }, reduce ? 0 : 380); }
@@ -555,7 +559,7 @@
           '<span class="hi">whoami</span>        who is Navin',
           '<span class="hi">projects</span>      go to projects  ·  <span class="hi">ls</span> list pages',
           '<span class="hi">kubectl get pods</span>  projects, as pods',
-          '<span class="hi">open &lt;name&gt;</span>   aegisdeploy · portfolio · digicrave · java',
+          '<span class="hi">open &lt;name&gt;</span>   aegissre · coldbox · codomax · dinesmart · ascend',
           '<span class="hi">skills</span>        the node-pool view of my stack',
           '<span class="hi">experience</span>    internships timeline',
           '<span class="hi">resume</span>        download my resume (PDF)',
@@ -566,7 +570,7 @@
         ].join("\n"));
       },
       whoami: function () { print('<span class="hi">Navin Jairam M</span> — DevOps &amp; Cloud Engineer\nFinal-year B.Tech IT (2023–2027), Chennai\n2 DevOps internships: Rapture Twelve, Adroit Technologies\nSeeking DevOps, SRE, and cloud roles starting in 2027'); },
-      ls: function () { print("index.html  about.html  projects.html  skills.html  contact.html\nprojects/aegisdeploy.html  projects/portfolio-platform.html\nprojects/digicrave-os.html  projects/distributed-java-webapp.html"); },
+      ls: function () { print("index.html  about.html  projects.html  skills.html  contact.html\nprojects/aegissre.html  projects/coldbox-pentesting.html  projects/codomax-internship.html\nprojects/dinesmart.html  projects/ascend.html  projects/portfolio-platform.html\nprojects/digicrave-os.html  projects/distributed-java-webapp.html"); },
       projects: function () { go(PAGES.projects, "projects"); },
       skills: function () { go(PAGES.skills, "skills"); },
       experience: function () { go(PAGES.experience, "experience"); },
@@ -584,7 +588,7 @@
       clear: function () { out.innerHTML = ""; },
       exit: function () { dlg.close(); },
       "kubectl get pods": function () {
-        var short = ["aegisdeploy", "portfolio-platform", "digicrave-os", "java-webapp", "kaizen"];
+        var short = ["aegissre", "coldbox-pentest", "codomax", "dinesmart", "ascend", "portfolio-platform", "digicrave-os", "java-webapp", "kaizen"];
         var rows = '<span class="dim">NAME                STATUS</span>';
         PROJECTS.forEach(function (p, i) {
           var href = p.page ? ROOT + p.page : p.repo;
@@ -597,7 +601,7 @@
         setTimeout(function () { print('<span class="ok">✓ access granted.</span> Great call. Opening an email to Navin…'); setTimeout(function () { window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Let's talk: DevOps role"); }, reduce ? 0 : 700); }, reduce ? 0 : 600);
       }
     };
-    var OPEN = { aegisdeploy: 0, aegis: 0, portfolio: 1, "portfolio-platform": 1, digicrave: 2, "digicrave-os": 2, java: 3, "distributed-java-webapp": 3, kaizen: 4 };
+    var OPEN = { aegissre: 0, aegis: 0, coldbox: 1, pentest: 1, codomax: 2, dinesmart: 3, andhrimnir: 3, ascend: 4, portfolio: 5, "portfolio-platform": 5, digicrave: 6, "digicrave-os": 6, java: 7, "distributed-java-webapp": 7, kaizen: 8 };
     function exec(raw) {
       var cmd = raw.trim().replace(/\s+/g, " "); if (!cmd) return;
       hist.unshift(cmd); hi = -1;
