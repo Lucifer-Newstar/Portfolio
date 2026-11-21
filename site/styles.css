@@ -222,8 +222,8 @@ section{padding:56px 0}
 .card:hover{border-color:var(--line2)}
 .stat{font-family:var(--font-head);font-size:2.1rem;font-weight:700;line-height:1;color:var(--strong)}
 .stat small{font-size:.9rem;color:var(--muted);font-weight:500;font-family:var(--font-body);display:block;margin-top:8px;line-height:1.4}
-.tilt{transform-style:preserve-3d;will-change:transform;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .25s,box-shadow .25s}
-.tilt.is-tilting{transition:transform .06s linear,border-color .25s}
+.tilt{transform-style:preserve-3d;will-change:transform;transition:border-color .25s,box-shadow .25s}
+.card.tilt:hover{transform:none}
 .tilt .glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(400px circle at var(--gx,50%) var(--gy,50%),var(--glare),transparent 40%)}
 .tilt:hover .glare{opacity:1}
 .pcard{display:flex;flex-direction:column;gap:12px;color:var(--text);min-height:100%}
@@ -245,8 +245,9 @@ section{padding:56px 0}
 .pcard[hidden]{display:none}
 
 /* reveal */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 1.05s ease,transform 1.05s cubic-bezier(.22,.61,.36,1)}
 .reveal.in{opacity:1;transform:none}
+.revealed{opacity:1;transform:none}
 .no-js .reveal{opacity:1;transform:none}
 
 /* timeline */

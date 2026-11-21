@@ -369,17 +369,29 @@
 
   /* ---------- scroll reveal ---------- */
   var revealEls = document.querySelectorAll(".reveal, .tl-item");
+  /* Once the entrance finishes, retire .reveal so its slow entrance transition
+     no longer governs the element's hover/tilt transforms. */
+  var finishReveal = function (el) {
+    if (!el.classList.contains("reveal")) return;
+    var done = false;
+    var fin = function () {
+      if (done) return; done = true;
+      el.classList.remove("reveal"); el.classList.add("revealed"); el.style.transitionDelay = "";
+    };
+    el.addEventListener("transitionend", function h(e) { if (e.propertyName === "opacity") { el.removeEventListener("transitionend", h); fin(); } });
+    setTimeout(fin, 1500 + parseInt(el.getAttribute("data-delay") || 0, 10));
+  };
   if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); finishReveal(en.target); io.unobserve(en.target); } });
     }, { rootMargin: "0px 0px -6% 0px", threshold: 0 });
     revealEls.forEach(function (el, i) { el.style.transitionDelay = (el.getAttribute("data-delay") || 0) + "ms"; io.observe(el); });
     var revealRest = function () {
       var de = document.documentElement;
-      if (window.innerHeight + window.scrollY >= de.scrollHeight - 80) revealEls.forEach(function (el) { el.classList.add("in"); });
+      if (window.innerHeight + window.scrollY >= de.scrollHeight - 80) revealEls.forEach(function (el) { el.classList.add("in"); finishReveal(el); });
     };
     window.addEventListener("scroll", revealRest, { passive: true }); window.addEventListener("resize", revealRest);
-  } else { revealEls.forEach(function (el) { el.classList.add("in"); }); }
+  } else { revealEls.forEach(function (el) { el.classList.add("in"); finishReveal(el); }); }
 
   /* ---------- eyebrow typewriter ----------
      Section labels type themselves out once when scrolled into view, caret blinks twice and leaves. */
@@ -432,13 +444,28 @@
   if (finePointer && !reduce) {
     document.querySelectorAll(".tilt").forEach(function (el) {
       var g = document.createElement("span"); g.className = "glare"; g.setAttribute("aria-hidden", "true"); el.appendChild(g);
+      /* rAF + lerp: one transform write per frame, easing toward the pointer.
+         No CSS transition on transform, so tracking stays buttery and settles
+         smoothly back to rest on leave. */
+      var tx = 0, ty = 0, lift = 0, cx = 0, cy = 0, cl = 0, raf = null;
+      var loop = function () {
+        cx += (tx - cx) * 0.14; cy += (ty - cy) * 0.14; cl += (lift - cl) * 0.14;
+        if (Math.abs(cx - tx) < 0.005 && Math.abs(cy - ty) < 0.005 && Math.abs(cl - lift) < 0.05) {
+          cx = tx; cy = ty; cl = lift;
+          if (tx === 0 && ty === 0 && lift === 0) { el.style.transform = ""; raf = null; return; }
+        }
+        el.style.transform = "perspective(900px) rotateX(" + cy.toFixed(2) + "deg) rotateY(" + cx.toFixed(2) + "deg) translateY(" + cl.toFixed(1) + "px)";
+        raf = requestAnimationFrame(loop);
+      };
+      var kick = function () { if (!raf) raf = requestAnimationFrame(loop); };
+      el.addEventListener("pointerenter", function () { lift = -3; kick(); });
       el.addEventListener("pointermove", function (e) {
         var r = el.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-        el.classList.add("is-tilting");
-        el.style.transform = "perspective(900px) rotateX(" + ((0.5 - py) * 7).toFixed(2) + "deg) rotateY(" + ((px - 0.5) * 9).toFixed(2) + "deg) translateY(-3px)";
+        tx = (px - 0.5) * 9; ty = (0.5 - py) * 7; lift = -3;
         el.style.setProperty("--gx", (px * 100).toFixed(1) + "%"); el.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
+        kick();
       });
-      el.addEventListener("pointerleave", function () { el.classList.remove("is-tilting"); el.style.transform = ""; });
+      el.addEventListener("pointerleave", function () { tx = 0; ty = 0; lift = 0; kick(); });
     });
   }
 
