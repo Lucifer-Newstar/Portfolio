@@ -193,3 +193,20 @@ test("apple-touch-icon is a 180px PNG and is linked from every page", () => {
   assert.equal(png.readUInt32BE(16), 180); assert.equal(png.readUInt32BE(20), 180);
   for (const [p, h] of all) assert.match(h, /<link rel="apple-touch-icon" href="[^"]*apple-touch-icon\.png">/, p);
 });
+
+test("current content: Gradtwin, official cert names, honest resume download", () => {
+  for (const f of ["index.html", "about.html"]) {
+    const h=read(f);
+    assert.ok(h.includes("Gradtwin"), f + " ML role");
+    assert.ok(h.includes("Oracle AI Database@AWS Certified Architect Professional"), f + " Oracle AI name");
+    assert.ok(h.includes("Essentials Automation Certification"), f + " Automation Anywhere official title");
+    assert.ok(!h.includes("docker pull navin/resume"), f + " must not imply a real Docker image");
+  }
+  const n=read("now.html");
+  assert.ok(n.includes("Gradtwin") && n.includes("roadmap") && n.includes("21 November 2026"), "dated now page");
+  assert.ok(read("writing.html").includes("Nov 2026 · 3 min read"), "write-up read time");
+});
+
+test("links: no malformed LinkedIn activity paths", () => {
+  for (const [p,h] of all) assert.ok(!h.includes("/urn:li:activity/"),p+" malformed activity URL");
+});

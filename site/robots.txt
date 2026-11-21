@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+# hello, fellow robot. this site is hand-written HTML/CSS/JS - no framework, no build magic.
+# recruiters: navin.jairam@gmail.com

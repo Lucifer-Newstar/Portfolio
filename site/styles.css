@@ -561,3 +561,14 @@ a.go{text-decoration:none;color:var(--cyan)}
 .arch-svg .ah.g{fill:var(--green)}
 @keyframes dashflow{to{stroke-dashoffset:-12}}
 @media (max-width:560px){.arch-btn{padding:6px 9px;font-size:11.5px}}
+
+/* ongoing waterfall span: arrow marker */
+
+.wf-span.wf-ongoing::after{content:"→";position:absolute;right:-16px;top:50%;transform:translateY(-50%);color:var(--cyan);font-size:11px}
+
+.fstatus{font:11px var(--font-mono);color:var(--muted)}
+.resume-command code{font:12px var(--font-mono)}
+
+@media(max-width:640px){.wf-row:hover .wf-detail,.wf-row:focus-within .wf-detail{max-height:150px}}
+
+@media(max-width:640px){.wf-ticks span:nth-child(2),.wf-ticks span:nth-child(4){display:none}}

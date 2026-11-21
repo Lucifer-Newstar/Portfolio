@@ -88,7 +88,7 @@ def next_nav(root, prev, nxt):
 def CTA(root):
     return f'''<section><div class="wrap"><div class="cta reveal">
   <div><h2>Hiring for DevOps, SRE or Cloud?</h2><p>I'm graduating in 2027 and seeking DevOps, SRE, or cloud roles. Let's talk.</p></div>
-  <div class="btns"><a class="btn primary" href="mailto:{EMAIL}">{ICON["mail"]} Email me</a><a class="btn" href="{root}assets/Navin_Jairam_M_Resume.pdf" download>{ICON["dl"]} Download resume</a></div>
+  <div class="btns"><a class="btn primary" href="mailto:{EMAIL}">{ICON["mail"]} Email me</a><a class="btn" href="{root}assets/Navin_Jairam_M_Resume.pdf" download>{ICON["dl"]} Download resume</a><a class="btn resume-command" href="{root}assets/Navin_Jairam_M_Resume.pdf" download aria-label="Download resume PDF"><code>$ download resume.pdf</code></a></div>
 </div></div></section>'''
 
 # ---------------- HOME ----------------
@@ -169,18 +169,18 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
     <a class="btn reveal" href="writing.html">All writing →</a>
   </div>
   <div class="grid g3" style="margin-top:26px">
-    {wcard("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM, and proving it worked","AWS · CI/CD","The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.")}
-    {wcard("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app, and how I fixed them","security","A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.",delay=80)}
-    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes","AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.",delay=160)}
+    {wcard("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM, and proving it worked","AWS · CI/CD · Nov 2026 · 3 min read","The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.")}
+    {wcard("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app, and how I fixed them","security · Nov 2026 · 3 min read","A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.",delay=80)}
+    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes · Nov 2026 · 3 min read","AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.",delay=160)}
   </div>
 </div></section>
 
 <section id="experience"><div class="wrap">
   <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap">
-    <div><p class="eyebrow reveal">experience</p><h2 class="reveal" style="margin:0">Two internships, both on live projects</h2></div>
+    <div><p class="eyebrow reveal">experience</p><h2 class="reveal" style="margin:0">From deployments to machine learning</h2></div>
     <a class="btn reveal" href="about.html#experience">Full timeline →</a>
   </div>
-  <div class="wf reveal" data-delay="80" role="img" aria-label="Career timeline styled like a distributed-trace waterfall: B.Tech IT from 2023 to 2027, Adroit Technologies from December 2025 to February 2026, Rapture Twelve from May to October 2026, and three certifications in October 2025.">
+  <div class="wf reveal" data-delay="80" role="img" aria-label="Career timeline styled like a distributed-trace waterfall: B.Tech IT from 2023 to 2027, Adroit Technologies from December 2025 to February 2026, Rapture Twelve from May to October 2026, Gradtwin from November 2026 to present, and three certifications in October 2025.">
     <div class="wf-axis"><span></span><div class="wf-ticks"><span style="left:0%">2023</span><span style="left:20%">2024</span><span style="left:40%">2025</span><span style="left:60%">2026</span><span style="left:80%">2027</span></div></div>
     <div class="wf-rows">
       <div class="wf-row">
@@ -199,9 +199,14 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
         <div class="wf-detail"><p>May – Oct 2026 · AWS IAM, CI/CD and DigiCraveOS — Certificate of Exceptional Contribution.</p></div>
       </div>
       <div class="wf-row">
+        <p class="wf-name">Gradtwin<small>Machine Learning Intern</small></p>
+        <div class="wf-track"><button type="button" class="wf-span c-cyan wf-ongoing" style="left:76.7%;width:1.1%;min-width:8px" aria-label="Gradtwin, Machine Learning Intern, November 2026 to present. Hybrid, Chennai."></button></div>
+        <div class="wf-detail"><p>Nov 2026 – present · Machine Learning Intern, hybrid Chennai — ML-side experience.</p></div>
+      </div>
+      <div class="wf-row">
         <p class="wf-name">Certifications<small>Oracle ×2 · Forage</small></p>
-        <div class="wf-track"><button type="button" class="wf-cert" style="left:55%" aria-label="Certifications, October 2025: OCI Foundations Associate, Oracle Database at AWS Architect Professional, and the AWS Solutions Architecture job simulation."></button></div>
-        <div class="wf-detail"><p>Oct 2025 · OCI Foundations, Oracle Database@AWS Architect Pro, AWS job sim (Forage).</p></div>
+        <div class="wf-track"><button type="button" class="wf-cert" style="left:55%" aria-label="Certifications, October 2025: OCI Foundations Associate, Oracle AI Database at AWS Architect Professional, and the AWS Solutions Architecture job simulation."></button></div>
+        <div class="wf-detail"><p>Oct 2025 · OCI Foundations, Oracle AI Database@AWS Architect Pro, AWS job sim (Forage).</p></div>
       </div>
     </div>
   </div>
@@ -210,9 +215,10 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
   <p class="eyebrow reveal">certifications</p>
   <h2 class="reveal">Certified, and counting</h2>
   <div class="grid g3" style="margin-top:22px">
-    <a class="card cert reveal" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=3E5A5A8C90DB6F61272E7662EF777663C3316544D516C47E054F2357741AC09A" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">OCI</span><span><b>OCI 2025 Foundations Associate</b><span>Oracle · view badge ↗</span></span></a>
-    <a class="card cert reveal" data-delay="80" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=CA28460C14F975E596709C7D3B622CE567A942B04EF082EF61C6C213894FA234" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">DB</span><span><b>Oracle Database@AWS Certified Architect Professional</b><span>Oracle · view badge ↗</span></span></a>
-    <a class="card cert reveal" data-delay="160" href="https://www.linkedin.com/posts/navin-jairam_forage-certificate-activity-7383053776896770048-CnHV" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">AWS</span><span><b>AWS Solutions Architecture Job Simulation</b><span>Forage · view post ↗</span></span></a>
+    <a class="card cert reveal" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=3E5A5A8C90DB6F61272E7662EF777663C3316544D516C47E054F2357741AC09A" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">OCI</span><span><b>OCI 2025 Foundations Associate</b><span>Oracle · core OCI services, pricing and security · view badge ↗</span></span></a>
+    <a class="card cert reveal" data-delay="80" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=CA28460C14F975E596709C7D3B622CE567A942B04EF082EF61C6C213894FA234" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">DB</span><span><b>Oracle AI Database@AWS Certified Architect Professional</b><span>Oracle · running Oracle's AI database service on AWS · view badge ↗</span></span></a>
+    <a class="card cert reveal" data-delay="160" href="https://www.linkedin.com/posts/navin-jairam_forage-certificate-activity-7383053776896770048-CnHV" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">AWS</span><span><b>AWS Solutions Architecture Job Simulation</b><span>Forage · Oct 2025 · virtual job simulation · view post ↗</span></span></a>
+    <div class="card cert reveal" data-delay="240"><span class="ic" aria-hidden="true">AA</span><span><b>Essentials Automation Certification</b><span>Automation Anywhere · Sep 2026 – Sep 2028 · automation essentials · credential 195159212</span></span></div>
   </div>
 </div></section>
 {CTA("")}
@@ -252,7 +258,7 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
   <div class="card reveal" data-delay="100">
     <h2 class="h3">Earlier education</h2>
     <dl class="kv"><dt>higher sec.</dt><dd>68%</dd><dt>secondary</dt><dd>81%</dd></dl>
-    <div class="btns" style="margin-top:20px"><a class="btn primary" href="assets/Navin_Jairam_M_Resume.pdf" download>{ICON["dl"]} Download resume</a></div>
+    <div class="btns" style="margin-top:20px"><a class="btn primary" href="assets/Navin_Jairam_M_Resume.pdf" download>{ICON["dl"]} Download resume</a><a class="btn resume-command" href="assets/Navin_Jairam_M_Resume.pdf" download aria-label="Download resume PDF"><code>$ download resume.pdf</code></a></div>
   </div>
 </div></section>
 
@@ -262,6 +268,12 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
   <div class="timeline" style="margin-top:30px">
     <span class="prog" aria-hidden="true"></span>
     <ol style="list-style:none;margin:0;padding:0">
+    <li class="tl-item">
+      <span class="tl-node" aria-hidden="true"></span>
+      <p class="tl-when">Nov 2026 – present</p>
+      <h3>Machine Learning Intern</h3>
+      <p class="tl-org">Gradtwin · Chennai · Hybrid</p>
+    </li>
     <li class="tl-item">
       <span class="tl-node" aria-hidden="true"></span>
       <p class="tl-when">May 2026 – Oct 2026</p>
@@ -299,14 +311,26 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
   <p class="eyebrow reveal">certifications</p>
   <h2 class="reveal">Certified</h2>
   <div class="grid g3" style="margin-top:24px">
-    <a class="card cert reveal" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=3E5A5A8C90DB6F61272E7662EF777663C3316544D516C47E054F2357741AC09A" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">OCI</span><span><b>OCI 2025 Foundations Associate</b><span>Oracle · view badge ↗</span></span></a>
-    <a class="card cert reveal" data-delay="80" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=CA28460C14F975E596709C7D3B622CE567A942B04EF082EF61C6C213894FA234" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">DB</span><span><b>Oracle Database@AWS Certified Architect Professional</b><span>Oracle · view badge ↗</span></span></a>
-    <a class="card cert reveal" data-delay="160" href="https://www.linkedin.com/posts/navin-jairam_forage-certificate-activity-7383053776896770048-CnHV" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">AWS</span><span><b>AWS Solutions Architecture Job Simulation</b><span>Forage · view post ↗</span></span></a>
+    <a class="card cert reveal" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=3E5A5A8C90DB6F61272E7662EF777663C3316544D516C47E054F2357741AC09A" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">OCI</span><span><b>OCI 2025 Foundations Associate</b><span>Oracle · core OCI services, pricing and security · view badge ↗</span></span></a>
+    <a class="card cert reveal" data-delay="80" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=CA28460C14F975E596709C7D3B622CE567A942B04EF082EF61C6C213894FA234" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">DB</span><span><b>Oracle AI Database@AWS Certified Architect Professional</b><span>Oracle · running Oracle's AI database service on AWS · view badge ↗</span></span></a>
+    <a class="card cert reveal" data-delay="160" href="https://www.linkedin.com/posts/navin-jairam_forage-certificate-activity-7383053776896770048-CnHV" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">AWS</span><span><b>AWS Solutions Architecture Job Simulation</b><span>Forage · Oct 2025 · virtual job simulation · view post ↗</span></span></a>
+    <div class="card cert reveal" data-delay="240"><span class="ic" aria-hidden="true">AA</span><span><b>Essentials Automation Certification</b><span>Automation Anywhere · Sep 2026 – Sep 2028 · automation essentials · credential 195159212</span></span></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow reveal">how i work</p>
+  <h2 class="reveal">A few rules I build by</h2>
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card reveal"><b>Evidence over claims</b><p class="muted" style="margin:8px 0 0">Show the run, scan or test behind an engineering claim.</p></div>
+    <div class="card reveal" data-delay="80"><b>CI checks are part of the work</b><p class="muted" style="margin:8px 0 0">Let tests and CI check changes before calling them done.</p></div>
+    <div class="card reveal" data-delay="160"><b>Humans stay in control of risky actions</b><p class="muted" style="margin:8px 0 0">Automation proposes; people approve anything destructive or irreversible.</p></div>
+    <div class="card reveal" data-delay="240"><b>Roadmaps are labelled as roadmaps</b><p class="muted" style="margin:8px 0 0">Separate what is built and tested from what is still planned.</p></div>
   </div>
 </div></section>
 {CTA("")}
 '''
-write("about.html", page("about.html","about","About & Experience","Navin Jairam M's internships at Rapture Twelve and Adroit Technologies, education and certifications.",about))
+write("about.html", page("about.html","about","About & Experience","Navin Jairam M's internships at Gradtwin, Rapture Twelve and Adroit Technologies, education and certifications.",about))
 
 # ---------------- PROJECTS ----------------
 ARCH_SVG_AEGIS = '''<svg class="arch-svg" viewBox="0 0 700 300" role="img" aria-label="AegisSRE architecture: four shop services register with a service registry, a deployments API drives deploys to a Next.js console, and Prometheus with Grafana, Loki and Tempo watch the services.">
@@ -452,7 +476,7 @@ POOLS = [
    ("dynamodb","DynamoDB",["portfolio|Portfolio Platform: data store"]),
    ("cognito","Cognito",["portfolio|Portfolio Platform: authentication"]),
    ("ses","SES",["portfolio|Portfolio Platform: email"]),
-   ("oci","Oracle Cloud (OCI)",["cert|OCI 2025 Foundations Associate","cert|Oracle Database@AWS Certified Architect Professional"]),
+   ("oci","Oracle Cloud (OCI)",["cert|OCI 2025 Foundations Associate","cert|Oracle AI Database@AWS Certified Architect Professional"]),
  ]),
  ("containers","Containers & Orchestration","cyan",[
    ("docker","Docker",["aegis|AegisSRE: 7 Dockerfiles, 15-container Compose stack","codomax|Codomax: Compose stacks and smoke tests on a real Docker host","rapture|Rapture Twelve: containerised applications"]),
@@ -808,9 +832,9 @@ writing = f'''<section class="page-head"><div class="wrap">
 </div></section>
 <section style="padding-top:0"><div class="wrap">
   <div class="grid g3">
-    {wcard("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM, and proving it worked","AWS · CI/CD","The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.")}
-    {wcard("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app, and how I fixed them","security","A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.",delay=80)}
-    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes","AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.",delay=160)}
+    {wcard("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM, and proving it worked","AWS · CI/CD · Nov 2026 · 3 min read","The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.")}
+    {wcard("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app, and how I fixed them","security · Nov 2026 · 3 min read","A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.",delay=80)}
+    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes · Nov 2026 · 3 min read","AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.",delay=160)}
   </div>
 </div></section>
 <section style="padding-top:0"><div class="wrap">
@@ -818,7 +842,7 @@ writing = f'''<section class="page-head"><div class="wrap">
   <h2 class="reveal">Build posts on LinkedIn</h2>
   <div class="grid g3" style="margin-top:22px">
     {wcard("https://www.linkedin.com/feed/update/urn:li:activity:7529778282771443713/","From finding vulnerabilities to fixing them","LinkedIn · Nov 2026 · security","The post behind the ColdBox write-up: what the pentest covered, the validation numbers, and what a first SecOps project actually taught me.",badge="linkedin",cta="Read on LinkedIn",external=True)}
-    {wcard("https://www.linkedin.com/feed/update/urn:li:activity/7529779038500872192/","Six modules, one real deploy: Codomax","LinkedIn · Nov 2026 · AWS · CI/CD","The internship completion post: Linux and networking to servers, AWS, Docker, and a capstone pipeline that deploys for real.",delay=80,badge="linkedin",cta="Read on LinkedIn",external=True)}
+    {wcard("https://www.linkedin.com/feed/update/urn:li:activity:7529779038500872192/","Six modules, one real deploy: Codomax","LinkedIn · Nov 2026 · AWS · CI/CD","The internship completion post: Linux and networking to servers, AWS, Docker, and a capstone pipeline that deploys for real.",delay=80,badge="linkedin",cta="Read on LinkedIn",external=True)}
     {wcard("https://www.linkedin.com/feed/update/urn:li:activity:7522983178719125504/","Six months of DevOps at Rapture Twelve","LinkedIn · Nov 2026 · internship","The wrap-up post: AWS IAM and least-privilege, cloud architecture exposure, containerised deployments, and building DigiCraveOS.",delay=160,badge="linkedin",cta="Read on LinkedIn",external=True)}
   </div>
 </div></section>
@@ -876,3 +900,24 @@ p3_body = post_head("building-an-sre-platform","SRE · Kubernetes",
 </div></div></section>
 ''' + next_nav("../",("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app"),("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM")) + CTA("../")
 write("writing/building-an-sre-platform.html", page("writing/building-an-sre-platform.html","writing","Building an SRE platform","AegisSRE, a personal flagship SRE platform: what phase 2 built and tested (registry, deployments API, console, 6-job CI, observability) and what is still on the roadmap.",p3_body,root="../"))
+
+now = f'''<section class="page-head"><div class="wrap" style="max-width:68ch">
+  <p class="crumb">~/now</p>
+  <p class="eyebrow">now</p>
+  <h1>What I'm doing now</h1>
+  <p class="lead">A /now page, last updated 21 November 2026.</p>
+</div></section>
+<section style="padding-top:0"><div class="wrap" style="max-width:68ch">
+  <h3 class="reveal">Working</h3>
+  <p class="muted reveal">Machine Learning Intern at Gradtwin (Chennai, hybrid), adding ML-side experience to my DevOps background.</p>
+  <h3 class="reveal" style="margin-top:26px">Building</h3>
+  <p class="muted reveal"><a href="projects/aegissre.html">AegisSRE</a> phase 2 is built and tested; the AI-assisted incident work next to it stays labelled as a roadmap, because it is one. This portfolio is hand-written HTML/CSS/JS, no framework.</p>
+  <h3 class="reveal" style="margin-top:26px">Learning</h3>
+  <p class="muted reveal">Deepening the DevOps → DevSecOps → MLOps path: Kubernetes, observability, and the data side of things after the Lakehouse, Lagers &amp; Legends meetup (Databricks Lakebase, PostgreSQL).</p>
+  <h3 class="reveal" style="margin-top:26px">Community</h3>
+  <p class="muted reveal">Hosting and attending <a href="writing.html">Teedians Community</a> sessions — Tea Kadai Talks and EPV — plus Chennai tech meetups when they line up.</p>
+  <h3 class="reveal" style="margin-top:26px">Looking for</h3>
+  <p class="muted reveal">DevOps, SRE and cloud roles starting in 2027. <a href="contact.html">Say hello</a>.</p>
+</div></section>
+''' + CTA("")
+write("now.html", page("now.html","now","Now","What Navin Jairam M is working on, building, learning and looking for right now.",now))

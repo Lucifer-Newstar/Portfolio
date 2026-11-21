@@ -35,6 +35,8 @@ def _av(p):
     with open(os.path.join(SITE, p), "rb") as f:
         return hashlib.md5(f.read()).hexdigest()[:8]
 V_CSS, V_JS, V_THEME = _av("styles.css"), _av("script.js"), _av("theme-init.js")
+from datetime import datetime, timezone, timedelta
+DEPLOY = datetime.now(timezone(timedelta(hours=5,minutes=30))).strftime("%d %b %Y")
 
 def page(fname, key, title, desc, body, root="", noindex=False):
     canon = BASE + ("" if fname == "index.html" else fname)
@@ -43,6 +45,8 @@ def page(fname, key, title, desc, body, root="", noindex=False):
     full_title = TITLE if key == "home" else f"{title} · Navin Jairam M"
     robots = '<meta name="robots" content="noindex">\n' if noindex else ""
     return f"""<!doctype html>
+<!-- hi, source reader. no framework, no bundler - just hand-written HTML, CSS and JS.
+     curious about the code? follow the GitHub link below. hiring? navin.jairam@gmail.com -->
 <html lang="en" class="no-js" data-root="{root}" data-pp-repo="{html.escape(PORTFOLIO_PLATFORM_REPO)}">
 <head>
 <meta charset="utf-8">
@@ -93,7 +97,8 @@ def page(fname, key, title, desc, body, root="", noindex=False):
 <footer class="site-footer">
   <div class="wrap">
     <span>© <span id="year">2026</span> Navin Jairam M · built as static HTML, CSS &amp; JS</span>
-    <nav aria-label="Footer"><a href="mailto:{EMAIL}">Email</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn</a><a href="{GH}" target="_blank" rel="noopener">GitHub</a><a href="{root}assets/Navin_Jairam_M_Resume.pdf" download>Resume</a></nav>
+    <span class="fstatus">● static site · last deploy {DEPLOY}</span>
+    <nav aria-label="Footer"><a href="{root}now.html">Now</a><a href="mailto:{EMAIL}">Email</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn</a><a href="{GH}" target="_blank" rel="noopener">GitHub</a><a href="{root}assets/Navin_Jairam_M_Resume.pdf" download>Resume</a></nav>
   </div>
 </footer>
 <button class="fab" type="button" data-palette aria-label="Open command terminal">{ICON['term']}</button>
@@ -121,4 +126,6 @@ def write(path, s):
     open(p, "w", encoding="utf-8").write(s)
 
 exec(open(os.path.join(HERE, "pages.py"), encoding="utf-8").read())
+with open(os.path.join(SITE, "robots.txt"), "w", encoding="utf-8") as f:
+    f.write("User-agent: *\nAllow: /\n# hello, fellow robot. this site is hand-written HTML/CSS/JS - no framework, no build magic.\n# recruiters: navin.jairam@gmail.com\n")
 print("built", BASE)
