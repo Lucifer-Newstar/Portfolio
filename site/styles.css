@@ -218,7 +218,7 @@ section{padding:56px 0}
 .g2{grid-template-columns:repeat(2,1fr)}
 @media (max-width:900px){.g3{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.g3,.g2{grid-template-columns:1fr}}
-.card{position:relative;border:1px solid var(--line);background:var(--card-bg);border-radius:var(--radius);padding:22px;transition:border-color .25s,box-shadow .25s}
+.card{position:relative;border:1px solid var(--line);background:var(--card-bg);border-radius:var(--radius);padding:22px;transition:border-color .25s,box-shadow .25s,transform .25s ease}
 .card:hover{border-color:var(--line2)}
 .stat{font-family:var(--font-head);font-size:2.1rem;font-weight:700;line-height:1;color:var(--strong)}
 .stat small{font-size:.9rem;color:var(--muted);font-weight:500;font-family:var(--font-body);display:block;margin-top:8px;line-height:1.4}
@@ -457,6 +457,7 @@ dialog.palette::backdrop{background:rgba(2,4,7,.66);backdrop-filter:blur(4px)}
 .pal-chips button:hover,.pal-chips button:focus-visible{color:#fff;border-color:var(--green)}
 
 @media (prefers-reduced-motion:reduce){
+  .mini-pipe span{animation:none}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
   .caret{animation:none}
@@ -475,6 +476,15 @@ dialog.palette::backdrop{background:rgba(2,4,7,.66);backdrop-filter:blur(4px)}
 .mini-pipe{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:12px var(--font-mono)}
 .mini-pipe span{padding:4px 9px;border-radius:7px;background:var(--hover);border:1px solid var(--line);color:var(--tag-fg)}
 .mini-pipe i{color:var(--green);font-style:normal}
+.pcard:hover,.cert:hover{transform:translateY(-3px)}
+/* mini-pipeline: jobs lighting up left to right, one slow cycle */
+.mini-pipe span{animation:mp-pulse 7.2s ease-in-out infinite}
+.mini-pipe span:nth-of-type(2){animation-delay:1.2s}
+.mini-pipe span:nth-of-type(3){animation-delay:2.4s}
+.mini-pipe span:nth-of-type(4){animation-delay:3.6s}
+.mini-pipe span:nth-of-type(5){animation-delay:4.8s}
+.mini-pipe span:nth-of-type(6){animation-delay:6s}
+@keyframes mp-pulse{0%,100%{border-color:var(--line);color:var(--tag-fg)}6%,16%{border-color:rgba(var(--g-rgb),.65);color:var(--green)}26%{border-color:var(--line);color:var(--tag-fg)}}
 /* writing posts */
 .post{max-width:72ch}
 .post h2{margin:34px 0 12px;font-size:1.5rem}
