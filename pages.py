@@ -37,6 +37,16 @@ def pcard(href, title, kind, desc, tg, data_tags, external=False, feature=False,
   <span class="go">{go} <span class="arr" aria-hidden="true">→</span></span>
 </a>'''
 
+def wcard(href, title, meta, desc, delay=0, badge="write-up", cta="Read", external=False):
+    tgt = ' target="_blank" rel="noopener"' if external else ''
+    arrow = '↗' if external else '→'
+    return f'''<a class="card tilt pcard reveal" href="{href}"{tgt} data-delay="{delay}">
+  <div class="ptop"><span class="badge">{badge}</span><span>{html.escape(meta)}</span></div>
+  <h3>{html.escape(title)}</h3>
+  <p>{html.escape(desc)}</p>
+  <span class="go">{cta} <span class="arr" aria-hidden="true">{arrow}</span></span>
+</a>'''
+
 def detail_head(root, kind, title, lead, tg, links):
     btns = "".join(links)
     slug = html.escape(title.lower().replace(" ", "-"))
@@ -139,6 +149,18 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
   <div class="grid g2" style="margin-top:18px">
     {pcard("projects/coldbox-pentesting.html","ColdBox Pentest","DevSecOps","A full penetration-test engagement on a CFML banking app: 9 findings documented and fixed, proven with executed ZAP, Semgrep, Gitleaks, Trivy and TestBox runs.",["OWASP ZAP","Semgrep","Gitleaks","Trivy","TestBox"],"security cicd",delay=80)}
     {pcard("projects/codomax-internship.html","Codomax DevOps","AWS · CI/CD","A GitHub Actions pipeline with OIDC auth really deployed to EC2 over SSM, verified the running code matched the commit, then tore everything down for about $0.03.",["AWS EC2","OIDC","SSM","GitHub Actions","Docker"],"aws cicd",delay=160)}
+  </div>
+</div></section>
+
+<section id="writing"><div class="wrap">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap">
+    <div><p class="eyebrow reveal">writing</p><h2 class="reveal" style="margin:0">Build write-ups</h2></div>
+    <a class="btn reveal" href="writing.html">All writing →</a>
+  </div>
+  <div class="grid g3" style="margin-top:26px">
+    {wcard("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM, and proving it worked","AWS · CI/CD","The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.")}
+    {wcard("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app, and how I fixed them","security","A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.",delay=80)}
+    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes","AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.",delay=160)}
   </div>
 </div></section>
 
@@ -652,16 +674,6 @@ def post_head(slug, tag, title, standfirst, repo_btn):
   <p class="lead">{standfirst}</p>
   <div class="btns">{repo_btn}</div>
 </div></section>'''
-
-def wcard(href, title, meta, desc, delay=0, badge="write-up", cta="Read", external=False):
-    tgt = ' target="_blank" rel="noopener"' if external else ''
-    arrow = '↗' if external else '→'
-    return f'''<a class="card tilt pcard reveal" href="{href}"{tgt} data-delay="{delay}">
-  <div class="ptop"><span class="badge">{badge}</span><span>{html.escape(meta)}</span></div>
-  <h3>{html.escape(title)}</h3>
-  <p>{html.escape(desc)}</p>
-  <span class="go">{cta} <span class="arr" aria-hidden="true">{arrow}</span></span>
-</a>'''
 
 writing = f'''<section class="page-head"><div class="wrap">
   <p class="crumb">~/writing</p>
