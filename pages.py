@@ -122,7 +122,7 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
 <section style="padding-top:20px"><div class="wrap">
   <div class="grid g3">
     <div class="card reveal"><div class="stat">2<small>DevOps internships on live projects: Rapture Twelve and Adroit Technologies</small></div></div>
-    <div class="card reveal" data-delay="80"><div class="stat">6-job<small>GitHub Actions CI pipeline guarding every push to AegisSRE</small></div></div>
+    <div class="card reveal" data-delay="80"><div class="stat">11-job<small>GitHub Actions CI pipeline guarding every push to AegisSRE</small></div></div>
     <div class="card reveal" data-delay="160"><div class="stat">9<small>security findings documented, fixed and re-tested in my ColdBox pentest</small></div></div>
   </div>
 </div></section>
@@ -147,12 +147,12 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
     <div class="ff-grid">
       <div>
         <h3>AegisSRE</h3>
-        <p>SRE platform, phase 2 built and tested: a 4-service demo shop watched by a service registry, deployments API and a Next.js console, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.</p>
+        <p>Personal SRE platform with statistical and Isolation Forest detection, evidence-backed incident analysis, an authenticated Next.js console and policy-controlled remediation. DevSecOps controls and integration proofs are implemented; comparative laptop trials and release publication are pending.</p>
         {tags(["Kubernetes","FastAPI","GitHub Actions","Prometheus","Grafana"])}
         <span class="go">Open case study <span class="arr" aria-hidden="true">→</span></span>
       </div>
       <div class="mini-pipe-wrap">
-        <span class="mp-label">6-job CI · guards every push</span>
+        <span class="mp-label">11-job CI · first six checks shown</span>
         <div class="mini-pipe"><span>config</span><i>→</i><span>k8s manifests</span><i>→</i><span>docs links</span><i>→</i><span>backend</span><i>→</i><span>docker build</span><i>→</i><span>frontend build</span></div>
       </div>
     </div>
@@ -173,7 +173,7 @@ home = f'''<section class="hero"><div class="wrap hero-grid">
   <div class="grid g3" style="margin-top:26px">
     {wcard("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM, and proving it worked","AWS · CI/CD · Nov 2026 · 3 min read","The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.")}
     {wcard("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app, and how I fixed them","security · Nov 2026 · 3 min read","A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.",delay=80)}
-    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes · Nov 2026 · 3 min read","AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.",delay=160)}
+    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes · Nov 2026 · 3 min read","AegisSRE, my personal flagship: detection, evidence-backed incidents and controlled remediation, with evaluation still pending.",delay=160)}
   </div>
 </div></section>
 
@@ -335,33 +335,18 @@ about = f'''<section class="page-head"><div class="wrap head-grid">
 write("about.html", page("about.html","about","About & Experience","Navin Jairam M's internships at Gradtwin, Rapture Twelve and Adroit Technologies, education and certifications.",about))
 
 # ---------------- PROJECTS ----------------
-ARCH_SVG_AEGIS = '''<svg class="arch-svg" viewBox="0 0 700 300" role="img" aria-label="AegisSRE architecture: four shop services register with a service registry, a deployments API drives deploys to a Next.js console, and Prometheus with Grafana, Loki and Tempo watch the services.">
-<defs><marker id="am-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker><marker id="am-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah g"/></marker></defs>
-<text class="lbl" x="20" y="26">REQUEST FLOW</text>
-<rect class="box" x="20" y="42" width="150" height="64" rx="10"/>
-<text class="t" x="95" y="68" text-anchor="middle">AegisShop</text>
-<text class="s" x="95" y="88" text-anchor="middle">4 services</text>
-<line class="ln" x1="172" y1="74" x2="202" y2="74" marker-end="url(#am-c)"/>
-<rect class="box" x="205" y="42" width="150" height="64" rx="10"/>
-<text class="t" x="280" y="68" text-anchor="middle">Service Registry</text>
-<text class="s" x="280" y="88" text-anchor="middle">discovery</text>
-<line class="ln" x1="357" y1="74" x2="387" y2="74" marker-end="url(#am-c)"/>
-<rect class="box" x="390" y="42" width="150" height="64" rx="10"/>
-<text class="t" x="465" y="68" text-anchor="middle">Deployments API</text>
-<text class="s" x="465" y="88" text-anchor="middle">FastAPI</text>
-<line class="ln" x1="542" y1="74" x2="572" y2="74" marker-end="url(#am-c)"/>
-<rect class="box" x="575" y="42" width="105" height="64" rx="10"/>
-<text class="t" x="627" y="68" text-anchor="middle">Console</text>
-<text class="s" x="627" y="88" text-anchor="middle">Next.js</text>
-<text class="lbl" x="20" y="156">OBSERVABILITY</text>
-<rect class="box" x="20" y="172" width="150" height="64" rx="10"/>
-<text class="t" x="95" y="198" text-anchor="middle">Prometheus</text>
-<text class="s" x="95" y="218" text-anchor="middle">metrics + alerts</text>
-<line class="ln g" x1="172" y1="204" x2="202" y2="204" marker-end="url(#am-g)"/>
-<rect class="box" x="205" y="172" width="230" height="64" rx="10"/>
-<text class="t" x="320" y="198" text-anchor="middle">Grafana · Loki · Tempo</text>
-<text class="s" x="320" y="218" text-anchor="middle">dashboards · logs · traces</text>
-<line class="ln g" x1="150" y1="108" x2="150" y2="168" marker-end="url(#am-g)"/>
+ARCH_SVG_AEGIS = '''<svg class="arch-svg" viewBox="0 0 700 300" role="img" aria-label="AegisSRE: telemetry feeds detection and evidence, incidents pass through policy and approval, and recovery is checked. PostgreSQL and Redis Streams support the runtime; Next.js provides the authenticated console.">
+<defs><marker id="am-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<text class="lbl" x="20" y="26">RELIABILITY LOOP</text>
+<rect class="box" x="20" y="46" width="200" height="68" rx="10"/><text class="t" x="120" y="74" text-anchor="middle">Telemetry</text><text class="s" x="120" y="96" text-anchor="middle">metrics · logs · traces</text>
+<line class="ln" x1="222" y1="80" x2="247" y2="80" marker-end="url(#am-c)"/>
+<rect class="box" x="250" y="46" width="200" height="68" rx="10"/><text class="t" x="350" y="74" text-anchor="middle">Detection + evidence</text><text class="s" x="350" y="96" text-anchor="middle">incidents · cause ranking</text>
+<line class="ln" x1="452" y1="80" x2="477" y2="80" marker-end="url(#am-c)"/>
+<rect class="box" x="480" y="46" width="200" height="68" rx="10"/><text class="t" x="580" y="74" text-anchor="middle">Policy + approval</text><text class="s" x="580" y="96" text-anchor="middle">action · recovery checks</text>
+<text class="lbl" x="20" y="160">SUPPORTING RUNTIME</text>
+<rect class="box" x="20" y="180" width="200" height="68" rx="10"/><text class="t" x="120" y="208" text-anchor="middle">PostgreSQL + Redis</text><text class="s" x="120" y="230" text-anchor="middle">durable state · streams</text>
+<rect class="box" x="250" y="180" width="200" height="68" rx="10"/><text class="t" x="350" y="208" text-anchor="middle">Next.js console</text><text class="s" x="350" y="230" text-anchor="middle">sessions · RBAC · audit</text>
+<rect class="box" x="480" y="180" width="200" height="68" rx="10"/><text class="t" x="580" y="208" text-anchor="middle">Simulation by default</text><text class="s" x="580" y="230" text-anchor="middle">opt-in Kubernetes executor</text>
 </svg>'''
 
 ARCH_SVG_COLDBOX = '''<svg class="arch-svg" viewBox="0 0 700 180" role="img" aria-label="ColdBox pentest flow: the CFML app in vulnerable and hardened builds, scanned by ZAP, Semgrep, Gitleaks and Trivy, nine findings fixed and re-scanned, proven by TestBox suites and a differential matrix.">
@@ -448,7 +433,7 @@ projects = f'''<section class="page-head"><div class="wrap">
   </div>
   <p id="filter-status" class="sr-only" aria-live="polite"></p>
   <div class="grid g3">
-    {pcard("projects/aegissre.html","AegisSRE","SRE platform · personal flagship · MIT","SRE platform, phase 2 built and tested: a 4-service demo shop watched by a service registry, deployments API and a Next.js console. 6-job CI pipeline, 7 Dockerfiles, Kubernetes manifests for 7 services, terraform, and Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.",["Python","FastAPI","Docker","Kubernetes","Kustomize","Terraform","GitHub Actions","Prometheus","Grafana","Loki","Tempo","OpenTelemetry"],"k8s cicd obs",feature=True,hl="h2",arch="aegissre")}
+    {pcard("projects/aegissre.html","AegisSRE","SRE platform · personal flagship · MIT","Personal SRE platform with statistical and Isolation Forest detection, evidence-backed cause ranking, PostgreSQL, Redis Streams and an authenticated Next.js console. Policy-controlled remediation defaults to simulation, with scoped Kubernetes scale/rollback proofs. Eleven CI jobs cover code, storage and kind-stack integration. Comparative trials and release publication remain pending.",["Python","FastAPI","Docker","Kubernetes","Kustomize","Terraform","GitHub Actions","Prometheus","Grafana","Loki","Tempo","OpenTelemetry"],"k8s cicd obs",feature=True,hl="h2",arch="aegissre")}
     {pcard("projects/coldbox-pentesting.html","ColdBox Pentest","DevSecOps","A full penetration-test engagement on a CFML banking app: 9 findings documented and fixed, proven with executed ZAP, Semgrep, Gitleaks, Trivy and cfscan runs, TestBox suites and 7 quality gates.",["OWASP ZAP","Semgrep","Gitleaks","Trivy","TestBox","CFML"],"security cicd",delay=80,hl="h2",arch="coldbox")}
     {pcard("projects/codomax-internship.html","Codomax DevOps Internship","AWS · CI/CD","7 modules capped by a real AWS deploy: GitHub Actions with OIDC auth deployed to EC2 over SSM, verified the running code matched the commit, then tore everything down for about $0.03.",["AWS EC2","OIDC","SSM","GitHub Actions","Docker","CloudWatch"],"aws cicd",hl="h2",arch="codomax")}
     {pcard("projects/dinesmart.html","DineSmart","Full-stack SaaS","Restaurant-operations platform with incident intelligence (product name: Andhrimnir). Next.js 16 + Express 5 + MongoDB; 524/524 backend and 137/137 frontend tests passing, CI green.",["Next.js","React","Express","TypeScript","MongoDB","Playwright"],"web cicd",delay=80,hl="h2")}
@@ -481,12 +466,12 @@ POOLS = [
    ("oci","Oracle Cloud (OCI)",["cert|OCI 2025 Foundations Associate","cert|Oracle AI Database@AWS Certified Architect Professional"]),
  ]),
  ("containers","Containers & Orchestration","cyan",[
-   ("docker","Docker",["aegis|AegisSRE: 7 Dockerfiles, 15-container Compose stack","codomax|Codomax: Compose stacks and smoke tests on a real Docker host","rapture|Rapture Twelve: containerised applications"]),
-   ("kubernetes","Kubernetes",["aegis|AegisSRE: manifests for 7 services"]),
-   ("kustomize","Kustomize",["aegis|AegisSRE: one Kustomize base for all 7 services"]),
+   ("docker","Docker",["aegis|AegisSRE: non-root containers and a persistent Compose stack","codomax|Codomax: Compose stacks and smoke tests on a real Docker host","rapture|Rapture Twelve: containerised applications"]),
+   ("kubernetes","Kubernetes",["aegis|AegisSRE: application and platform Kubernetes manifests"]),
+   ("kustomize","Kustomize",["aegis|AegisSRE: application base and persistent platform overlay"]),
  ]),
  ("cicd","CI/CD","green",[
-   ("github-actions","GitHub Actions",["aegis|AegisSRE: 6-job CI pipeline","codomax|Codomax capstone: OIDC-authenticated deploy pipeline","dinesmart|DineSmart: unit, Playwright e2e and CodeQL checks","portfolio|Portfolio Platform: deploy workflow"]),
+   ("github-actions","GitHub Actions",["aegis|AegisSRE: 11-job CI pipeline","codomax|Codomax capstone: OIDC-authenticated deploy pipeline","dinesmart|DineSmart: unit, Playwright e2e and CodeQL checks","portfolio|Portfolio Platform: deploy workflow"]),
    ("git","Git",["aegis|AegisSRE","coldbox|ColdBox Pentest","codomax|Codomax","dinesmart|DineSmart","ascend|Ascend","portfolio|Portfolio Platform","java|Distributed Java Web App","digicrave|DigiCrave OS","kaizen|Kaizen"]),
    ("oidc","OIDC federation",["codomax|Codomax capstone: keyless AWS auth from GitHub Actions"]),
    ("ci-cd","CI/CD pipelines",["rapture|Rapture Twelve: automated build and release","kaizen|Kaizen: automated CI/CD releases"]),
@@ -520,7 +505,7 @@ POOLS = [
  ("languages","Languages & OS","cyan",[
    ("python","Python",["aegis|AegisSRE: services, checked with mypy and pytest","ascend|Ascend: FastAPI sidecar engine"]),
    ("typescript","TypeScript",["dinesmart|DineSmart: backend and frontend","kaizen|Kaizen"]),
-   ("fastapi","FastAPI",["aegis|AegisSRE: registry and deployments services","ascend|Ascend: sidecar engine"]),
+   ("fastapi","FastAPI",["aegis|AegisSRE: registry, deployments, incidents and gateway services","ascend|Ascend: sidecar engine"]),
    ("electron","Electron",["ascend|Ascend: Windows desktop app shell"]),
    ("cfml","CFML",["coldbox|ColdBox Pentest: banking app target"]),
    ("bash","Bash",["codomax|Codomax: scripting and smoke tests"]),
@@ -596,28 +581,28 @@ obs = diagram("AegisSRE observability flow",
   lane("logs", [("6 services","logs","The same six services send their logs."),("Loki","log aggregation","Loki stores and indexes the logs so they can be searched from Grafana."),("Grafana","explore logs","Logs show up beside the metrics in Grafana.")], "amber") +
   lane("traces", [("6 services","OpenTelemetry spans","OpenTelemetry records spans for the requests each service handles."),("Tempo","trace storage","Tempo stores each service's traces, so a slow request can be looked up and inspected."),("Grafana","trace view","Traces open in Grafana next to the logs and metrics for the same moment.")], "violet"))
 aegis_body = detail_head("../","case study · SRE platform · personal flagship · MIT licensed","AegisSRE",
-  "My personal flagship: an SRE platform (platform codename: AegisDeploy). Phase 2 is built and tested: AegisShop, a 4-service demo shop, watched by a service registry, a deployments API and a live Next.js console, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry. A 6-job CI pipeline guards every push, and all 54 backend tests pass. AI anomaly detection, root-cause analysis and automated remediation are designed and next on the roadmap.",
+  "My personal flagship: a telemetry-driven SRE platform with statistical and Isolation Forest detection, evidence-backed cause ranking, incident lifecycle and an authenticated Next.js console. PostgreSQL stores business state; Redis Streams carries events. Policy-controlled remediation defaults to simulation, with scoped Kubernetes scale/rollback integration proofs. Implementation and integration proofs are available; comparative laptop evaluation and final release publication are unfinished.",
   ["Python","FastAPI","Docker","Kubernetes","Kustomize","Terraform","GitHub Actions","Prometheus","Grafana","Loki","Tempo","OpenTelemetry"],
   [gh_btn("AegisSRE")]) + f'''
 <section style="padding-top:0"><div class="wrap"><div class="grid g3">
-  <div class="card reveal"><div class="stat">6<small>CI jobs on GitHub Actions</small></div></div>
-  <div class="card reveal" data-delay="80"><div class="stat">7<small>Dockerfiles</small></div></div>
-  <div class="card reveal" data-delay="160"><div class="stat">7<small>Kubernetes services, one Kustomize base</small></div></div>
+  <div class="card reveal"><div class="stat">11<small>CI jobs on GitHub Actions</small></div></div>
+  <div class="card reveal" data-delay="80"><div class="stat">10<small>Bounded owned-fixture fault types</small></div></div>
+  <div class="card reveal" data-delay="160"><div class="stat">30<small>Paired manual/Aegis trials planned, not completed</small></div></div>
 </div></div></section>
 
 <section><div class="wrap">
   <p class="eyebrow reveal">status</p>
   <h2 class="reveal">What's built, and what's next</h2>
   <div class="split" style="margin-top:20px">
-    <div class="card reveal"><h3>Built and tested today (phase 2)</h3><ul class="list-check"><li>AegisShop demo: catalog, cart, order and payment services</li><li>Service registry, deployments API and a live Next.js console</li><li>7 Dockerfiles, a 15-container Docker Compose stack, and Kubernetes manifests for 7 services with Kustomize</li><li>Terraform for the cloud infrastructure</li><li>A 6-job GitHub Actions CI pipeline; 54/54 backend tests pass</li><li>Prometheus, Grafana, Loki, Tempo and OpenTelemetry across the 6 Python services</li></ul></div>
-    <div class="card reveal" data-delay="80"><h3>On the roadmap</h3><ul class="list-check planned"><li>AI anomaly detection and root-cause analysis</li><li>Automated remediation, with a human approving risky actions</li><li>A chaos lab to test it</li></ul><p class="muted" style="margin-top:14px">One name note: the repo is AegisSRE, while the README, code and containers use the platform's codename, AegisDeploy. Same project.</p></div>
+    <div class="card reveal"><h3>Implemented, with integration proofs</h3><ul class="list-check"><li>Statistical and Isolation Forest detection; evidence-linked deterministic cause ranking and postmortems</li><li>PostgreSQL business state, Redis Streams delivery and incident/recovery lifecycle</li><li>Authenticated console, pgvector retrieval and read-only evidence tools; no live language-model inference</li><li>Approvals, cooldowns, rate limits, audit and an observe-mode kill switch</li><li>Deployment risk estimates, rollout windows and observed stable/canary comparison</li><li>DevSecOps: RBAC, separate read/write credentials, non-root containers and eleven CI jobs</li></ul></div>
+    <div class="card reveal" data-delay="80"><h3>Evaluation and release still pending</h3><ul class="list-check planned"><li>Validate Docker Desktop/WSL2 and smoke/reset on the target laptop</li><li>Collect 30 genuine manual/Aegis pairs and review outcome/quality results</li><li>Publish and pull-verify final GHCR images</li></ul><p class="muted" style="margin-top:14px">Simulation is the default. Scoped Kubernetes scale/rollback proofs are not a comparative benchmark or evidence of production readiness. Predictive thresholds remain unmeasured. Live language-model inference and MLOps remain unbuilt roadmap ideas.</p></div>
   </div>
 </div></section>
 
 <section><div class="wrap">
   <p class="eyebrow reveal">.github/workflows/ci.yml</p>
   <h2 class="reveal">The CI pipeline</h2>
-  <p class="muted reveal" style="max-width:66ch">Every push and pull request to main runs six CI jobs, and all of them must pass before a merge: YAML and compose validation, Kubernetes manifests (kubeconform + kustomize), a docs link check, the backend (ruff, mypy, pytest), Docker image builds and the frontend build. This animation walks through them. It's an illustration, not live build status.</p>
+  <p class="muted reveal" style="max-width:66ch">Eleven CI jobs cover configuration, Kubernetes manifests, docs, backend quality/contracts, a catalog container build, the console build, PostgreSQL/Redis storage, metadata persistence, live collection/restart recovery, real Kubernetes RBAC and the complete disposable kind stack. This six-stage animation groups the first six checks. It is an illustration, not live build status.</p>
   <div class="pipe-wrap reveal" id="pipe" data-state="idle" style="margin-top:22px">
     <div class="pipe-head"><span class="run-state"><i aria-hidden="true"></i> CI · main · <span class="run-txt">queued</span></span><button class="btn" type="button" data-run style="padding:8px 14px;font-size:14px">↻ Run pipeline</button></div>
     <ol class="pipeline" aria-label="CI jobs">{st_html}</ol>
@@ -627,8 +612,8 @@ aegis_body = detail_head("../","case study · SRE platform · personal flagship 
 
 <section><div class="wrap">
   <p class="eyebrow reveal">infra/k8s/base</p>
-  <h2 class="reveal">7 services on Kubernetes</h2>
-  <p class="muted reveal" style="max-width:66ch">Each service has its own Deployment and Service manifest, assembled by one Kustomize base and validated with kubeconform in CI. Three make up the platform; four make up AegisShop, a demo shop for the platform to watch.</p>
+  <h2 class="reveal">Application and platform Kubernetes manifests</h2>
+  <p class="muted reveal" style="max-width:66ch">The application base below contains registry, deployments, console and four AegisShop services. A separate platform overlay adds incidents, the gateway, persistent stores, observability and evidence-reader RBAC. CI boots the complete disposable kind stack.</p>
   <div class="k8s reveal" style="margin-top:20px">
     <div class="k8s-top"><span>⎈ kustomize build infra/k8s/base</span><span>■ platform  <span style="color:var(--violet)">■</span> demo app</span></div>
     <div class="svcs">{svc_html}</div>
@@ -642,7 +627,7 @@ aegis_body = detail_head("../","case study · SRE platform · personal flagship 
   <div style="margin-top:20px">{obs}</div>
 </div></section>
 ''' + next_nav("../",("projects/distributed-java-webapp.html","Distributed Java Web App"),("projects/coldbox-pentesting.html","ColdBox Pentest")) + CTA("../")
-write("projects/aegissre.html", page("projects/aegissre.html","projects","AegisSRE","AegisSRE, an SRE platform with phase 2 built and tested: a demo shop watched by a service registry, deployments API and Next.js console, a 6-job CI pipeline, 7 Kubernetes services and Prometheus, Grafana, Loki, Tempo and OpenTelemetry.",aegis_body,root="../"))
+write("projects/aegissre.html", page("projects/aegissre.html","projects","AegisSRE","AegisSRE: detection, evidence-backed incidents, controlled remediation and DevSecOps integration proofs. Comparative laptop trials and release publication are pending.",aegis_body,root="../"))
 
 # ---------------- COLDBOX PENTEST ----------------
 cb = diagram("ColdBox pentest engagement",
@@ -836,7 +821,7 @@ writing = f'''<section class="page-head"><div class="wrap">
   <div class="grid g3">
     {wcard("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM, and proving it worked","AWS · CI/CD · Nov 2026 · 3 min read","The codomax capstone: a GitHub Actions pipeline that authenticates without stored keys, deploys over SSM, and verifies the running code matches the commit.")}
     {wcard("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app, and how I fixed them","security · Nov 2026 · 3 min read","A full penetration-test engagement against my own CFML banking app, with every fix proven by executed scans and tests.",delay=80)}
-    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes · Nov 2026 · 3 min read","AegisSRE, my personal flagship: an honest tour of what phase 2 built and tested, and what is still on the roadmap.",delay=160)}
+    {wcard("writing/building-an-sre-platform.html","Building an SRE platform: what is real today, what is next","SRE · Kubernetes · Nov 2026 · 3 min read","AegisSRE, my personal flagship: detection, evidence-backed incidents and controlled remediation, with evaluation still pending.",delay=160)}
   </div>
 </div></section>
 <section style="padding-top:0"><div class="wrap">
@@ -891,29 +876,29 @@ write("writing/coldbox-nine-findings.html", page("writing/coldbox-nine-findings.
 
 p3_body = post_head("building-an-sre-platform","SRE · Kubernetes",
   "Building an SRE platform: what is real today, what is next",
-  "AegisSRE is my personal flagship: an SRE platform that watches a deployed application, collects its telemetry and keeps a human in control. Here is what phase 2 actually built and tested, and what is still design.",
+  "AegisSRE is my personal flagship: detection, evidence-backed incidents and controlled remediation, with comparative evaluation still unfinished. Updated 24 November 2026.",
   gh_btn("AegisSRE")) + '''
 <section style="padding-top:0"><div class="wrap"><div class="post">
-  <p>One name note first: the platform's codename is AegisDeploy, and the repository is AegisSRE. Same project. I started it because every project I had built stopped at deployment, and I wanted to work on the part that comes after: watching a running system, noticing when it misbehaves, and understanding why.</p>
-  <p>What exists today, built and tested, is phase 2. AegisShop is a four-service demo shop (catalog, cart, order and payment) that exists to be watched. Around it sit a service registry, a deployments API and a live Next.js console. Observability is not an afterthought: Prometheus for metrics with alert rules, Grafana dashboards, Loki for logs, Tempo for traces, and OpenTelemetry instrumentation across the six Python services.</p>
-  <p>The engineering discipline around it matters as much as the features. Every push runs a six-job CI pipeline, and all six must pass before a merge: YAML and Compose validation, Kubernetes manifests checked with kubeconform and kustomize, a link check across every doc, the backend (ruff, mypy, pytest), Docker image builds and the frontend build. All 54 backend tests pass. The platform ships with 7 Dockerfiles, a 15-container Compose stack, manifests for 7 Kubernetes services managed with Kustomize, and Terraform for the cloud infrastructure. It is MIT licensed.</p>
-  <p>What is next is designed, documented, and not built yet, and I try to keep that line bright. The roadmap covers anomaly detection with Isolation Forest models and statistical baselines, an AI reasoning layer that combines logs, metrics, traces, deployments and runbooks into evidence-backed root-cause explanations, and remediation where low-risk reversible actions can execute automatically while anything risky waits for a human to approve. A deployment-intelligence tier (risk scoring, bad-rollout detection, change-incident correlation, DI-1 through DI-7) is specced in the architecture docs.</p>
-  <p>The biggest lesson so far: instrument one demo application end to end before reaching for any intelligence. A platform that cannot show you a clean trace of a boring request has no business detecting anomalies. The repo has the docs, the roadmap and the working phase 2 code, and the CI pipeline keeps both honest.</p>
+  <p>I started AegisSRE to work on what happens after deployment: watching a running system, noticing when it misbehaves, and understanding why. AegisShop gives the platform a four-service demo application to watch, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry providing the signals.</p>
+  <p>The implemented runtime now includes statistical and Isolation Forest detection, evidence-linked deterministic cause ranking, incident lifecycle and postmortems. PostgreSQL stores business state and Redis Streams carries events. An authenticated Next.js console provides incidents, approvals, deployments, runbooks and read-only Ask tools with pgvector retrieval. Reasoning stays evidence-only; there is no live language-model inference.</p>
+  <p>Remediation stays inside policy: approval, rejection and deferral, cooldowns, rate limits, cancellation, audit and an observe-mode kill switch. Base configuration uses simulation. An opt-in scoped Kubernetes executor has real scale/rollback integration proofs, but those proofs do not measure recovery accuracy. Deployment intelligence includes empirical/change-attribute risk estimates, rollout windows and observed stable/canary comparison; predictive thresholds remain unmeasured.</p>
+  <p>DevSecOps controls include RBAC, separate read/write credentials, non-root containers and eleven CI jobs. The checks cover code, builds, storage, live collection and a complete disposable kind stack. Ten bounded owned-fixture faults and matched-session tooling support evaluation without counting timed cleanup as remediation.</p>
+  <p>Completion still needs the target-laptop Docker/WSL2 smoke and reset, 30 genuine manual/Aegis pairs, outcome and quality review, and final GHCR publication/pull verification. Passing tests and integration fixtures are not a held-out study or proof of production readiness. Live language-model inference, model registry and training/drift pipelines remain unbuilt roadmap ideas.</p>
 </div></div></section>
 ''' + next_nav("../",("writing/coldbox-nine-findings.html","Nine findings in a ColdBox banking app"),("writing/deploying-to-ec2-with-oidc-and-ssm.html","Deploying to EC2 with OIDC and SSM")) + CTA("../")
-write("writing/building-an-sre-platform.html", page("writing/building-an-sre-platform.html","writing","Building an SRE platform","AegisSRE, a personal flagship SRE platform: what phase 2 built and tested (registry, deployments API, console, 6-job CI, observability) and what is still on the roadmap.",p3_body,root="../"))
+write("writing/building-an-sre-platform.html", page("writing/building-an-sre-platform.html","writing","Building an SRE platform","AegisSRE: implemented detection, evidence-backed incidents, controlled remediation and DevSecOps, with comparative evaluation still pending.",p3_body,root="../"))
 
 now = f'''<section class="page-head"><div class="wrap" style="max-width:68ch">
   <p class="crumb">~/now</p>
   <p class="eyebrow">now</p>
   <h1>What I'm doing now</h1>
-  <p class="lead">A /now page, last updated 21 November 2026.</p>
+  <p class="lead">A /now page, last updated 24 November 2026.</p>
 </div></section>
 <section style="padding-top:0"><div class="wrap" style="max-width:68ch">
   <h3 class="reveal">Working</h3>
   <p class="muted reveal">Machine Learning Intern at Gradtwin (Chennai, hybrid), adding ML-side experience to my DevOps background.</p>
   <h3 class="reveal" style="margin-top:26px">Building</h3>
-  <p class="muted reveal"><a href="projects/aegissre.html">AegisSRE</a> phase 2 is built and tested; the AI-assisted incident work next to it stays labelled as a roadmap, because it is one. This portfolio is hand-written HTML/CSS/JS, no framework.</p>
+  <p class="muted reveal"><a href="projects/aegissre.html">AegisSRE</a> has implemented detection, evidence-backed incidents, an authenticated console and policy-controlled remediation. Comparative laptop trials and final release publication are pending; live language-model inference stays on the roadmap. This portfolio is hand-written HTML/CSS/JS, no framework.</p>
   <h3 class="reveal" style="margin-top:26px">Learning</h3>
   <p class="muted reveal">Deepening the DevOps → DevSecOps → MLOps path: Kubernetes, observability, and the data side of things after the Lakehouse, Lagers &amp; Legends meetup (Databricks Lakebase, PostgreSQL).</p>
   <h3 class="reveal" style="margin-top:26px">Community</h3>

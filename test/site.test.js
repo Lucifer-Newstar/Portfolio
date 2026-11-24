@@ -148,7 +148,7 @@ test("downloadable resume is the copy without the phone number", () => {
   const txt = execFileSync("pdftotext", [path.join(SITE, "assets/Navin_Jairam_M_Resume.pdf"), "-"]).toString();
   assert.ok(txt.includes("Navin") || txt.includes("NAVIN"));
   assert.ok(!/\b[6-9]\d{9}\b|\+91/.test(txt), "phone in served resume");
-  assert.ok(txt.includes("YAML/compose validation") && txt.includes("docs link check"), "corrected CI line in served resume");
+  assert.ok(txt.includes("eleven GitHub Actions CI jobs") && txt.includes("DevSecOps"), "corrected CI line in served resume");
   assert.ok(!fs.readFileSync(path.join(SITE, "assets/Navin_Jairam_M_Resume.pdf")).includes("tel:"), "tel link in PDF");
 });
 
@@ -172,7 +172,7 @@ test("Portfolio Platform never links the wrong or the abandoned repo", () => {
   else assert.ok(pp.includes('data-source="private"') && pp.includes("Source: private, available on request"), "private source state");
 });
 
-test("AegisSRE copy is honest: phase 2 built, AI on the roadmap, 7 Dockerfiles, 6 instrumented services", () => {
+test("AegisSRE copy separates implementation, integration proofs and pending evaluation", () => {
   const files = [...all, ["script.js", read("script.js")]];
   for (const [p, h] of files) {
     assert.ok(!/AI-powered|autonomous SRE|hop by hop/i.test(h), p + " overstates AegisSRE");
@@ -182,8 +182,10 @@ test("AegisSRE copy is honest: phase 2 built, AI on the roadmap, 7 Dockerfiles, 
     assert.ok(!/\b(containeriz|optimiz|authoriz|organiz|customiz|visualiz|standardiz|prioritiz|recogniz|summariz|analyz|minimiz|maximiz|utiliz|categoriz)\w*/i.test(h), p + " uses American -ize spelling");
   }
   const a = read("projects/aegissre.html");
-  assert.ok(a.includes("phase 2") && /roadmap/i.test(a), "phase 2 + roadmap");
-  assert.ok(a.includes('<div class="stat">7<small>Dockerfiles</small>'), "7 Dockerfiles stat");
+  assert.ok(a.includes("Isolation Forest") && a.includes("DevSecOps") && a.includes("PostgreSQL") && a.includes("Redis Streams"), "implemented runtime");
+  assert.ok(a.includes("Simulation is the default") && a.includes("30 genuine") && a.includes("unmeasured"), "evaluation limits");
+  assert.ok(!/phase 2|54\/54|AegisDeploy|6-job CI/.test(a), "no obsolete milestone claims");
+  assert.ok(a.includes('<div class="stat">11<small>CI jobs'), "eleven CI jobs stat");
   assert.ok(!a.includes("<b>7 services</b>"), "observability diagram says 7 services");
   assert.equal((a.match(/<b>6 services<\/b>/g) || []).length, 3, "6 instrumented services in each lane");
 });
@@ -203,7 +205,7 @@ test("current content: Gradtwin, official cert names, honest resume download", (
     assert.ok(!h.includes("docker pull navin/resume"), f + " must not imply a real Docker image");
   }
   const n=read("now.html");
-  assert.ok(n.includes("Gradtwin") && n.includes("roadmap") && n.includes("21 November 2026"), "dated now page");
+  assert.ok(n.includes("Gradtwin") && n.includes("roadmap") && n.includes("24 November 2026"), "dated now page");
   assert.ok(read("writing.html").includes("Nov 2026 · 3 min read"), "write-up read time");
 });
 
@@ -239,4 +241,13 @@ test("final QA fixes: dialog traps Tab; terminal includes writing and now", () =
   assert.ok(js.includes('modal.contains(document.activeElement)') && js.includes('e.shiftKey'), 'architecture focus trap');
   assert.ok(js.includes('writing: "writing.html"') && js.includes('now: "now.html"'), 'terminal page routes');
   assert.ok(js.includes('cluster.querySelectorAll(".pool").length'), 'skill pool count not hardcoded');
+});
+
+ test("published resume retains AegisSRE-only update and no phone", () => {
+  const {execFileSync} = require("node:child_process");
+  const pdf = path.join(SITE,"assets/Navin_Jairam_M_Resume.pdf");
+  const text = execFileSync("pdftotext",[pdf,"-"]).toString();
+  assert.ok(text.includes("Isolation Forest") && text.includes("DevSecOps"));
+  assert.ok(!/\b[6-9]\d{9}\b|\+91/.test(text));
+  assert.match(execFileSync("pdfinfo",[pdf]).toString(), /Pages:\s+1\b/);
 });

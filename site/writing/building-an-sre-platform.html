@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Building an SRE platform · Navin Jairam M</title>
-<meta name="description" content="AegisSRE, a personal flagship SRE platform: what phase 2 built and tested (registry, deployments API, console, 6-job CI, observability) and what is still on the roadmap.">
+<meta name="description" content="AegisSRE: implemented detection, evidence-backed incidents, controlled remediation and DevSecOps, with comparative evaluation still pending.">
 <meta name="author" content="Navin Jairam M">
 <meta name="theme-color" content="#06080c">
 <meta name="color-scheme" content="dark light">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Navin Jairam M">
 <meta property="og:title" content="Building an SRE platform · Navin Jairam M">
-<meta property="og:description" content="AegisSRE, a personal flagship SRE platform: what phase 2 built and tested (registry, deployments API, console, 6-job CI, observability) and what is still on the roadmap.">
+<meta property="og:description" content="AegisSRE: implemented detection, evidence-backed incidents, controlled remediation and DevSecOps, with comparative evaluation still pending.">
 <meta property="og:url" content="https://lucifer-newstar.github.io/Portfolio/writing/building-an-sre-platform.html">
 <meta property="og:image" content="https://lucifer-newstar.github.io/Portfolio/og.png">
 <meta property="og:image:width" content="1200">
@@ -23,14 +23,14 @@
 <meta property="og:image:alt" content="Navin Jairam M — DevOps &amp; Cloud Engineer">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Building an SRE platform · Navin Jairam M">
-<meta name="twitter:description" content="AegisSRE, a personal flagship SRE platform: what phase 2 built and tested (registry, deployments API, console, 6-job CI, observability) and what is still on the roadmap.">
+<meta name="twitter:description" content="AegisSRE: implemented detection, evidence-backed incidents, controlled remediation and DevSecOps, with comparative evaluation still pending.">
 <meta name="twitter:image" content="https://lucifer-newstar.github.io/Portfolio/og.png">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../styles.css?v=e1b70a87">
-<script src="../script.js?v=225a54a9" defer></script>
+<script src="../script.js?v=5a75230a" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -50,15 +50,15 @@
   <p class="crumb"><a href="../writing.html">~/writing</a> / building-an-sre-platform</p>
   <p class="eyebrow">write-up · SRE · Kubernetes</p>
   <h1>Building an SRE platform: what is real today, what is next</h1>
-  <p class="lead">AegisSRE is my personal flagship: an SRE platform that watches a deployed application, collects its telemetry and keeps a human in control. Here is what phase 2 actually built and tested, and what is still design.</p>
+  <p class="lead">AegisSRE is my personal flagship: detection, evidence-backed incidents and controlled remediation, with comparative evaluation still unfinished. Updated 24 November 2026.</p>
   <div class="btns"><a class="btn" href="https://github.com/Lucifer-Newstar/AegisSRE" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg> Source on GitHub</a></div>
 </div></section>
 <section style="padding-top:0"><div class="wrap"><div class="post">
-  <p>One name note first: the platform's codename is AegisDeploy, and the repository is AegisSRE. Same project. I started it because every project I had built stopped at deployment, and I wanted to work on the part that comes after: watching a running system, noticing when it misbehaves, and understanding why.</p>
-  <p>What exists today, built and tested, is phase 2. AegisShop is a four-service demo shop (catalog, cart, order and payment) that exists to be watched. Around it sit a service registry, a deployments API and a live Next.js console. Observability is not an afterthought: Prometheus for metrics with alert rules, Grafana dashboards, Loki for logs, Tempo for traces, and OpenTelemetry instrumentation across the six Python services.</p>
-  <p>The engineering discipline around it matters as much as the features. Every push runs a six-job CI pipeline, and all six must pass before a merge: YAML and Compose validation, Kubernetes manifests checked with kubeconform and kustomize, a link check across every doc, the backend (ruff, mypy, pytest), Docker image builds and the frontend build. All 54 backend tests pass. The platform ships with 7 Dockerfiles, a 15-container Compose stack, manifests for 7 Kubernetes services managed with Kustomize, and Terraform for the cloud infrastructure. It is MIT licensed.</p>
-  <p>What is next is designed, documented, and not built yet, and I try to keep that line bright. The roadmap covers anomaly detection with Isolation Forest models and statistical baselines, an AI reasoning layer that combines logs, metrics, traces, deployments and runbooks into evidence-backed root-cause explanations, and remediation where low-risk reversible actions can execute automatically while anything risky waits for a human to approve. A deployment-intelligence tier (risk scoring, bad-rollout detection, change-incident correlation, DI-1 through DI-7) is specced in the architecture docs.</p>
-  <p>The biggest lesson so far: instrument one demo application end to end before reaching for any intelligence. A platform that cannot show you a clean trace of a boring request has no business detecting anomalies. The repo has the docs, the roadmap and the working phase 2 code, and the CI pipeline keeps both honest.</p>
+  <p>I started AegisSRE to work on what happens after deployment: watching a running system, noticing when it misbehaves, and understanding why. AegisShop gives the platform a four-service demo application to watch, with Prometheus, Grafana, Loki, Tempo and OpenTelemetry providing the signals.</p>
+  <p>The implemented runtime now includes statistical and Isolation Forest detection, evidence-linked deterministic cause ranking, incident lifecycle and postmortems. PostgreSQL stores business state and Redis Streams carries events. An authenticated Next.js console provides incidents, approvals, deployments, runbooks and read-only Ask tools with pgvector retrieval. Reasoning stays evidence-only; there is no live language-model inference.</p>
+  <p>Remediation stays inside policy: approval, rejection and deferral, cooldowns, rate limits, cancellation, audit and an observe-mode kill switch. Base configuration uses simulation. An opt-in scoped Kubernetes executor has real scale/rollback integration proofs, but those proofs do not measure recovery accuracy. Deployment intelligence includes empirical/change-attribute risk estimates, rollout windows and observed stable/canary comparison; predictive thresholds remain unmeasured.</p>
+  <p>DevSecOps controls include RBAC, separate read/write credentials, non-root containers and eleven CI jobs. The checks cover code, builds, storage, live collection and a complete disposable kind stack. Ten bounded owned-fixture faults and matched-session tooling support evaluation without counting timed cleanup as remediation.</p>
+  <p>Completion still needs the target-laptop Docker/WSL2 smoke and reset, 30 genuine manual/Aegis pairs, outcome and quality review, and final GHCR publication/pull verification. Passing tests and integration fixtures are not a held-out study or proof of production readiness. Live language-model inference, model registry and training/drift pipelines remain unbuilt roadmap ideas.</p>
 </div></div></section>
 <section style="padding-top:20px"><div class="wrap next">
   <a class="btn" href="../writing/coldbox-nine-findings.html">← Nine findings in a ColdBox banking app</a>
@@ -71,7 +71,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>© <span id="year">2026</span> Navin Jairam M · built as static HTML, CSS &amp; JS</span>
-    <span class="fstatus">● static site · last deploy 22 Nov 2026</span>
+    <span class="fstatus">● static site · last deploy 24 Nov 2026</span>
     <nav aria-label="Footer"><a href="../now.html">Now</a><a href="mailto:navin.jairam@gmail.com">Email</a><a href="https://www.linkedin.com/in/navin-jairam" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Lucifer-Newstar" target="_blank" rel="noopener">GitHub</a><a href="../assets/Navin_Jairam_M_Resume.pdf" download>Resume (1 page)</a><a href="../assets/Navin_Jairam_M_CV.pdf" download>CV (2 pages)</a></nav>
   </div>
 </footer>
