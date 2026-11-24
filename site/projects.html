@@ -30,7 +30,7 @@
 <link rel="preload" href="assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=e1b70a87">
-<script src="script.js?v=225a54a9" defer></script>
+<script src="script.js?v=5a75230a" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -68,7 +68,7 @@
     <div class="card tilt pcard reveal feature" data-tags="k8s cicd obs" data-delay="0">
   <div class="ptop"><span class="badge">SRE platform · personal flagship · MIT</span><span>case study</span></div>
   <h2><a class="pcard-title" href="projects/aegissre.html">AegisSRE</a></h2>
-  <p>SRE platform, phase 2 built and tested: a 4-service demo shop watched by a service registry, deployments API and a Next.js console. 6-job CI pipeline, 7 Dockerfiles, Kubernetes manifests for 7 services, terraform, and Prometheus, Grafana, Loki, Tempo and OpenTelemetry. AI incident detection and auto-remediation are next on the roadmap.</p>
+  <p>Personal SRE platform with statistical and Isolation Forest detection, evidence-backed cause ranking, PostgreSQL, Redis Streams and an authenticated Next.js console. Policy-controlled remediation defaults to simulation, with scoped Kubernetes scale/rollback proofs. Eleven CI jobs cover code, storage and kind-stack integration. Comparative trials and release publication remain pending.</p>
   <ul class="tags"><li>Python</li><li>FastAPI</li><li>Docker</li><li>Kubernetes</li><li>Kustomize</li><li>Terraform</li><li>GitHub Actions</li><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Tempo</li><li>OpenTelemetry</li></ul>
   <div class="pcard-foot">
     <a class="go" href="projects/aegissre.html">Open case study <span class="arr" aria-hidden="true">→</span></a>
@@ -148,33 +148,18 @@
     <div class="arch-head"><h2 id="arch-title" class="arch-title">Architecture</h2><button type="button" class="arch-close" aria-label="Close architecture view">✕</button></div>
     <div data-arch-panel="aegissre" data-title="AegisSRE · architecture" hidden>
       <p class="arch-sub">request flow + observability, simplified · the case study has the full interactive diagram</p>
-      <svg class="arch-svg" viewBox="0 0 700 300" role="img" aria-label="AegisSRE architecture: four shop services register with a service registry, a deployments API drives deploys to a Next.js console, and Prometheus with Grafana, Loki and Tempo watch the services.">
-<defs><marker id="am-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker><marker id="am-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah g"/></marker></defs>
-<text class="lbl" x="20" y="26">REQUEST FLOW</text>
-<rect class="box" x="20" y="42" width="150" height="64" rx="10"/>
-<text class="t" x="95" y="68" text-anchor="middle">AegisShop</text>
-<text class="s" x="95" y="88" text-anchor="middle">4 services</text>
-<line class="ln" x1="172" y1="74" x2="202" y2="74" marker-end="url(#am-c)"/>
-<rect class="box" x="205" y="42" width="150" height="64" rx="10"/>
-<text class="t" x="280" y="68" text-anchor="middle">Service Registry</text>
-<text class="s" x="280" y="88" text-anchor="middle">discovery</text>
-<line class="ln" x1="357" y1="74" x2="387" y2="74" marker-end="url(#am-c)"/>
-<rect class="box" x="390" y="42" width="150" height="64" rx="10"/>
-<text class="t" x="465" y="68" text-anchor="middle">Deployments API</text>
-<text class="s" x="465" y="88" text-anchor="middle">FastAPI</text>
-<line class="ln" x1="542" y1="74" x2="572" y2="74" marker-end="url(#am-c)"/>
-<rect class="box" x="575" y="42" width="105" height="64" rx="10"/>
-<text class="t" x="627" y="68" text-anchor="middle">Console</text>
-<text class="s" x="627" y="88" text-anchor="middle">Next.js</text>
-<text class="lbl" x="20" y="156">OBSERVABILITY</text>
-<rect class="box" x="20" y="172" width="150" height="64" rx="10"/>
-<text class="t" x="95" y="198" text-anchor="middle">Prometheus</text>
-<text class="s" x="95" y="218" text-anchor="middle">metrics + alerts</text>
-<line class="ln g" x1="172" y1="204" x2="202" y2="204" marker-end="url(#am-g)"/>
-<rect class="box" x="205" y="172" width="230" height="64" rx="10"/>
-<text class="t" x="320" y="198" text-anchor="middle">Grafana · Loki · Tempo</text>
-<text class="s" x="320" y="218" text-anchor="middle">dashboards · logs · traces</text>
-<line class="ln g" x1="150" y1="108" x2="150" y2="168" marker-end="url(#am-g)"/>
+      <svg class="arch-svg" viewBox="0 0 700 300" role="img" aria-label="AegisSRE: telemetry feeds detection and evidence, incidents pass through policy and approval, and recovery is checked. PostgreSQL and Redis Streams support the runtime; Next.js provides the authenticated console.">
+<defs><marker id="am-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<text class="lbl" x="20" y="26">RELIABILITY LOOP</text>
+<rect class="box" x="20" y="46" width="200" height="68" rx="10"/><text class="t" x="120" y="74" text-anchor="middle">Telemetry</text><text class="s" x="120" y="96" text-anchor="middle">metrics · logs · traces</text>
+<line class="ln" x1="222" y1="80" x2="247" y2="80" marker-end="url(#am-c)"/>
+<rect class="box" x="250" y="46" width="200" height="68" rx="10"/><text class="t" x="350" y="74" text-anchor="middle">Detection + evidence</text><text class="s" x="350" y="96" text-anchor="middle">incidents · cause ranking</text>
+<line class="ln" x1="452" y1="80" x2="477" y2="80" marker-end="url(#am-c)"/>
+<rect class="box" x="480" y="46" width="200" height="68" rx="10"/><text class="t" x="580" y="74" text-anchor="middle">Policy + approval</text><text class="s" x="580" y="96" text-anchor="middle">action · recovery checks</text>
+<text class="lbl" x="20" y="160">SUPPORTING RUNTIME</text>
+<rect class="box" x="20" y="180" width="200" height="68" rx="10"/><text class="t" x="120" y="208" text-anchor="middle">PostgreSQL + Redis</text><text class="s" x="120" y="230" text-anchor="middle">durable state · streams</text>
+<rect class="box" x="250" y="180" width="200" height="68" rx="10"/><text class="t" x="350" y="208" text-anchor="middle">Next.js console</text><text class="s" x="350" y="230" text-anchor="middle">sessions · RBAC · audit</text>
+<rect class="box" x="480" y="180" width="200" height="68" rx="10"/><text class="t" x="580" y="208" text-anchor="middle">Simulation by default</text><text class="s" x="580" y="230" text-anchor="middle">opt-in Kubernetes executor</text>
 </svg>
       <p class="arch-more"><a href="projects/aegissre.html">Open the full case study →</a></p>
     </div>
@@ -235,7 +220,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>© <span id="year">2026</span> Navin Jairam M · built as static HTML, CSS &amp; JS</span>
-    <span class="fstatus">● static site · last deploy 22 Nov 2026</span>
+    <span class="fstatus">● static site · last deploy 24 Nov 2026</span>
     <nav aria-label="Footer"><a href="now.html">Now</a><a href="mailto:navin.jairam@gmail.com">Email</a><a href="https://www.linkedin.com/in/navin-jairam" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Lucifer-Newstar" target="_blank" rel="noopener">GitHub</a><a href="assets/Navin_Jairam_M_Resume.pdf" download>Resume (1 page)</a><a href="assets/Navin_Jairam_M_CV.pdf" download>CV (2 pages)</a></nav>
   </div>
 </footer>

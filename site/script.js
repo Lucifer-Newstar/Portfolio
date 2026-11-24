@@ -15,7 +15,7 @@
   /* Portfolio Platform repo: set PORTFOLIO_PLATFORM_REPO in build.py (empty = private, no link). */
   var PP_REPO = doc.getAttribute("data-pp-repo") ? LINKS.github + "/" + doc.getAttribute("data-pp-repo") : null;
   var PROJECTS = [
-    { id: "aegissre", name: "AegisSRE", page: "projects/aegissre.html", repo: "https://github.com/Lucifer-Newstar/AegisSRE", blurb: "SRE platform, phase 2 built and tested: demo shop + registry, deployments API, console; K8s, terraform, 6-job CI, observability" },
+    { id: "aegissre", name: "AegisSRE", page: "projects/aegissre.html", repo: "https://github.com/Lucifer-Newstar/AegisSRE", blurb: "SRE platform: detection, evidence-backed incidents, controlled remediation, DevSecOps and 11-job CI; evaluation pending" },
     { id: "coldbox", name: "ColdBox Pentest", page: "projects/coldbox-pentesting.html", repo: "https://github.com/Lucifer-Newstar/ColdBox-Pentesting", blurb: "DevSecOps pentest of a CFML banking app: 9 findings fixed, ZAP/Semgrep/Gitleaks/Trivy executed, gates G1-G7 PASS" },
     { id: "codomax", name: "Codomax DevOps Internship", page: "projects/codomax-internship.html", repo: "https://github.com/Lucifer-Newstar/codomax-internship", blurb: "7 modules; real AWS capstone: OIDC + SSM deploy to EC2, verified, torn down (~$0.03)" },
     { id: "dinesmart", name: "DineSmart", page: "projects/dinesmart.html", repo: "https://github.com/Lucifer-Newstar/DineSmart", blurb: "Restaurant-ops SaaS with incident intelligence: Next.js 16, Express 5, MongoDB; 524/524 + 137/137 tests, CI green" },
@@ -618,8 +618,8 @@
         t += reduce ? 20 : 180;
       });
       timers.push(setTimeout(function () {
-        wrap.setAttribute("data-state", "passed"); if (stateTxt) stateTxt.textContent = "all 6 jobs passed";
-        line('<span class="ok">✓ all 6 jobs green — ready to merge</span>'); if (btn) btn.disabled = false;
+        wrap.setAttribute("data-state", "passed"); if (stateTxt) stateTxt.textContent = "6 illustrated checks passed";
+        line('<span class="ok">✓ 6 illustrated checks complete; see GitHub for live CI</span>'); if (btn) btn.disabled = false;
       }, t + 100));
     }
     if (btn) btn.addEventListener("click", run);
